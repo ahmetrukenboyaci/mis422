@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-
 import {
     Collapse,
     Navbar,
@@ -12,10 +11,11 @@ import {
     DropdownToggle,
     DropdownMenu,
     DropdownItem,
-    NavbarText
+    Input
 } from 'reactstrap';
 
-import styles from './NavigationBar.scss';
+/** styles **/
+import './NavigationBar.scss';
 
 class NavigationBar extends Component {
     constructor(props) {
@@ -31,7 +31,7 @@ class NavigationBar extends Component {
         const toggle = () => this.setState({ isOpen: !isOpen });
 
         return (
-            <div className={styles.NavBar}>
+            <div className={'NavBar'}>
                 <Navbar color="light" light expand="md">
                     <NavbarBrand href="/">reactstrap</NavbarBrand>
                     <NavbarToggler onClick={toggle} />
@@ -61,7 +61,15 @@ class NavigationBar extends Component {
                                 </DropdownMenu>
                             </UncontrolledDropdown>
                         </Nav>
-                        <NavbarText>Simple Text</NavbarText>
+                        <div className={'col-md-3'}>
+                            <Input
+                                type="text"
+                                name="search"
+                                id="search"
+                                placeholder="Search"
+                                autoComplete="off"
+                            />
+                        </div>
                     </Collapse>
                 </Navbar>
             </div>

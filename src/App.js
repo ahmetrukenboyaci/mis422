@@ -3,23 +3,26 @@ import {Route, BrowserRouter, Switch} from "react-router-dom";
 
 /** components **/
 import NavigationBar from "./components/NavigationBar/NavigationBar";
+import Footer from "./components/Footer/Footer";
 
 /** styles **/
-import './App.css';
+import "./App.scss";
 
-function App() {
-  return (
-    <div className="App">
-      <BrowserRouter basename={"/"}>
-          <Switch>
-              <Route exact path={'/'}>
-                  <NavigationBar />
-              </Route>
-          </Switch>
-      </BrowserRouter>
-      {/*<NavigationBar />*/}
-    </div>
-  );
+class App extends React.Component {
+    render() {
+        return (
+            <div className={"App"}>
+              <BrowserRouter basename={"/"}>
+                <NavigationBar />
+                  <Switch>
+                      <Route path={'/'}>
+                        <Footer />
+                      </Route>
+                  </Switch>
+              </BrowserRouter>
+            </div>
+          );
+    }
 }
 
 export default App;
