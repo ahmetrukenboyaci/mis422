@@ -1,4 +1,5 @@
 import React from "react";
+import { Container, Row, Col } from "reactstrap";
 
 /**  pages  **/
 
@@ -12,27 +13,36 @@ import "./App.scss";
 class CompaniesPage extends React.Component {
   render() {
     return (
-      <div className="container-fluid mt-5">
-        <div className="row">
-          <div className="col-3">
+      <Container fluid className="Container">
+        <Row className="Row" xs="1" sm="2" md="4">
+          <Col className="Col">
             <CompanyCard />
-          </div>
-          <div className="col-3">
+          </Col>
+          <Col className="Col">
             <CompanyCard />
-          </div>
-          <div className="col-3">
+          </Col>
+          <Col className="Col">
             <CompanyCard />
-          </div>
-          <div className="col-3">
+          </Col>
+          <Col className="Col">
             <CompanyCard />
-          </div>
-        </div>
-        <div className="row mt-5">
-          <div className="col-3">
+          </Col>
+        </Row>
+        <Row className="Row" xs="1" sm="2" md="4">
+          <Col className="Col">
             <CompanyCard />
-          </div>
-        </div>
-      </div>
+          </Col>
+          <Col className="Col">
+            <CompanyCard />
+          </Col>
+          <Col className="Col">
+            <CompanyCard />
+          </Col>
+          <Col className="Col">
+            <CompanyCard />
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

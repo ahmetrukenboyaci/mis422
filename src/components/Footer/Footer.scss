@@ -1,8 +1,14 @@
 .Footer {
-  position: fixed;
-  clear: both;
   bottom: 0;
   width: 100%;
   background: #eee;
   height: auto;
+}
+
+ul {
+  display: flex;
+  justify-content: space-between;
+}
+ul li {
+  list-style: none;
 }
