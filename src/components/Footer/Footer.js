@@ -3,32 +3,61 @@ import { Container, Row, Col } from "reactstrap";
 
 import styles from "./Footer.scss";
 
+/** icons */
+import twitter from "./twitter.svg";
+import instagram from "./instagram.svg";
+import linkedin from "./linkedin.svg";
 class Footer extends Component {
   render() {
     return (
       <div className={"Footer"}>
-        <Container fluid>
-          <Row xs="2">
-            <Col xs="5" md={{ span: 3, offset: 6 }}>
-              <ul className="align-self-end">
-                <li>XXX</li>
-                <li>XXX</li>
-                <li>XXX</li>
-                <li>XXX</li>
-                <li>XXX</li>
+        <Container className="Container" fluid>
+          <Row xs="12" className="text-right">
+            <Col xs="12" sm="12">
+              <ul>
+                <li>
+                  <a href="">FAQ</a>
+                </li>
+                <li>
+                  {" "}
+                  <a href="">Terms of Service</a>
+                </li>
+                <li>
+                  {" "}
+                  <a href="">Team</a>
+                </li>
+                <li>
+                  {" "}
+                  <a href="">Privacy Policy</a>
+                </li>
+                <li>
+                  {" "}
+                  <a href="">Cookie Policy</a>
+                </li>
+                <li>
+                  {" "}
+                  <a href="">Contacy</a>
+                </li>
               </ul>
             </Col>
           </Row>
 
           <hr className="col-12" />
 
-          <Row xs="2">
-            <Col>Copyright 2020</Col>
-            <Col className="d-flex ">
-              <div>Logo</div>
-              <div>Logo</div>
-              <div>Logo</div>
-              <div>Logo</div>
+          <Row xs="6" className="mt-5">
+            <Col xs="8" className="text-left">
+              Copyright | 2020
+            </Col>{" "}
+            <Col xs="4" className="text-right">
+              <a>
+                <img src={twitter} />
+              </a>
+              <a>
+                <img src={instagram} />
+              </a>
+              <a>
+                <img src={linkedin} />
+              </a>
             </Col>
           </Row>
         </Container>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Container, Row, Col } from "reactstrap";
 
 /** components **/
 
@@ -10,18 +11,38 @@ import "./App.scss";
 class CategoriesPage extends React.Component {
   render() {
     return (
-      <div className="container-fluid mt-5">
-        <div className="row">
-          <div className="col-6">
+      <Container className="Container" fluid>
+        <Row className="Row">
+          <Col className="Col">
             <p>Category Name</p>
             <CategoryTable />
-          </div>
-          <div className="col-6">
+          </Col>
+          <Col className="Col">
             <p>Category Name</p>
             <CategoryTable />
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+        <Row className="Row">
+          <Col className="Col">
+            <p>Category Name</p>
+            <CategoryTable />
+          </Col>
+          <Col className="Col">
+            <p>Category Name</p>
+            <CategoryTable />
+          </Col>
+        </Row>
+        <Row className="Row">
+          <Col className="Col">
+            <p>Category Name</p>
+            <CategoryTable />
+          </Col>
+          <Col className="Col">
+            <p>Category Name</p>
+            <CategoryTable />
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

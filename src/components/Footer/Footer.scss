@@ -2,13 +2,23 @@
   bottom: 0;
   width: 100%;
   background: #eee;
-  height: auto;
+  height: 180px;
+}
+
+.Container {
+  padding: 30px;
 }
 
 ul {
-  display: flex;
-  justify-content: space-between;
+  margin: 0;
+  padding: 0;
 }
+
 ul li {
-  list-style: none;
+  display: inline;
+  margin-right: 15px;
+}
+img {
+  margin-right: 15px;
+  width: 30px;
 }

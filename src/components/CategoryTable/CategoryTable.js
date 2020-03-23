@@ -14,7 +14,7 @@ const CategoryCard = props => {
           <th>CEO</th>
         </tr>
         <tbody>
-          <tr>
+          <tr className="hover">
             <td>Logo and Company Name</td>
             <td>Company Description</td>
             <td>Foundation Year</td>
