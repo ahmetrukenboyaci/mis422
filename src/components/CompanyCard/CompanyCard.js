@@ -9,16 +9,13 @@ import {
   Button
 } from "reactstrap";
 
+import "./CompanyCard.scss";
+
 const CompanyCard = props => {
   return (
-    <div>
+    <div className={"CompanyCard"}>
       <Card>
-        <CardImg
-          top
-          width="100%"
-          src="/assets/318x180.svg"
-          alt="Company Logo"
-        />
+        <CardImg top width="100%" src="" alt="Company Logo" />
         <CardBody>
           <CardTitle>Company Name</CardTitle>
           <CardSubtitle>Description</CardSubtitle>

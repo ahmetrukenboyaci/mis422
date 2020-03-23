@@ -49,13 +49,13 @@ class Footer extends Component {
               Copyright | 2020
             </Col>{" "}
             <Col xs="4" className="text-right">
-              <a>
+              <a href="#">
                 <img src={twitter} />
               </a>
-              <a>
+              <a href="#">
                 <img src={instagram} />
               </a>
-              <a>
+              <a href="#">
                 <img src={linkedin} />
               </a>
             </Col>

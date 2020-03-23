@@ -7,7 +7,8 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Input
+  Input,
+  Button
 } from "reactstrap";
 
 /** styles **/
@@ -40,7 +41,7 @@ class NavigationBar extends Component {
                 <NavLink href="/CompaniesPage">Companies</NavLink>
               </NavItem>
             </Nav>
-            <div className={"col-md-3"}>
+            <div className={"col-md-3 col-sm-12 mt-sm-3 mt-md-0 "}>
               <Input
                 type="text"
                 name="search"
@@ -48,6 +49,9 @@ class NavigationBar extends Component {
                 placeholder="Search"
                 autoComplete="off"
               />
+            </div>
+            <div className={"col-md-1 col-sm-12 text-center mt-sm-3 mt-md-0"}>
+              <Button className="btn-dark">Login</Button>
             </div>
           </Collapse>
         </Navbar>

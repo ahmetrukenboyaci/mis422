@@ -9,11 +9,16 @@ import { Container, ListGroup, ListGroupItem, Row, Col } from "reactstrap";
 
 const CompanyPageTableG = props => {
   return (
-    <Container className="themed-container mt-5" fluid={true}>
-      <Col>
+    <div className={"CompanyTableG"}>
+      <Container className="themed-container mt-5">
         <Row>OverView</Row>
-        <Row>Logo - Company Name- Description-Adress</Row>
         <Row>
+          <Col>Logo</Col>
+          <Col>Name</Col>
+          <Col>Description</Col>
+          <Col>Adress</Col>
+        </Row>
+        <Row className="mt-2">
           <Col xs="2">Industries</Col>
           <Col>
             <div className="Industry">xxx</div>
@@ -117,8 +122,8 @@ const CompanyPageTableG = props => {
             <div className="Industry">xxx</div>
           </Col>
         </Row>
-      </Col>
-    </Container>
+      </Container>
+    </div>
   );
 };
 
