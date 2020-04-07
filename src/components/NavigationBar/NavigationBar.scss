@@ -1,6 +1,12 @@
 .NavBar {
   position: relative;
   background-color: #f25d07;
+
+  & .logoBtn {
+    border: 2px solid black;
+    border-radius: 8px;
+    width: inherit;
+  }
 }
 
 .Button {

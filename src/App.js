@@ -1,16 +1,16 @@
 import React from "react";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 
-/**  pages  **/
-import CategoriesPage from "./CategoriesPage";
-import CompaniesPage from "./CompaniesPage";
+/**  Pages  **/
+import CategoriesPage from "./components/Pages/CategoriesPage/CategoriesPage";
+import CompaniesPage from "./components/Pages/CompaniesPage/CompaniesPage";
 /** components **/
 import NavigationBar from "./components/NavigationBar/NavigationBar";
 import Footer from "./components/Footer/Footer";
 
 /** styles **/
 import "./App.scss";
-import CompanyProfile from "./CompanyProfile";
+import CompanyProfile from "./components/Pages/CompanyProfile/CompanyProfile";
 
 class App extends React.Component {
   render() {

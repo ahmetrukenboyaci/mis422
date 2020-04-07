@@ -7,12 +7,11 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Input,
-  Button
+  Input
 } from "reactstrap";
 
 /** styles **/
-import "./NavigationBar.scss";
+import styles from "./NavigationBar.scss";
 
 class NavigationBar extends Component {
   constructor(props) {
@@ -51,7 +50,7 @@ class NavigationBar extends Component {
               />
             </div>
             <div className={"col-md-1 col-sm-12 text-center mt-sm-3 mt-md-0"}>
-              <Button className="btn-dark">Login</Button>
+              <button className={"logoBtn"}>Login</button>
             </div>
           </Collapse>
         </Navbar>

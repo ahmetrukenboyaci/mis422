@@ -2,12 +2,12 @@ import React from "react";
 import { Container, Row, Col } from "reactstrap";
 
 /** components **/
-
-import CategoryTable from "./components/CategoryTable/CategoryTable";
+import CategoryTable from "../../CategoryTable/CategoryTable";
 
 /** styles **/
 import "./CategoriesPage.scss";
-import "./App.scss";
+import "../../../App.scss";
+
 class CategoriesPage extends React.Component {
   render() {
     return (

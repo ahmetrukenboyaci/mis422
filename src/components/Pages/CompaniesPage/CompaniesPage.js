@@ -1,15 +1,15 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
 
-/**  pages  **/
+/**  Pages  **/
 
 /** components **/
 
-import CompanyCard from "./components/CompanyCard/CompanyCard";
+import CompanyCard from "../../CompanyCard/CompanyCard";
 
 /** styles **/
 import "./CompaniesPage.scss";
-import "./App.scss";
+import "../../../App.scss";
 class CompaniesPage extends React.Component {
   render() {
     return (

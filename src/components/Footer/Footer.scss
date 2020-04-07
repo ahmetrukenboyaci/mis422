@@ -6,7 +6,11 @@
 }
 
 .Container {
-  padding: 30px;
+  padding: 15px;
+
+  & .divider {
+    width: 100%;
+  }
 }
 
 ul {

@@ -42,7 +42,7 @@ class Footer extends Component {
             </Col>
           </Row>
 
-          <hr className="col-12" />
+          <hr className="divider" />
 
           <Row xs="6" className="mt-5">
             <Col xs="8" className="text-left">
