@@ -1,0 +1,23 @@
+.socialMedia {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+
+  & .twitter {
+    width: 400px;
+    border: 2px solid #1da1f2;
+    border-radius: 8px;
+    padding: 8px;
+    height: 490px;
+  }
+
+  & .instagram {
+    width: 400px;
+    border: 3px solid #fd1d1d;
+    border-radius: 8px;
+    height: 490px;
+    & div {
+      margin-left: 1px;
+    }
+  }
+}

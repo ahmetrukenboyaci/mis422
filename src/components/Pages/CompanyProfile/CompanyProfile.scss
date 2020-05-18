@@ -1,1 +1,14 @@
+.CompanyProfile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 20px;
+  align-items: center;
 
+  & .companyInfo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

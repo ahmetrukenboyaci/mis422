@@ -7,11 +7,13 @@ import "./CompanyPageTableG.scss";
 
 import { Container, ListGroup, ListGroupItem, Row, Col } from "reactstrap";
 
-const CompanyPageTableG = props => {
+const CompanyPageTableG = (props) => {
   return (
     <div className={"CompanyTableG"}>
       <Container className="themed-container mt-5">
-        <Row>OverView</Row>
+        <Row className=".col-sm-12 .col-md-6 .offset-md-3">
+          <span className="align-self-center">OverView</span>
+        </Row>
         <Row>
           <Col>Logo</Col>
           <Col>Name</Col>

@@ -11,9 +11,13 @@ import "../../../App.scss";
 class CompanyProfile extends React.Component {
   render() {
     return (
-      <div className={CompanyProfile}>
-        <CompanyPageTableG />
-        <CompanyPageProfileF />
+      <div className={"CompanyProfile"}>
+        <div className="companyInfo">
+          <CompanyPageTableG />
+        </div>
+        <div className="graph">
+          <CompanyPageProfileF />
+        </div>
       </div>
     );
   }

@@ -2,6 +2,7 @@ import React from "react";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 
 /**  Pages  **/
+import HomePage from "./components/Pages/HomePage/HomePage";
 import CategoriesPage from "./components/Pages/CategoriesPage/CategoriesPage";
 import CompaniesPage from "./components/Pages/CompaniesPage/CompaniesPage";
 /** components **/
@@ -18,13 +19,24 @@ class App extends React.Component {
       <div className={"App"}>
         <BrowserRouter basename={"/"}>
           <NavigationBar />
-          <Switch>
-            <Route path={"/CategoriesPage"} component={CategoriesPage}></Route>
-            <Route path={"/CompaniesPage"} component={CompaniesPage}></Route>
-            <Route path={"/CompanyProfile"} component={CompanyProfile}></Route>
-          </Switch>
-          <Footer />
+
+          <div className="content">
+            <Switch>
+              <Route exact path={"/"} component={HomePage}></Route>
+              <Route
+                path={"/CategoriesPage"}
+                component={CategoriesPage}
+              ></Route>
+              <Route path={"/CompaniesPage"} component={CompaniesPage}></Route>
+              <Route
+                path={"/CompanyProfile"}
+                component={CompanyProfile}
+              ></Route>
+            </Switch>
+          </div>
         </BrowserRouter>
+
+        <Footer />
       </div>
     );
   }

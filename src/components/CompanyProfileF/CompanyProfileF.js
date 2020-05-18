@@ -8,10 +8,10 @@ import {
   CardImg,
   CardImgOverlay,
   Card,
-  Container
+  Container,
 } from "reactstrap";
 import charts from "./charts.jpg";
-const CompanyProfileF = props => {
+const CompanyProfileF = (props) => {
   return (
     <div className={"CompanyProfile"}>
       <Container fluid>
@@ -25,7 +25,6 @@ const CompanyProfileF = props => {
                   src={charts}
                   alt="Card image cap"
                 />
-
                 <CardImgOverlay>
                   <Button className="button-centered">Unlock Charts</Button>{" "}
                 </CardImgOverlay>

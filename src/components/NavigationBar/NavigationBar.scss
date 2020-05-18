@@ -1,14 +1,19 @@
 .NavBar {
-  position: relative;
-  background-color: #f25d07;
+  position: fixed;
+  z-index: 1;
+  width: 100vw;
 
   & .logoBtn {
     border: 2px solid black;
     border-radius: 8px;
     width: inherit;
   }
-}
 
-.Button {
-  background-color: #000 !important;
+  .navbar-light .navbar-nav .nav-link {
+    color: white;
+    font-size: 20px;
+  }
+  .Button {
+    background-color: #000 !important;
+  }
 }

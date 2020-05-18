@@ -36,7 +36,7 @@ class Footer extends Component {
                 </li>
                 <li>
                   {" "}
-                  <a href="">Contacy</a>
+                  <a href="">Contact</a>
                 </li>
               </ul>
             </Col>

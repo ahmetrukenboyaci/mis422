@@ -7,7 +7,7 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Input
+  Input,
 } from "reactstrap";
 
 /** styles **/
@@ -18,7 +18,7 @@ class NavigationBar extends Component {
     super(props);
 
     this.state = {
-      isOpen: false
+      isOpen: false,
     };
   }
 
@@ -28,7 +28,7 @@ class NavigationBar extends Component {
 
     return (
       <div className={"NavBar"}>
-        <Navbar light expand="md">
+        <Navbar color={"warning"} light expand="md">
           <NavbarBrand href="/">Logo</NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>

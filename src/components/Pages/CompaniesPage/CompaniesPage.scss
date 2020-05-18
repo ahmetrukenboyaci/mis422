@@ -1,10 +1,32 @@
-.Container {
-  margin-top: 50px;
+.companiesContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  & Input {
+    width: 500px;
+    margin: 20px;
+    border: 1px solid blue;
+    border-radius: 8px;
+    text-align: center;
+
+    &:focus::placeholder {
+      color: transparent;
+    }
+  }
 }
-.Row {
+.row {
   margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.Col {
-  margin-top: 10px;
+.col {
+  margin-top: 20px;
+  width: fit-content;
+  height: fit-content;
+}
+h1 {
+  color: orange;
 }

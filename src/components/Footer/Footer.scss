@@ -1,15 +1,21 @@
 .Footer {
-  bottom: 0;
   width: 100%;
-  background: #eee;
+  background: #ffc107;
   height: 180px;
+  flex-shrink: 0;
+  color: white;
 }
 
 .Container {
   padding: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
 
   & .divider {
     width: 100%;
+    background-color: white;
+    height: 1px;
   }
 }
 
@@ -21,6 +27,14 @@ ul {
 ul li {
   display: inline;
   margin-right: 15px;
+
+  a {
+    color: white;
+    &:hover {
+      color: white;
+      text-decoration: none;
+    }
+  }
 }
 img {
   margin-right: 15px;
