@@ -3,6 +3,7 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 
 /**  Pages  **/
 import HomePage from "./components/Pages/HomePage/HomePage";
+import LoginPage from "./components/Pages/LoginPage/LoginPage";
 import CategoriesPage from "./components/Pages/CategoriesPage/CategoriesPage";
 import CompaniesPage from "./components/Pages/CompaniesPage/CompaniesPage";
 /** components **/
@@ -12,30 +13,50 @@ import Footer from "./components/Footer/Footer";
 /** styles **/
 import "./App.scss";
 import CompanyProfile from "./components/Pages/CompanyProfile/CompanyProfile";
+import {getCookie, setCookie} from "./utils/cookie";
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isAuthorized: false
+    };
+  }
+
+  componentDidMount() {
+    let token = getCookie('token');
+
+    this.setState({ isAuthorized: token.length > 0 });
+  }
+
+  logout = () => {
+    setCookie('token','', {});
+    this.setState({ isAuthorized: false });
+  };
+
   render() {
+    let {isAuthorized} = this.state;
     return (
       <div className={"App"}>
         <BrowserRouter basename={"/"}>
-          <NavigationBar />
+          <NavigationBar logout={this.logout} isAuthorized={isAuthorized} />
 
           <div className="content">
             <Switch>
-              <Route exact path={"/"} component={HomePage}></Route>
+              <Route exact path={"/login"} component={LoginPage}/>
+              <Route exact path={"/"} component={HomePage}/>
               <Route
                 path={"/CategoriesPage"}
                 component={CategoriesPage}
-              ></Route>
-              <Route path={"/CompaniesPage"} component={CompaniesPage}></Route>
+              />
+              <Route path={"/CompaniesPage"} component={CompaniesPage}/>
               <Route
                 path={"/CompanyProfile"}
-                component={CompanyProfile}
-              ></Route>
+                component={CompanyProfile}/>
             </Switch>
           </div>
         </BrowserRouter>
-
         <Footer />
       </div>
     );

@@ -12,6 +12,8 @@ import {
 
 /** styles **/
 import styles from "./NavigationBar.scss";
+import {Link} from "react-router-dom";
+import axios from "axios";
 
 class NavigationBar extends Component {
   constructor(props) {
@@ -19,10 +21,32 @@ class NavigationBar extends Component {
 
     this.state = {
       isOpen: false,
+      timer: {},
+      company: []
     };
   }
 
+  logout = () => {
+    this.props.logout();
+  };
+
+  onSearchChange = async (value) => {
+
+    clearTimeout(this.state.timer);
+
+    this.setState({ timer: await setTimeout(async () => {
+        const axiosInstance = axios.create({
+          baseURL: 'https://mis-422.herokuapp.com',
+          headers: {"Content-Type": "application/json"},
+          timeout: 60000,
+        });
+        let response = await axiosInstance.get(`https://mis-422.herokuapp.com/public/companies/${value}`);
+        this.setState({ company: response.data });
+      }, 500)})
+  };
+
   render() {
+    let { isAuthorized } = this.props;
     let { isOpen } = this.state;
     const toggle = () => this.setState({ isOpen: !isOpen });
 
@@ -47,10 +71,17 @@ class NavigationBar extends Component {
                 id="search"
                 placeholder="Search"
                 autoComplete="off"
+                onChange={(e) => this.onSearchChange(e.target.value)}
               />
+              <ul>
+                <li>{this.state.company.name}</li>
+              </ul>
             </div>
             <div className={"col-md-1 col-sm-12 text-center mt-sm-3 mt-md-0"}>
-              <button className={"logoBtn"}>Login</button>
+              <div className="d-flex justify-content-center mt-3 login_container col-md-4">
+                {!isAuthorized && <Link to="/login" name="button" className="btn login_btn" >login</Link>}
+                {isAuthorized && <Link onClick={(e) => this.logout(e)} to="/" name="button" className="btn login_btn" >logout</Link>}
+              </div>
             </div>
           </Collapse>
         </Navbar>
