@@ -16,10 +16,40 @@ class CategoriesPage extends React.Component {
     };
   }
 
-  componentDidMount() {
-    axios
-      .get("https://jsonplaceholder.typicode.com/users?_limit=10")
-      .then((res) => this.setState({ categoryList: res.data }));
+  async componentDidMount() {
+    let response = await axios.get(
+      "https://mis-422.herokuapp.com/public/categories/get-all-categories"
+    );
+
+    let data = response.data;
+
+    data.forEach((category, index) => {
+      switch (category) {
+        case "MEDIACOMMUNICATIONSENTERTAINTMENT":
+          data[index] = "MEDIA COMMUNICATIONS ENTERTAITNMENT";
+          break;
+        case "ECOMMERCE":
+          data[index] = "E-COMMERCE";
+          break;
+        case "MARKETINGTECHNOLOGIES":
+          data[index] = "MARKETING TECHNOLOGIES";
+          break;
+        case "MARKETRESEARCH":
+          data[index] = "MARKET RESEARCH";
+          break;
+        case "BLOCKCHAINCYRPTOCURRENCY":
+          data[index] = "BLOCKCHAIN CYRPTO CURRENCY";
+          break;
+        case "REALESTATE":
+          data[index] = "REAL ESTATE";
+          break;
+        case "PROFESSIONALSCIENTIFICANDTECHNICALSERVICES":
+          data[index] = "PROFESSIONAL SCIENTIFIC AND TECHNICAL SERVICES";
+      }
+    });
+    this.setState({ categoryList: data });
+
+    console.log(data);
   }
 
   search = (e) => {
@@ -32,7 +62,7 @@ class CategoriesPage extends React.Component {
     const categoryItem = this.state.categoryList.map((categoryItem) => {
       return (
         <ListGroupItem className="listItem">
-          {categoryItem.name}
+          {categoryItem}
           {/* <Badge className="badge">{categoryItem.id}</Badge> */}
         </ListGroupItem>
       );
@@ -41,12 +71,12 @@ class CategoriesPage extends React.Component {
     const searchedItems = this.state.categoryList
       .filter((categoryItem) => {
         const regex = new RegExp(this.state.inputValue, "ig");
-        return categoryItem.name.match(regex);
+        return categoryItem.match(regex);
       })
       .map((categoryItem) => {
         return (
           <ListGroupItem className="listItem">
-            {categoryItem.name}
+            {categoryItem}
             {/* <Badge className="badge">{categoryItem.id}</Badge> */}
           </ListGroupItem>
         );
@@ -61,7 +91,6 @@ class CategoriesPage extends React.Component {
           placeholder="Search in Categories"
         />
         <ListGroup className="CategoriesList">
-          {this.state.inputValue ? searchedItems : categoryItem}
           {this.state.inputValue ? searchedItems : categoryItem}
         </ListGroup>
       </div>
