@@ -67,7 +67,10 @@ class CategoriesPage extends React.Component {
           <Link
             to={{
               pathname: "/CompaniesPage",
-              state: [{ categoryName: categoryItem.replace(/\W/g, "") }],
+              state: [{
+                categoryName: categoryItem.replace(/\W/g, ""),
+                url: `https://mis-422.herokuapp.com/public/categories/${categoryItem.replace(/\W/g, "")}/companies`
+              }],
             }}
           >
             {categoryItem}

@@ -14,8 +14,8 @@
     & .cardBody {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      padding: 0;
+      padding: 20px 20px 50px;
+      position: relative;
 
       & .card {
         background-color: orange;
@@ -32,6 +32,11 @@
           flex-direction: column;
           justify-content: center;
           height: 50px;
+          border-bottom-left-radius: 8px;
+          border-bottom-right-radius: 8px;
+          position: absolute;
+          margin-left: -20px;
+          width: 100%;
           a {
             color: white;
           }

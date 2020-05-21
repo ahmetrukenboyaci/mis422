@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 import {
   Collapse,
   Navbar,
@@ -12,8 +14,6 @@ import {
 
 /** styles **/
 import styles from "./NavigationBar.scss";
-import { Link } from "react-router-dom";
-import axios from "axios";
 
 class NavigationBar extends Component {
   constructor(props) {
@@ -56,48 +56,37 @@ class NavigationBar extends Component {
     return (
       <div className={"NavBar"}>
         <Navbar color={"warning"} light expand="md">
-          <NavbarBrand href="/">Logo</NavbarBrand>
+          <Link to="/">LOGO</Link>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>
-                <NavLink href="/CategoriesPage">Categories</NavLink>
+                <Link to="/CategoriesPage">Categories</Link>
               </NavItem>
               <NavItem>
-                <NavLink href="/CompaniesPage">Companies</NavLink>
+                <Link to={{
+                  pathname: "/CompaniesPage",
+                  state: [{
+                    url: "https://mis-422.herokuapp.com/public/companies/get-all-companies"
+                  }],
+                }}>Companies</Link>
               </NavItem>
             </Nav>
-            <div className={"col-md-3 col-sm-12 mt-sm-3 mt-md-0 "}>
-              <Input
-                type="text"
-                name="search"
-                id="search"
-                placeholder="Search"
-                autoComplete="off"
-                onChange={(e) => this.onSearchChange(e.target.value)}
-              />
-              <ul>
-                <li>{this.state.company.name}</li>
-              </ul>
-            </div>
-            <div className={"col-md-1 col-sm-12 text-center mt-sm-3 mt-md-0"}>
-              <div className="d-flex justify-content-center mt-3 login_container col-md-4">
-                {!isAuthorized && (
+            <div className={"col-md-1 col-sm-4 mt-sm-1 mt-md-0 "}>
+              {!isAuthorized && (
                   <Link to="/login" name="button" className="btn login_btn">
                     login
                   </Link>
-                )}
-                {isAuthorized && (
-                  <Link
-                    to="/login"
-                    onClick={(e) => this.logout(e)}
-                    name="button"
-                    className="btn login_btn"
+              )}
+              {isAuthorized && (
+                  <button
+                      onClick={(e) => this.logout(e)}
+                      name="button"
+                      className="btn login_btn"
                   >
                     logout
-                  </Link>
-                )}
-              </div>
+                  </button>
+              )}
             </div>
           </Collapse>
         </Navbar>

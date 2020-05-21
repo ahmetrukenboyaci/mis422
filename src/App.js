@@ -26,7 +26,7 @@ class App extends React.Component {
 
   componentDidMount() {
     let token = getCookie("token");
-    this.setState({ isAuthorized: token != null });
+    this.setState({ isAuthorized: token.length > 0 });
   }
 
   logout = () => {
