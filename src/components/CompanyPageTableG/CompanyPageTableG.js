@@ -85,16 +85,76 @@ class CompanyPageTableG extends Component {
             <tr>
               <th scope="row">Founder</th>
               <td>{foundersNames1}</td>
-            </tr>
-            <tr>
-              <th scope="row">Founder</th>
-              <td>{foundersNames2}</td>
               <td>
-                <a href="">
-                  <img src="" />
+                <a href={foundersLinkedin1}>
+                  <img src="#" />
                 </a>
               </td>
             </tr>
+            {foundersNames2 && (
+              <tr>
+                <th scope="row">Founder</th>
+                <td>{foundersNames2}</td>
+                <td>
+                  <a href={foundersLinkedin2}>
+                    <img src="#" />
+                  </a>
+                </td>
+              </tr>
+            )}
+            {foundersNames3 && (
+              <tr>
+                <th scope="row">Founder</th>
+                <td>{foundersNames3}</td>
+                <td>
+                  <a href={foundersLinkedin3}>
+                    <img src="#" />
+                  </a>
+                </td>
+              </tr>
+            )}
+            {foundersNames4 && (
+              <tr>
+                <th scope="row">Founder</th>
+                <td>{foundersNames4}</td>
+                <td>
+                  <a href={foundersLinkedin4}>
+                    <img src="#" />
+                  </a>
+                </td>
+              </tr>
+            )}
+            {foundersNames5 && (
+              <tr>
+                <th scope="row">Founder</th>
+                <td>{foundersNames5}</td>
+                <td>
+                  <a href={foundersLinkedin5}>
+                    <img src="#" />
+                  </a>
+                </td>
+              </tr>
+            )}
+            <tr>
+              <th scope="row">Owner of report</th>
+              <td>{nameOfTheStudentOne}</td>
+              <td>
+                <a href={linkedinOfTheStudentOne}>
+                  <img src="#" />
+                </a>
+              </td>
+            </tr>
+            {nameOfTheStudentTwo && (
+              <tr>
+                <th scope="row">Owner of report</th>
+                <td>{nameOfTheStudentTwo}</td>
+                <td>
+                  <a href={linkedinOfTheStudentTwo}>
+                    <img src="#" />
+                  </a>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

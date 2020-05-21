@@ -48,8 +48,8 @@ class CompanyProfile extends React.Component {
       foundersLinkedin4,
       foundersNames5,
       foundersLinkedin5,
-      nameOfStudentOne,
-      nameOfStudentTwo,
+      nameOfTheStudentOne,
+      nameOfTheStudentTwo,
       linkedinOfTheStudentOne,
       linkedinOfTheStudentTwo,
       name,
@@ -82,8 +82,8 @@ class CompanyProfile extends React.Component {
             foundersLinkedin4={foundersLinkedin4}
             foundersNames5={foundersNames5}
             foundersLinkedin5={foundersLinkedin5}
-            nameOfStudentOne={nameOfStudentOne}
-            nameOfStudentTwo={nameOfStudentTwo}
+            nameOfTheStudentOne={nameOfTheStudentOne}
+            nameOfTheStudentTwo={nameOfTheStudentTwo}
             linkedinOfTheStudentOne={linkedinOfTheStudentOne}
             linkedinOfTheStudentTwo={linkedinOfTheStudentTwo}
           />
