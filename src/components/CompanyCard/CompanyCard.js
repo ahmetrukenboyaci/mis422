@@ -8,6 +8,7 @@ import {
   CardSubtitle,
   Button,
 } from "reactstrap";
+import { Link } from "react-router-dom";
 
 import "./CompanyCard.scss";
 
@@ -23,7 +24,15 @@ const CompanyCard = ({ id, image, category, companyName }) => {
       <CardBody className="cardBody">
         <CardTitle className="companyName"> {companyName} </CardTitle>
         <CardSubtitle className="category"> {category} </CardSubtitle>
-        <Button className="float-right">More Information </Button>
+        <Link
+          to={{
+            pathname: "/CompanyProfile",
+            state: [{ companyId: id }],
+          }}
+          className="float-right"
+        >
+          More Information{" "}
+        </Link>
       </CardBody>
     </Card>
   );

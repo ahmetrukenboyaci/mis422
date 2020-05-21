@@ -20,11 +20,21 @@ class CompaniesPage extends React.Component {
     };
   }
 
-  componentDidMount() {
-    axios
-      .get("http://jsonplaceholder.typicode.com/photos?_start=0&_limit=8")
-      .then((res) => this.setState({ companyList: res.data }));
+  async componentDidMount() {
+    if (!this.props.location.state) {
+      const response = await axios.get(
+        "https://mis-422.herokuapp.com/public/companies/get-all-companies"
+      );
+      this.setState({ companyList: response.data });
+    } else {
+      const response = await axios.get(
+        `https://mis-422.herokuapp.com/public/categories/${this.props.location.state[0].categoryName}/companies`
+      );
+      this.setState({ companyList: response.data });
+      this.props.location.state = undefined;
+    }
   }
+
   search = (e) => {
     this.setState({
       inputValue: e.target.value,
@@ -33,11 +43,11 @@ class CompaniesPage extends React.Component {
   render() {
     const company = this.state.companyList.map((company) => {
       return (
-        <Col className="Col">
+        <Col key={company.id} className="Col">
           <CompanyCard
-            companyName={company.title}
-            image={company.url}
-            category={company.title}
+            companyName={company.name}
+            //image={company}
+            category={company.verticalMarket1}
             id={company.id}
           />
         </Col>
@@ -46,15 +56,15 @@ class CompaniesPage extends React.Component {
     const searchedItems = this.state.companyList
       .filter((company) => {
         const regex = new RegExp(this.state.inputValue, "ig");
-        return company.title.match(regex);
+        return company.name.match(regex);
       })
       .map((company) => {
         return (
-          <Col>
+          <Col key={company.id} className="Col">
             <CompanyCard
-              companyName={company.title}
-              image={company.url}
-              category={company.title}
+              companyName={company.name}
+              //image={company}
+              category={company.verticalMarket1}
               id={company.id}
             />
           </Col>

@@ -6,6 +6,7 @@ import axios from "axios";
 /** components **/
 /** styles **/
 import "./CategoriesPage.scss";
+import { Link } from "react-router-dom";
 
 class CategoriesPage extends React.Component {
   constructor(props) {
@@ -48,8 +49,6 @@ class CategoriesPage extends React.Component {
       }
     });
     this.setState({ categoryList: data });
-
-    console.log(data);
   }
 
   search = (e) => {
@@ -61,9 +60,18 @@ class CategoriesPage extends React.Component {
   render() {
     const categoryItem = this.state.categoryList.map((categoryItem) => {
       return (
-        <ListGroupItem className="listItem">
-          {categoryItem}
-          {/* <Badge className="badge">{categoryItem.id}</Badge> */}
+        <ListGroupItem
+          key={this.state.categoryList.indexOf(categoryItem)}
+          className="listItem"
+        >
+          <Link
+            to={{
+              pathname: "/CompaniesPage",
+              state: [{ categoryName: categoryItem.replace(/\W/g, "") }],
+            }}
+          >
+            {categoryItem}
+          </Link>
         </ListGroupItem>
       );
     });
@@ -75,9 +83,18 @@ class CategoriesPage extends React.Component {
       })
       .map((categoryItem) => {
         return (
-          <ListGroupItem className="listItem">
-            {categoryItem}
-            {/* <Badge className="badge">{categoryItem.id}</Badge> */}
+          <ListGroupItem
+            key={this.state.categoryList.indexOf(categoryItem)}
+            className="listItem"
+          >
+            <Link
+              to={{
+                pathname: "/CompaniesPage",
+                state: [{ categoryName: categoryItem.replace(/\s/g, "") }],
+              }}
+            >
+              {categoryItem}
+            </Link>
           </ListGroupItem>
         );
       });
