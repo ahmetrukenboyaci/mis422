@@ -47,7 +47,7 @@ class CompaniesPage extends React.Component {
           <CompanyCard
             companyName={company.name}
             //image={company}
-            category={company.verticalMarket1}
+            category={company.description}
             id={company.id}
           />
         </Col>
@@ -64,7 +64,7 @@ class CompaniesPage extends React.Component {
             <CompanyCard
               companyName={company.name}
               //image={company}
-              category={company.verticalMarket1}
+              category={company.description}
               id={company.id}
             />
           </Col>
