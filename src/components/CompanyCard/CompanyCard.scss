@@ -28,7 +28,10 @@
           bottom: 0;
           text-align: center;
           background-color: green;
-
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          height: 50px;
           a {
             color: white;
           }
