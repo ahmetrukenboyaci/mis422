@@ -56,7 +56,12 @@ class NavigationBar extends Component {
     return (
       <div className={"NavBar"}>
         <Navbar color={"warning"} light expand="md">
-          <Link to="/">LOGO</Link>
+          <Link to="/">
+            <img
+              style={{ width: "200px", height: "50px" }}
+              src="https://picsum.photos/100/300"
+            />
+          </Link>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
@@ -64,28 +69,35 @@ class NavigationBar extends Component {
                 <Link to="/CategoriesPage">Categories</Link>
               </NavItem>
               <NavItem>
-                <Link to={{
-                  pathname: "/CompaniesPage",
-                  state: [{
-                    url: "https://mis-422.herokuapp.com/public/companies/get-all-companies"
-                  }],
-                }}>Companies</Link>
+                <Link
+                  to={{
+                    pathname: "/CompaniesPage",
+                    state: [
+                      {
+                        url:
+                          "https://mis-422.herokuapp.com/public/companies/get-all-companies",
+                      },
+                    ],
+                  }}
+                >
+                  Companies
+                </Link>
               </NavItem>
             </Nav>
             <div className={"col-md-1 col-sm-4 mt-sm-1 mt-md-0 "}>
               {!isAuthorized && (
-                  <Link to="/login" name="button" className="btn login_btn">
-                    login
-                  </Link>
+                <Link to="/login" name="button" className="btn login_btn">
+                  login
+                </Link>
               )}
               {isAuthorized && (
-                  <button
-                      onClick={(e) => this.logout(e)}
-                      name="button"
-                      className="btn login_btn"
-                  >
-                    logout
-                  </button>
+                <button
+                  onClick={(e) => this.logout(e)}
+                  name="button"
+                  className="btn login_btn"
+                >
+                  logout
+                </button>
               )}
             </div>
           </Collapse>

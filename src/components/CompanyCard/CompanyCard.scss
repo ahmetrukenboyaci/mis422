@@ -8,7 +8,7 @@
     justify-content: space-between;
 
     & .logo {
-      width: 100px;
+      width: 120px;
     }
 
     & .cardBody {
@@ -16,6 +16,10 @@
       flex-direction: column;
       padding: 20px 20px 50px;
       position: relative;
+
+      & .companyName {
+        font-weight: bold;
+      }
 
       & .card {
         background-color: orange;
@@ -39,6 +43,7 @@
           width: 100%;
           a {
             color: white;
+            text-decoration: none;
           }
         }
       }

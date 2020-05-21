@@ -12,4 +12,20 @@ hr {
   border-radius: 8px;
   margin-top: 50px;
   width: 50%;
+
+  .table td,
+  .table th {
+    vertical-align: middle;
+  }
+  .table thead th {
+    vertical-align: middle;
+  }
+
+  & .companyLogo {
+    width: 200px;
+  }
+
+  & .companyName {
+    font-size: 30px;
+  }
 }

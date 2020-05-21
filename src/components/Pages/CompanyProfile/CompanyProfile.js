@@ -18,6 +18,7 @@ class CompanyProfile extends React.Component {
   }
 
   async componentDidMount() {
+    window.scroll(0, 0);
     const companyId = this.props.location.state[0].companyId;
     console.log(companyId);
     const response = await axios.get(

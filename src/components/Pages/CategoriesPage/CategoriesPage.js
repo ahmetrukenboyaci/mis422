@@ -18,11 +18,13 @@ class CategoriesPage extends React.Component {
   }
 
   async componentDidMount() {
+    window.scroll(0, 0);
     let response = await axios.get(
       "https://mis-422.herokuapp.com/public/categories/get-all-categories"
     );
 
-    let data = response.data;
+    let data = response.data.sort();
+    console.log(data);
 
     data.forEach((category, index) => {
       switch (category) {
@@ -67,10 +69,15 @@ class CategoriesPage extends React.Component {
           <Link
             to={{
               pathname: "/CompaniesPage",
-              state: [{
-                categoryName: categoryItem.replace(/\W/g, ""),
-                url: `https://mis-422.herokuapp.com/public/categories/${categoryItem.replace(/\W/g, "")}/companies`
-              }],
+              state: [
+                {
+                  categoryName: categoryItem.replace(/\W/g, ""),
+                  url: `https://mis-422.herokuapp.com/public/categories/${categoryItem.replace(
+                    /\W/g,
+                    ""
+                  )}/companies`,
+                },
+              ],
             }}
           >
             {categoryItem}

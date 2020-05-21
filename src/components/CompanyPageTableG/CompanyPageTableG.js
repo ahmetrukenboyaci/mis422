@@ -6,6 +6,7 @@ import "./CompanyPageTableG.scss";
 /**This component is created for all users to see */
 
 import { Container, ListGroup, ListGroupItem, Row, Col } from "reactstrap";
+import linkedin from "../Footer/linkedin.svg";
 
 class CompanyPageTableG extends Component {
   constructor(props) {
@@ -57,37 +58,49 @@ class CompanyPageTableG extends Component {
         <table className="table">
           <thead>
             <tr>
-              <th scope="col">Logo</th>
-              <th scope="col">{companyName}</th>
+              <th scope="col">
+                <img
+                  className="companyLogo"
+                  src="https://picsum.photos/id/237/1000/1000"
+                ></img>
+              </th>
+              <th scope="col" className="companyName">
+                <span>{companyName}</span>
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <th scope="row">Description</th>
               <td>{description}</td>
+              <td></td>
             </tr>
             <tr>
               <th scope="row">Headquarters</th>
               <td>{headquarters}</td>
+              <td></td>
             </tr>
             <tr>
               <th scope="row">Other Offices</th>
               <td>{otherOffices}</td>
+              <td></td>
             </tr>
             <tr>
               <th scope="row">Foundation Date</th>
               <td>{foundationDate}</td>
+              <td></td>
             </tr>
             <tr>
               <th scope="row">Vertical Markets</th>
               <td>{finalMarkets}</td>
+              <td></td>
             </tr>
             <tr>
               <th scope="row">Founder</th>
               <td>{foundersNames1}</td>
               <td>
                 <a href={foundersLinkedin1}>
-                  <img src="#" />
+                  <img src={linkedin}></img>
                 </a>
               </td>
             </tr>
@@ -97,7 +110,7 @@ class CompanyPageTableG extends Component {
                 <td>{foundersNames2}</td>
                 <td>
                   <a href={foundersLinkedin2}>
-                    <img src="#" />
+                    <img src={linkedin}></img>
                   </a>
                 </td>
               </tr>
@@ -108,7 +121,7 @@ class CompanyPageTableG extends Component {
                 <td>{foundersNames3}</td>
                 <td>
                   <a href={foundersLinkedin3}>
-                    <img src="#" />
+                    <img src={linkedin}></img>
                   </a>
                 </td>
               </tr>
@@ -119,7 +132,7 @@ class CompanyPageTableG extends Component {
                 <td>{foundersNames4}</td>
                 <td>
                   <a href={foundersLinkedin4}>
-                    <img src="#" />
+                    <img src={linkedin}></img>
                   </a>
                 </td>
               </tr>
@@ -130,7 +143,7 @@ class CompanyPageTableG extends Component {
                 <td>{foundersNames5}</td>
                 <td>
                   <a href={foundersLinkedin5}>
-                    <img src="#" />
+                    <img src={linkedin}></img>
                   </a>
                 </td>
               </tr>
@@ -138,9 +151,10 @@ class CompanyPageTableG extends Component {
             <tr>
               <th scope="row">Owner of report</th>
               <td>{nameOfTheStudentOne}</td>
+
               <td>
                 <a href={linkedinOfTheStudentOne}>
-                  <img src="#" />
+                  <img src={linkedin}></img>
                 </a>
               </td>
             </tr>
@@ -150,7 +164,7 @@ class CompanyPageTableG extends Component {
                 <td>{nameOfTheStudentTwo}</td>
                 <td>
                   <a href={linkedinOfTheStudentTwo}>
-                    <img src="#" />
+                    <img src={linkedin}></img>
                   </a>
                 </td>
               </tr>
