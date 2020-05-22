@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Input } from "reactstrap";
+import { getCookie, setCookie } from "../../../utils/cookie";
 
 /**  Pages  **/
 
@@ -22,7 +23,11 @@ class CompaniesPage extends React.Component {
 
   async componentDidMount() {
     window.scroll(0, 0);
-    const response = await axios.get(this.props.location.state[0].url);
+
+    const response = await axios.get(this.props.location.state[0].url, {
+      headers: { authorization: "Bearer" + " " + getCookie("token") },
+    });
+
     this.setState({
       companyList: response.data.sort((a, b) =>
         a.name > b.name ? 1 : b.name > a.name ? -1 : 0
@@ -51,7 +56,9 @@ class CompaniesPage extends React.Component {
     let categoryName = "";
     if (
       this.props.location.state[0].url !==
-      "https://mis-422.herokuapp.com/public/companies/get-all-companies"
+        "https://mis-422.herokuapp.com/public/companies/get-all-companies" &&
+      this.props.location.state[0].url !==
+        "https://mis-422.herokuapp.com/api/companies"
     ) {
       categoryName = `${this.props.location.state[0].categoryName.toLowerCase()} Companies`;
     } else {

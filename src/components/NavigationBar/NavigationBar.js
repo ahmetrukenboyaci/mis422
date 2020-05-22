@@ -74,8 +74,9 @@ class NavigationBar extends Component {
                     pathname: "/CompaniesPage",
                     state: [
                       {
-                        url:
-                          "https://mis-422.herokuapp.com/public/companies/get-all-companies",
+                        url: isAuthorized
+                          ? "https://mis-422.herokuapp.com/api/companies"
+                          : "https://mis-422.herokuapp.com/public/companies/get-all-companies",
                       },
                     ],
                   }}

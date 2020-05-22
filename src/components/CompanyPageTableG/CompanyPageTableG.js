@@ -4,14 +4,20 @@ import React, { Component } from "react";
 import "./CompanyPageTableG.scss";
 
 /**This component is created for all users to see */
-
-import { Container, ListGroup, ListGroupItem, Row, Col } from "reactstrap";
 import linkedin from "../Footer/linkedin.svg";
 
 class CompanyPageTableG extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      companyInfo: [],
+    };
   }
+
+  componentDidMount() {
+    this.setState({ companyInfo: this.props.companyInfo });
+  }
+
   render() {
     const {
       description,
@@ -38,12 +44,61 @@ class CompanyPageTableG extends Component {
       nameOfTheStudentTwo,
       linkedinOfTheStudentOne,
       linkedinOfTheStudentTwo,
-      companyName,
+      name,
       id,
-      isAuthorized,
-    } = this.props;
+      acquiredBy,
+      acquiredDate,
+      acquistion1,
+      acquistion2,
+      acquistion3,
+      acquistion4,
+      acquistion5,
+      acquistionValue,
+      businessDomain1,
+      businessDomain2,
+      businessModel1,
+      businessModel2,
+      businessModel3,
+      businessModel4,
+      businessModel5,
+      businessModelDetail1,
+      businessModelDetail2,
+      businessModelDetail3,
+      businessModelDetail4,
+      businessModelDetail5,
+      companyMaturity,
+      competitorsGlobal1,
+      competitorsGlobal2,
+      competitorsGlobal3,
+      competitorsGlobal4,
+      competitorsGlobal5,
+      competitorsLocal1,
+      competitorsLocal2,
+      competitorsLocal3,
+      competitorsLocal4,
+      competitorsLocal5,
+      customerBase,
+      lastFundingAmount,
+      lastFundingDate,
+      lastFundingStage,
+      lastFundingStageDetail,
+      lastYearRevenue,
+      productName1,
+      productName2,
+      productName3,
+      productName4,
+      productName5,
+      productStage,
+      revenueModel1,
+      revenueModel2,
+      revenueModel3,
+      revenueModel4,
+      revenueModel5,
+      revenueStage,
+      totalFunding,
+    } = this.props.companyInfo;
+    const { isAuthorized } = this.props;
 
-    console.log(isAuthorized);
     const verticalMarkets = [
       verticalMarket1,
       verticalMarket2,
@@ -52,8 +107,11 @@ class CompanyPageTableG extends Component {
       verticalMarket5,
     ];
 
+    console.log(this.props.companyInfo);
+
     const validVerticalMarkets = verticalMarkets.filter((market) => market);
     const finalMarkets = validVerticalMarkets.join(",");
+
     return (
       <div className={"CompanyTableG"}>
         <table className="table">
@@ -66,132 +124,13 @@ class CompanyPageTableG extends Component {
                 ></img>
               </th>
               <th scope="col" className="companyName">
-                <span>{companyName}</span>
+                <span>{name}</span>
               </th>
             </tr>
+
+            {}
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Description</th>
-              <td>{description}</td>
-              <td></td>
-            </tr>
-            <tr>
-              <th scope="row">Headquarters</th>
-              <td>{headquarters}</td>
-              <td></td>
-            </tr>
-            <tr>
-              <th scope="row">Other Offices</th>
-              <td>{otherOffices}</td>
-              <td></td>
-            </tr>
-            <tr>
-              <th scope="row">Foundation Date</th>
-              <td>{foundationDate}</td>
-              <td></td>
-            </tr>
-            <tr>
-              <th scope="row">Vertical Markets</th>
-              <td>{finalMarkets}</td>
-              <td></td>
-            </tr>
-            <tr>
-              <th scope="row">Founder</th>
-              <td>{foundersNames1}</td>
-              <td>
-                <a href={foundersLinkedin1}>
-                  <img src={linkedin}></img>
-                </a>
-              </td>
-            </tr>
-            {foundersNames2 && (
-              <tr>
-                <th scope="row">Founder</th>
-                <td>{foundersNames2}</td>
-                <td>
-                  <a href={foundersLinkedin2}>
-                    <img src={linkedin}></img>
-                  </a>
-                </td>
-              </tr>
-            )}
-            {foundersNames3 && (
-              <tr>
-                <th scope="row">Founder</th>
-                <td>{foundersNames3}</td>
-                <td>
-                  <a href={foundersLinkedin3}>
-                    <img src={linkedin}></img>
-                  </a>
-                </td>
-              </tr>
-            )}
-            {foundersNames4 && (
-              <tr>
-                <th scope="row">Founder</th>
-                <td>{foundersNames4}</td>
-                <td>
-                  <a href={foundersLinkedin4}>
-                    <img src={linkedin}></img>
-                  </a>
-                </td>
-              </tr>
-            )}
-            {foundersNames5 && (
-              <tr>
-                <th scope="row">Founder</th>
-                <td>{foundersNames5}</td>
-                <td>
-                  <a href={foundersLinkedin5}>
-                    <img src={linkedin}></img>
-                  </a>
-                </td>
-              </tr>
-            )}
-            <tr>
-              <th scope="row">Owner of report</th>
-              <td>{nameOfTheStudentOne}</td>
-
-              <td>
-                <a href={linkedinOfTheStudentOne}>
-                  <img src={linkedin}></img>
-                </a>
-              </td>
-            </tr>
-            {nameOfTheStudentTwo && (
-              <tr>
-                <th scope="row">Owner of report</th>
-                <td>{nameOfTheStudentTwo}</td>
-                <td>
-                  <a href={linkedinOfTheStudentTwo}>
-                    <img src={linkedin}></img>
-                  </a>
-                </td>
-              </tr>
-            )}
-            {!isAuthorized && (
-              <tr>
-                <td></td>
-
-                <td style={{ paddingLeft: "60px" }}>
-                  <a href="/login">Get More Information</a>
-                </td>
-                <td></td>
-              </tr>
-            )}
-            {isAuthorized && (
-              <tr>
-                <th scope="row">Owner of report</th>
-                <td>{nameOfTheStudentTwo}</td>
-                <td>
-                  <a href={linkedinOfTheStudentTwo}>
-                    <img src={linkedin}></img>
-                  </a>
-                </td>
-              </tr>
-            )}
-          </tbody>
+          <tbody></tbody>
         </table>
       </div>
     );

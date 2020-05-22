@@ -1,6 +1,6 @@
 import React from "react";
-import { Container } from "reactstrap";
 import axios from "axios";
+import { getCookie } from "../../../utils/cookie";
 
 /**components */
 import CompanyPageTableG from "../../CompanyPageTableG/CompanyPageTableG";
@@ -20,74 +20,25 @@ class CompanyProfile extends React.Component {
   async componentDidMount() {
     window.scroll(0, 0);
     const companyId = this.props.location.state[0].companyId;
+    const api = this.props.isAuthorized ? "api" : "public";
+
     const response = await axios.get(
-      `https://mis-422.herokuapp.com/public/companies/${companyId}`
+      `https://mis-422.herokuapp.com/${api}/companies/${companyId}`,
+      {
+        headers: { authorization: "Bearer" + " " + getCookie("token") },
+      }
     );
+
     this.setState({ companyInfo: response.data });
   }
 
   render() {
-    const {
-      description,
-      website,
-      foundationDate,
-      headquarters,
-      otherOffices,
-      verticalMarket1,
-      verticalMarket2,
-      verticalMarket3,
-      verticalMarket4,
-      verticalMarket5,
-      foundersNames1,
-      foundersLinkedin1,
-      foundersNames2,
-      foundersLinkedin2,
-      foundersNames3,
-      foundersLinkedin3,
-      foundersNames4,
-      foundersLinkedin4,
-      foundersNames5,
-      foundersLinkedin5,
-      nameOfTheStudentOne,
-      nameOfTheStudentTwo,
-      linkedinOfTheStudentOne,
-      linkedinOfTheStudentTwo,
-      name,
-      id,
-    } = this.state.companyInfo;
     let { isAuthorized } = this.props;
-    console.log(isAuthorized);
-
     return (
       <div className={"CompanyProfile"}>
         <div className="companyInfo">
           <CompanyPageTableG
-            companyName={name}
-            id={id}
-            description={description}
-            website={website}
-            foundationDate={foundationDate}
-            headquarters={headquarters}
-            otherOffices={otherOffices}
-            verticalMarket1={verticalMarket1}
-            vertiacalMarket2={verticalMarket2}
-            verticalMarket3={verticalMarket3}
-            verticalMarket4={verticalMarket4}
-            verticalMarket5={verticalMarket5}
-            foundersNames1={foundersNames1}
-            foundersLinkedin1={foundersLinkedin1}
-            foundersLinkedin2={foundersLinkedin2}
-            foundersNames2={foundersNames2}
-            foundersNames3={foundersNames3}
-            foundersLinkedin3={foundersLinkedin3}
-            foundersNames4={foundersNames4}
-            foundersLinkedin4={foundersLinkedin4}
-            foundersNames5={foundersNames5}
-            foundersLinkedin5={foundersLinkedin5}
-            nameOfTheStudentOne={nameOfTheStudentOne}
-            nameOfTheStudentTwo={nameOfTheStudentTwo}
-            linkedinOfTheStudentOne={linkedinOfTheStudentOne}
-            linkedinOfTheStudentTwo={linkedinOfTheStudentTwo}
+            companyInfo={this.state.companyInfo}
             isAuthorized={isAuthorized}
           />
         </div>
