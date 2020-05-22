@@ -1,11 +1,18 @@
 .card-container {
   min-height: 300px;
   padding-top: 10px;
+  margin: 10px;
+  width: 80%;
 
   &.card {
     border: 1px solid orange;
     border-radius: 8px;
-    justify-content: space-between;
+
+    transition: all ease-in-out 0.2s;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    &:hover {
+      transform: scale(1.05);
+    }
 
     & .logo {
       width: 120px;
@@ -19,6 +26,10 @@
 
       & .companyName {
         font-weight: bold;
+      }
+
+      & .category {
+        margin-bottom: 10px;
       }
 
       & .card {
@@ -35,7 +46,7 @@
           display: flex;
           flex-direction: column;
           justify-content: center;
-          height: 50px;
+          padding: 15px;
           border-bottom-left-radius: 8px;
           border-bottom-right-radius: 8px;
           position: absolute;

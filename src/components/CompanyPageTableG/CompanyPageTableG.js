@@ -11,7 +11,6 @@ import linkedin from "../Footer/linkedin.svg";
 class CompanyPageTableG extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
   }
   render() {
     const {
@@ -41,8 +40,10 @@ class CompanyPageTableG extends Component {
       linkedinOfTheStudentTwo,
       companyName,
       id,
+      isAuthorized,
     } = this.props;
 
+    console.log(isAuthorized);
     const verticalMarkets = [
       verticalMarket1,
       verticalMarket2,
@@ -159,6 +160,27 @@ class CompanyPageTableG extends Component {
               </td>
             </tr>
             {nameOfTheStudentTwo && (
+              <tr>
+                <th scope="row">Owner of report</th>
+                <td>{nameOfTheStudentTwo}</td>
+                <td>
+                  <a href={linkedinOfTheStudentTwo}>
+                    <img src={linkedin}></img>
+                  </a>
+                </td>
+              </tr>
+            )}
+            {!isAuthorized && (
+              <tr>
+                <td></td>
+
+                <td style={{ paddingLeft: "60px" }}>
+                  <a href="/login">Get More Information</a>
+                </td>
+                <td></td>
+              </tr>
+            )}
+            {isAuthorized && (
               <tr>
                 <th scope="row">Owner of report</th>
                 <td>{nameOfTheStudentTwo}</td>

@@ -48,9 +48,19 @@ class CompaniesPage extends React.Component {
   };
 
   render() {
+    let categoryName = "";
+    if (
+      this.props.location.state[0].url !==
+      "https://mis-422.herokuapp.com/public/companies/get-all-companies"
+    ) {
+      categoryName = `${this.props.location.state[0].categoryName.toLowerCase()} Companies`;
+    } else {
+      categoryName = "All Companies";
+    }
+
     const company = this.state.companyList.map((company) => {
       return (
-        <Col key={company.id} className="col-3">
+        <Col key={company.id} className="col-4">
           <CompanyCard
             companyName={company.name}
             //image={company}
@@ -66,7 +76,7 @@ class CompaniesPage extends React.Component {
     });
     const searchedItems = searchedArray.map((company) => {
       return (
-        <Col key={company.id} className={`col-${3}`}>
+        <Col key={company.id} className={`col-${4}`}>
           <CompanyCard
             companyName={company.name}
             //image={company}
@@ -78,7 +88,7 @@ class CompaniesPage extends React.Component {
     });
     return (
       <Container fluid className="companiesContainer">
-        <h1>All Companies</h1>
+        <h1 style={{ textTransform: "capitalize" }}>{categoryName}</h1>
         <Input
           onChange={this.search}
           value={this.state.inputValue}

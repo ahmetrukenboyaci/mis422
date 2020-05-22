@@ -24,7 +24,6 @@ class CategoriesPage extends React.Component {
     );
 
     let data = response.data.sort();
-    console.log(data);
 
     data.forEach((category, index) => {
       switch (category) {
@@ -111,7 +110,7 @@ class CategoriesPage extends React.Component {
 
     return (
       <div className="CategoriesPage">
-        <h1>Categories</h1>
+        <h1>All Categories </h1>
         <Input
           onChange={this.search}
           type="search"

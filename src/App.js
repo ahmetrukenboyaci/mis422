@@ -49,8 +49,9 @@ class App extends React.Component {
               <Route path={"/CompaniesPage"} component={CompaniesPage} />
               <Route
                 path={"/CompanyProfile"}
-                component={CompanyProfile}
-                isAuthorized={isAuthorized}
+                render={(props) => (
+                  <CompanyProfile {...props} isAuthorized={isAuthorized} />
+                )}
               />
             </Switch>
           </div>

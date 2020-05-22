@@ -19,7 +19,7 @@
   }
 
   & .CategoriesList {
-    border: 1px solid orange;
+    border: 2px solid orange;
     border-radius: 8px;
     width: 500px;
     padding: 5px;
@@ -33,6 +33,11 @@
 
       a {
         color: black;
+
+        &:hover {
+          transform: scale(1.2);
+          color: orange;
+        }
       }
 
       // & .badge {

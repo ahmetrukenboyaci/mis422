@@ -20,7 +20,6 @@ class CompanyProfile extends React.Component {
   async componentDidMount() {
     window.scroll(0, 0);
     const companyId = this.props.location.state[0].companyId;
-    console.log(companyId);
     const response = await axios.get(
       `https://mis-422.herokuapp.com/public/companies/${companyId}`
     );
@@ -56,6 +55,8 @@ class CompanyProfile extends React.Component {
       name,
       id,
     } = this.state.companyInfo;
+    let { isAuthorized } = this.props;
+    console.log(isAuthorized);
 
     return (
       <div className={"CompanyProfile"}>
@@ -87,6 +88,7 @@ class CompanyProfile extends React.Component {
             nameOfTheStudentTwo={nameOfTheStudentTwo}
             linkedinOfTheStudentOne={linkedinOfTheStudentOne}
             linkedinOfTheStudentTwo={linkedinOfTheStudentTwo}
+            isAuthorized={isAuthorized}
           />
         </div>
         <div className="graph">
