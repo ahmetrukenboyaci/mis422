@@ -13,25 +13,23 @@ class CompanyPageTableG extends Component {
     };
   }
 
-  componentDidMount() {
-    this.setState({ companyInfo: this.props.companyInfo });
-  }
-
   renderCompanyCard() {
     const { companyInfo } = this.props;
-    return Object.keys(companyInfo).map(key =>
+    return Object.keys(companyInfo).map(
+      (key) =>
         companyInfo[key] !== null &&
-          <tr>
+        key !== "id" &&
+        key !== "name" && (
+          <tr key={Object.keys(companyInfo).indexOf(key)}>
             <th scope="row">{key}</th>
             <td>{companyInfo[key]}</td>
           </tr>
-      );
+        )
+    );
   }
 
   render() {
-    const {
-      name,
-    } = this.props.companyInfo;
+    const { name } = this.props.companyInfo;
 
     return (
       <div className={"CompanyTableG"}>
@@ -49,9 +47,7 @@ class CompanyPageTableG extends Component {
               </th>
             </tr>
           </thead>
-          <tbody>
-            {this.renderCompanyCard()}
-          </tbody>
+          <tbody>{this.renderCompanyCard()}</tbody>
         </table>
       </div>
     );
