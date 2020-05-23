@@ -1,6 +1,5 @@
 import React from "react";
-import axios from "axios";
-import { getCookie } from "../../../utils/cookie";
+import mis422 from "../../../api/mis-422";
 
 /**components */
 import CompanyPageTableG from "../../CompanyPageTableG/CompanyPageTableG";
@@ -22,12 +21,7 @@ class CompanyProfile extends React.Component {
     const companyId = this.props.location.state[0].companyId;
     const api = this.props.isAuthorized ? "api" : "public";
 
-    const response = await axios.get(
-      `https://mis-422.herokuapp.com/${api}/companies/${companyId}`,
-      {
-        headers: { authorization: "Bearer" + " " + getCookie("token") },
-      }
-    );
+    const response = await mis422.get(`/${api}/companies/${companyId}`);
 
     this.setState({ companyInfo: response.data });
   }

@@ -11,7 +11,7 @@ import CompanyCard from "../../CompanyCard/CompanyCard";
 /** styles **/
 import "./CompaniesPage.scss";
 import "../../../App.scss";
-import axios from "axios";
+import mis422 from "../../../api/mis-422";
 class CompaniesPage extends React.Component {
   constructor(props) {
     super(props);
@@ -24,9 +24,7 @@ class CompaniesPage extends React.Component {
   async componentDidMount() {
     window.scroll(0, 0);
 
-    const response = await axios.get(this.props.location.state[0].url, {
-      headers: { authorization: "Bearer" + " " + getCookie("token") },
-    });
+    const response = await mis422.get(this.props.location.state[0].url);
 
     this.setState({
       companyList: response.data.sort((a, b) =>
@@ -37,7 +35,7 @@ class CompaniesPage extends React.Component {
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.location.state[0].url !== this.props.location.state[0].url) {
-      const response = await axios.get(this.props.location.state[0].url);
+      const response = await mis422.get(this.props.location.state[0].url);
       this.setState({
         companyList: response.data.sort((a, b) =>
           a.name > b.name ? 1 : b.name > a.name ? -1 : 0
@@ -56,9 +54,8 @@ class CompaniesPage extends React.Component {
     let categoryName = "";
     if (
       this.props.location.state[0].url !==
-        "https://mis-422.herokuapp.com/public/companies/get-all-companies" &&
-      this.props.location.state[0].url !==
-        "https://mis-422.herokuapp.com/api/companies"
+        "/public/companies/get-all-companies" &&
+      this.props.location.state[0].url !== "/api/companies"
     ) {
       categoryName = `${this.props.location.state[0].categoryName.toLowerCase()} Companies`;
     } else {

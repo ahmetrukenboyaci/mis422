@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col } from "reactstrap";
 import { ListGroup, ListGroupItem } from "reactstrap";
 import { Input, Badge } from "reactstrap";
-import axios from "axios";
+import mis422 from "../../../api/mis-422";
 /** components **/
 /** styles **/
 import "./CategoriesPage.scss";
@@ -19,9 +19,7 @@ class CategoriesPage extends React.Component {
 
   async componentDidMount() {
     window.scroll(0, 0);
-    let response = await axios.get(
-      "https://mis-422.herokuapp.com/public/categories/get-all-categories"
-    );
+    let response = await mis422.get("/public/categories/get-all-categories");
 
     let data = response.data.sort();
 

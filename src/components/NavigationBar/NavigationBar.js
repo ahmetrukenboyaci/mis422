@@ -75,8 +75,8 @@ class NavigationBar extends Component {
                     state: [
                       {
                         url: isAuthorized
-                          ? "https://mis-422.herokuapp.com/api/companies"
-                          : "https://mis-422.herokuapp.com/public/companies/get-all-companies",
+                          ? "/api/companies"
+                          : "/public/companies/get-all-companies",
                       },
                     ],
                   }}
