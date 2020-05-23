@@ -1,19 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  Input,
-} from "reactstrap";
+import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from "reactstrap";
 
 /** styles **/
-import styles from "./NavigationBar.scss";
+import "./NavigationBar.scss";
 
 class NavigationBar extends Component {
   constructor(props) {
@@ -28,24 +18,6 @@ class NavigationBar extends Component {
 
   logout = () => {
     this.props.logout();
-  };
-
-  onSearchChange = async (value) => {
-    clearTimeout(this.state.timer);
-
-    this.setState({
-      timer: await setTimeout(async () => {
-        const axiosInstance = axios.create({
-          baseURL: "https://mis-422.herokuapp.com",
-          headers: { "Content-Type": "application/json" },
-          timeout: 60000,
-        });
-        let response = await axiosInstance.get(
-          `https://mis-422.herokuapp.com/public/companies/${value}`
-        );
-        this.setState({ company: response.data });
-      }, 500),
-    });
   };
 
   render() {

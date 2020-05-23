@@ -1,6 +1,5 @@
 import React from "react";
 import { Container, Row, Col, Input } from "reactstrap";
-import { getCookie, setCookie } from "../../../utils/cookie";
 
 /**  Pages  **/
 

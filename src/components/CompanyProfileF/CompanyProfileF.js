@@ -1,5 +1,4 @@
 import React from "react";
-
 import "./CompanyProfileF.scss";
 import {
   Row,
