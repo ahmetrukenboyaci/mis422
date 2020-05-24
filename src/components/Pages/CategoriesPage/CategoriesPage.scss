@@ -23,7 +23,7 @@
     border-radius: 8px;
     width: 500px;
     padding: 5px;
-    min-height: 800px;
+    min-height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,14 +42,6 @@
           color: orange;
         }
       }
-
-      // & .badge {
-      //   margin-left: 10px;
-      //   height: 20px;
-      //   background-color: green;
-      //   border-radius: 8px;
-      //   line-height: 1.1;
-      // }
     }
   }
 }

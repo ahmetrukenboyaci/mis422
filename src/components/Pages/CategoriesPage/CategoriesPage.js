@@ -99,6 +99,7 @@ class CategoriesPage extends React.Component {
           </ListGroupItem>
         );
       });
+    console.log(searchedItems.length);
 
     return (
       <div className="CategoriesPage">
@@ -107,7 +108,7 @@ class CategoriesPage extends React.Component {
           onChange={(e) => this.setState({ inputValue: e.target.value })}
           type="search"
           placeholder="Search in Categories"
-          value={(e) => this.setState({ inputValue: e.target.value })}
+          value={this.state.inputValue}
         />
         <ListGroup className="CategoriesList">
           {this.state.loading ? (
@@ -117,7 +118,7 @@ class CategoriesPage extends React.Component {
             >
               <span className="sr-only">Categories Loading...</span>
             </div>
-          ) : this.inputValue ? (
+          ) : this.state.inputValue ? (
             searchedItems
           ) : (
             categoryItem
