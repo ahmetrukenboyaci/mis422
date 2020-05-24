@@ -3,6 +3,7 @@ import mis422 from "../../../api/mis-422";
 
 /**components */
 import CompanyPageTableG from "../../CompanyPageTableG/CompanyPageTableG";
+import FiveForces from "../../charts/five-forces/FiveForces";
 
 import CompanyPageProfileF from "../../CompanyProfileF/CompanyProfileF";
 /** styles **/
@@ -37,7 +38,7 @@ class CompanyProfile extends React.Component {
           />
         </div>
         <div className="graph">
-          <CompanyPageProfileF />
+          {isAuthorized ? <FiveForces /> : <CompanyPageProfileF />}
         </div>
       </div>
     );
