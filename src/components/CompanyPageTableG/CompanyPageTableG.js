@@ -13,40 +13,37 @@ class CompanyPageTableG extends Component {
     };
   }
 
-  keysMap = {
-    description: "Description",
-    website: "Web Site",
-    foundationDate: "Foundation Date",
-    headquarters: "Headquarters",
-    otherOffices: "Other Offices",
-    verticalMarket1: "Vertical Market",
-    foundersNames1: "Founder",
-  };
-  renameKeys = (keysMap, obj) =>
-    Object.keys(obj).reduce(
-      (acc, key) => ({
-        ...acc,
-        ...{ [keysMap[key] || key]: obj[key] },
-      }),
-      {}
-    );
-
   renderCompanyCard() {
     const { companyInfo } = this.props;
 
-    const eren = this.renameKeys(this.keysMap, companyInfo);
+    let finalObject = Object.keys(companyInfo).reduce((acc,curr) => {
+      let c = curr.replace(/([A-Z])/g, ' $1')
+          .replace(/^./, function(str){ return str.toUpperCase(); }).replace(/\d+/g, '');
+      if(c in acc){
+        if (companyInfo[curr] !== null)
+          acc[c] += ",  " +companyInfo[curr];
+      }
+      else {
+        if (companyInfo[curr] !== null)
+          acc[c] = companyInfo[curr];
+      }
 
-    return Object.keys(eren).map(
-      (key) =>
-        eren[key] !== null &&
-        key !== "id" &&
-        key !== "name" && (
-          <tr key={Object.keys(eren).indexOf(key)}>
-            <th scope="row">{key}</th>
-            <td>{eren[key]}</td>
-          </tr>
-        )
-    );
+      return acc;
+    },{});
+
+    console.log(finalObject)
+
+    return Object.keys(finalObject).map((key, id) => {
+      if (key !== 'Id' && key !== 'Name') {
+        return(
+            <tr key={id}>
+              <th scope="row">{key}</th>
+              <td>{finalObject[key]}</td>
+            </tr>
+        );
+      }
+    });
+
   }
 
   render() {
