@@ -9,7 +9,7 @@ const CompanyCard = ({ id, image, category, companyName }) => {
     <Card id={id} className="card-container">
       <CardImg
         top
-        src="https://picsum.photos/seed/picsum/600/600"
+        src={`https://logo.clearbit.com/${image}?size=100`}
         alt="Company Logo"
         className="logo align-self-center"
       />

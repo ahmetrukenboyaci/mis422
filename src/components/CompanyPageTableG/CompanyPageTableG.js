@@ -13,23 +13,44 @@ class CompanyPageTableG extends Component {
     };
   }
 
+  keysMap = {
+    description: "Description",
+    website: "Web Site",
+    foundationDate: "Foundation Date",
+    headquarters: "Headquarters",
+    otherOffices: "Other Offices",
+    verticalMarket1: "Vertical Market",
+    foundersNames1: "Founder",
+  };
+  renameKeys = (keysMap, obj) =>
+    Object.keys(obj).reduce(
+      (acc, key) => ({
+        ...acc,
+        ...{ [keysMap[key] || key]: obj[key] },
+      }),
+      {}
+    );
+
   renderCompanyCard() {
     const { companyInfo } = this.props;
-    return Object.keys(companyInfo).map(
+
+    const eren = this.renameKeys(this.keysMap, companyInfo);
+
+    return Object.keys(eren).map(
       (key) =>
-        companyInfo[key] !== null &&
+        eren[key] !== null &&
         key !== "id" &&
         key !== "name" && (
-          <tr key={Object.keys(companyInfo).indexOf(key)}>
+          <tr key={Object.keys(eren).indexOf(key)}>
             <th scope="row">{key}</th>
-            <td>{companyInfo[key]}</td>
+            <td>{eren[key]}</td>
           </tr>
         )
     );
   }
 
   render() {
-    const { name } = this.props.companyInfo;
+    const { name, website } = this.props.companyInfo;
 
     return (
       <div className={"CompanyTableG"}>
@@ -39,7 +60,7 @@ class CompanyPageTableG extends Component {
               <th scope="col">
                 <img
                   className="companyLogo"
-                  src="https://picsum.photos/id/237/1000/1000"
+                  src={`https://logo.clearbit.com/${website}?size=200`}
                 />
               </th>
               <th scope="col" className="companyName">

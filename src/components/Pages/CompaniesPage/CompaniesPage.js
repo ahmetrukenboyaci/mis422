@@ -25,7 +25,6 @@ class CompaniesPage extends React.Component {
     window.scroll(0, 0);
 
     const response = await mis422.get(this.props.location.state[0].url);
-    console.log(this.props.location.state[0]);
 
     this.setState({
       companyList: response.data.sort((a, b) =>
@@ -59,18 +58,20 @@ class CompaniesPage extends React.Component {
       categoryName = "All Companies";
     }
 
-    const company = this.state.companyList.map(({ id, name, description }) => {
-      return (
-        <Col key={id} className="col-4">
-          <CompanyCard
-            companyName={name}
-            //image={company}
-            category={description}
-            id={id}
-          />
-        </Col>
-      );
-    });
+    const company = this.state.companyList.map(
+      ({ id, name, description, website }) => {
+        return (
+          <Col key={id} className="col-4">
+            <CompanyCard
+              companyName={name}
+              image={`/${website}`}
+              category={description}
+              id={id}
+            />
+          </Col>
+        );
+      }
+    );
     const searchedArray = this.state.companyList.filter(({ name }) => {
       const regex = new RegExp(this.state.inputValue, "ig");
       return name.match(regex);
