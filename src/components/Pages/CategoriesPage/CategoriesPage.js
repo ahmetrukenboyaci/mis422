@@ -1,12 +1,11 @@
 import React from "react";
-
 import { ListGroup, ListGroupItem } from "reactstrap";
 import { Input } from "reactstrap";
+import { Link } from "react-router-dom";
 import mis422 from "../../../api/mis-422";
-/** components **/
+
 /** styles **/
 import "./CategoriesPage.scss";
-import { Link } from "react-router-dom";
 
 class CategoriesPage extends React.Component {
   constructor(props) {
@@ -14,6 +13,7 @@ class CategoriesPage extends React.Component {
     this.state = {
       categoryList: [],
       inputValue: "",
+      loading: true,
     };
   }
 
@@ -47,14 +47,8 @@ class CategoriesPage extends React.Component {
           data[index] = "PROFESSIONAL SCIENTIFIC AND TECHNICAL SERVICES";
       }
     });
-    this.setState({ categoryList: data });
+    this.setState({ categoryList: data, loading: false });
   }
-
-  search = (e) => {
-    this.setState({
-      inputValue: e.target.value,
-    });
-  };
 
   render() {
     const categoryItem = this.state.categoryList.map((categoryItem) => {
@@ -69,7 +63,7 @@ class CategoriesPage extends React.Component {
               state: [
                 {
                   categoryName: categoryItem.replace(/\W/g, ""),
-                  url: `https://mis-422.herokuapp.com/public/categories/${categoryItem.replace(
+                  url: `/public/categories/${categoryItem.replace(
                     /\W/g,
                     ""
                   )}/companies`,
@@ -110,12 +104,24 @@ class CategoriesPage extends React.Component {
       <div className="CategoriesPage">
         <h1>All Categories </h1>
         <Input
-          onChange={this.search}
+          onChange={(e) => this.setState({ inputValue: e.target.value })}
           type="search"
           placeholder="Search in Categories"
+          value={(e) => this.setState({ inputValue: e.target.value })}
         />
         <ListGroup className="CategoriesList">
-          {this.state.inputValue ? searchedItems : categoryItem}
+          {this.state.loading ? (
+            <div
+              className="spinner-border align-self-center text-warning"
+              role="status"
+            >
+              <span className="sr-only">Categories Loading...</span>
+            </div>
+          ) : this.inputValue ? (
+            searchedItems
+          ) : (
+            categoryItem
+          )}
         </ListGroup>
       </div>
     );

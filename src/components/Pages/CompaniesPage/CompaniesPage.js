@@ -1,16 +1,16 @@
 import React from "react";
 import { Container, Row, Col, Input } from "reactstrap";
+import mis422 from "../../../api/mis-422";
 
 /**  Pages  **/
+import "./CompaniesPage.scss";
 
 /** components **/
-
 import CompanyCard from "../../CompanyCard/CompanyCard";
 
 /** styles **/
-import "./CompaniesPage.scss";
 import "../../../App.scss";
-import mis422 from "../../../api/mis-422";
+
 class CompaniesPage extends React.Component {
   constructor(props) {
     super(props);
@@ -24,6 +24,7 @@ class CompaniesPage extends React.Component {
     window.scroll(0, 0);
 
     const response = await mis422.get(this.props.location.state[0].url);
+    console.log(this.props.location.state[0]);
 
     this.setState({
       companyList: response.data.sort((a, b) =>
@@ -43,12 +44,6 @@ class CompaniesPage extends React.Component {
     }
   }
 
-  search = (e) => {
-    this.setState({
-      inputValue: e.target.value,
-    });
-  };
-
   render() {
     let categoryName = "";
     if (
@@ -61,30 +56,30 @@ class CompaniesPage extends React.Component {
       categoryName = "All Companies";
     }
 
-    const company = this.state.companyList.map((company) => {
+    const company = this.state.companyList.map(({ id, name, description }) => {
       return (
-        <Col key={company.id} className="col-4">
+        <Col key={id} className="col-4">
           <CompanyCard
-            companyName={company.name}
+            companyName={name}
             //image={company}
-            category={company.description}
-            id={company.id}
+            category={description}
+            id={id}
           />
         </Col>
       );
     });
-    const searchedArray = this.state.companyList.filter((company) => {
+    const searchedArray = this.state.companyList.filter(({ name }) => {
       const regex = new RegExp(this.state.inputValue, "ig");
-      return company.name.match(regex);
+      return name.match(regex);
     });
-    const searchedItems = searchedArray.map((company) => {
+    const searchedItems = searchedArray.map(({ id, name, description }) => {
       return (
-        <Col key={company.id} className={`col-${4}`}>
+        <Col key={id} className={`col-${4}`}>
           <CompanyCard
-            companyName={company.name}
+            companyName={name}
             //image={company}
-            category={company.description}
-            id={company.id}
+            category={description}
+            id={id}
           />
         </Col>
       );
@@ -93,7 +88,7 @@ class CompaniesPage extends React.Component {
       <Container fluid className="companiesContainer">
         <h1 style={{ textTransform: "capitalize" }}>{categoryName}</h1>
         <Input
-          onChange={this.search}
+          onChange={(e) => this.setState({ inputValue: e.target.value })}
           value={this.state.inputValue}
           type="search"
           placeholder="Search in Companies"
