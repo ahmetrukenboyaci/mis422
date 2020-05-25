@@ -100,24 +100,24 @@ class CompaniesPage extends React.Component {
         <Row className={"col-12  justify-content-center"}>
           {this.state.loading ? (
             <div>
-              <div class="spinner-grow text-primary" role="status"></div>
-              <div class="spinner-grow text-secondary" role="status">
-                <span class="sr-only">Loading...</span>
+              <div className="spinner-grow text-primary" role="status"></div>
+              <div className="spinner-grow text-secondary" role="status">
+                <span className="sr-only">Loading...</span>
               </div>
-              <div class="spinner-grow text-success" role="status">
-                <span class="sr-only">Loading...</span>
+              <div className="spinner-grow text-success" role="status">
+                <span className="sr-only">Loading...</span>
               </div>
-              <div class="spinner-grow text-danger" role="status">
-                <span class="sr-only">Loading...</span>
+              <div className="spinner-grow text-danger" role="status">
+                <span className="sr-only">Loading...</span>
               </div>
-              <div class="spinner-grow text-warning" role="status">
-                <span class="sr-only">Loading...</span>
+              <div className="spinner-grow text-warning" role="status">
+                <span className="sr-only">Loading...</span>
               </div>
-              <div class="spinner-grow text-info" role="status">
-                <span class="sr-only">Loading...</span>
+              <div className="spinner-grow text-info" role="status">
+                <span className="sr-only">Loading...</span>
               </div>
-              <div class="spinner-grow text-light" role="status">
-                <span class="sr-only">Loading...</span>
+              <div className="spinner-grow text-light" role="status">
+                <span className="sr-only">Loading...</span>
               </div>
             </div>
           ) : this.state.inputValue ? (

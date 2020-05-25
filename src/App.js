@@ -20,7 +20,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      isAuthorized: false,
+      isAuthorized: getCookie("token").length > 0,
     };
   }
 

@@ -5,21 +5,13 @@ import { ResponsiveRadar } from "@nivo/radar";
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
-const MyResponsiveRadar = ({
-  data = [
-    { taste: "fruity", chardonay: 31, carmenere: 44, syrah: 94 },
-    { taste: "bitter", chardonay: 61, carmenere: 110, syrah: 20 },
-    { taste: "heavy", chardonay: 103, carmenere: 68, syrah: 56 },
-    { taste: "strong", chardonay: 105, carmenere: 76, syrah: 110 },
-    { taste: "sunny", chardonay: 89, carmenere: 108, syrah: 88 },
-  ],
-}) => {
+const MyResponsiveRadar = ({dt, companyName}) => {
   return (
-    <div className="parent" style={{ height: "800px", width: "800px" }}>
+    <div className="parent" style={{ height: "400px", width: "800px" }}>
       <ResponsiveRadar
-        data={data}
-        keys={["chardonay", "carmenere", "syrah"]}
-        indexBy="taste"
+        data={dt}
+        keys={[companyName]}
+        indexBy="force"
         maxValue="auto"
         margin={{
           top: 70,
