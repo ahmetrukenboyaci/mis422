@@ -46,9 +46,7 @@ class NavigationBar extends Component {
                     pathname: "/CompaniesPage",
                     state: [
                       {
-                        url: isAuthorized
-                          ? "/api/companies"
-                          : "/public/companies/get-all-companies",
+                        url: "/public/companies/get-all-companies",
                       },
                     ],
                   }}

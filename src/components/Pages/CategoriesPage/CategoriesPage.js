@@ -19,9 +19,9 @@ class CategoriesPage extends React.Component {
 
   async componentDidMount() {
     window.scroll(0, 0);
-    let response = await mis422.get("/public/categories/get-all-categories");
+    const response = await mis422.get("/public/categories/get-all-categories");
 
-    let data = response.data.sort();
+    let data = response.data;
 
     data.forEach((category, index) => {
       switch (category) {
@@ -47,7 +47,8 @@ class CategoriesPage extends React.Component {
           data[index] = "PROFESSIONAL SCIENTIFIC AND TECHNICAL SERVICES";
       }
     });
-    this.setState({ categoryList: data, loading: false });
+
+    this.setState({ categoryList: data.sort(), loading: false });
   }
 
   render() {
@@ -91,7 +92,15 @@ class CategoriesPage extends React.Component {
             <Link
               to={{
                 pathname: "/CompaniesPage",
-                state: [{ categoryName: categoryItem.replace(/\s/g, "") }],
+                state: [
+                  {
+                    categoryName: categoryItem.replace(/\s/g, ""),
+                    url: `/public/categories/${categoryItem.replace(
+                      /\W/g,
+                      ""
+                    )}/companies`,
+                  },
+                ],
               }}
             >
               {categoryItem}
@@ -99,13 +108,14 @@ class CategoriesPage extends React.Component {
           </ListGroupItem>
         );
       });
-    console.log(searchedItems.length);
 
     return (
       <div className="CategoriesPage">
         <h1>All Categories </h1>
         <Input
-          onChange={(e) => this.setState({ inputValue: e.target.value })}
+          onChange={(e) => {
+            return this.setState({ inputValue: e.target.value });
+          }}
           type="search"
           placeholder="Search in Categories"
           value={this.state.inputValue}

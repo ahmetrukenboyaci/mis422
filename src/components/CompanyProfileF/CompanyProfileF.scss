@@ -4,6 +4,14 @@
 }
 
 .button-centered {
+  background-color: orange;
+  color: white;
+  border-radius: 8px;
+  height: 40px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -11,4 +19,9 @@
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
+
+  &:hover {
+    text-decoration: none;
+    color: white;
+  }
 }

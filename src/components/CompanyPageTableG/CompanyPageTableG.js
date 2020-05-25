@@ -16,34 +16,32 @@ class CompanyPageTableG extends Component {
   renderCompanyCard() {
     const { companyInfo } = this.props;
 
-    let finalObject = Object.keys(companyInfo).reduce((acc,curr) => {
-      let c = curr.replace(/([A-Z])/g, ' $1')
-          .replace(/^./, function(str){ return str.toUpperCase(); }).replace(/\d+/g, '');
-      if(c in acc){
-        if (companyInfo[curr] !== null)
-          acc[c] += ",  " +companyInfo[curr];
-      }
-      else {
-        if (companyInfo[curr] !== null)
-          acc[c] = companyInfo[curr];
+    let finalObject = Object.keys(companyInfo).reduce((acc, curr) => {
+      let c = curr
+        .replace(/([A-Z])/g, " $1")
+        .replace(/^./, function (str) {
+          return str.toUpperCase();
+        })
+        .replace(/\d+/g, "");
+      if (c in acc) {
+        if (companyInfo[curr] !== null) acc[c] += ",  " + companyInfo[curr];
+      } else {
+        if (companyInfo[curr] !== null) acc[c] = companyInfo[curr];
       }
 
       return acc;
-    },{});
-
-    console.log(finalObject)
+    }, {});
 
     return Object.keys(finalObject).map((key, id) => {
-      if (key !== 'Id' && key !== 'Name') {
-        return(
-            <tr key={id}>
-              <th scope="row">{key}</th>
-              <td>{finalObject[key]}</td>
-            </tr>
+      if (key !== "Id" && key !== "Name") {
+        return (
+          <tr key={id}>
+            <th scope="row">{key}</th>
+            <td>{finalObject[key]}</td>
+          </tr>
         );
       }
     });
-
   }
 
   render() {

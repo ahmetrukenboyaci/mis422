@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./CompanyProfileF.scss";
 import {
   Row,
@@ -25,7 +26,9 @@ const CompanyProfileF = (props) => {
                   alt="Card image cap"
                 />
                 <CardImgOverlay>
-                  <Button className="button-centered">Unlock Charts</Button>{" "}
+                  <Link to={"/login"} className="button-centered">
+                    Unlock Charts
+                  </Link>
                 </CardImgOverlay>
               </Card>
             </Col>

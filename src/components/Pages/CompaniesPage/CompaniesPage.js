@@ -26,6 +26,8 @@ class CompaniesPage extends React.Component {
 
     const response = await mis422.get(this.props.location.state[0].url);
 
+    console.log(this.props.location.state[0]);
+
     this.setState({
       companyList: response.data.sort((a, b) =>
         a.name > b.name ? 1 : b.name > a.name ? -1 : 0
@@ -47,6 +49,7 @@ class CompaniesPage extends React.Component {
   }
 
   render() {
+    console.log(this.state.companyList);
     let categoryName = "";
     if (
       this.props.location.state[0].url !==

@@ -10,14 +10,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
   }
 
   & .graph {
     width: 100%;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     & .tabs {
       display: flex;
-      width: 50%;
+      width: 80%;
       justify-content: space-around;
       margin: auto;
       padding: 25px 0px 0;
@@ -28,5 +31,4 @@
       }
     }
   }
-
 }
