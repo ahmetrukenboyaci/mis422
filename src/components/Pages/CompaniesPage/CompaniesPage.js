@@ -49,7 +49,6 @@ class CompaniesPage extends React.Component {
   }
 
   render() {
-    console.log(this.state.companyList);
     let categoryName = "";
     if (
       this.props.location.state[0].url !==

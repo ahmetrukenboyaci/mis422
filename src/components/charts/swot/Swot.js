@@ -1,39 +1,30 @@
 import React, { Component } from "react";
 
+import './swot.scss'
+
 export default class Swot extends Component {
   renderData = () => {
     const { data } = this.props;
 
     let keys = Object.keys(data);
-    let values = Object.values(data);
 
-    console.log(values);
-
-    values = values.map((value) => {
-      return value.map((last) => {
-        return (
-          <li key={last.id}>
-            <h2>{last.itemName}</h2>
-            <p>Value: {last.itemValue}</p>
-            <p>Description: {last.itemDescription}</p>
-          </li>
-        );
-      });
+    return keys.map((key, i) => {
+      let index = i % 2 ? (i === 1 ?  "first orange" : "first lightyellow") : (i === 0 ?  "end red" : "end yellow");
+      return <ul className={`swotList ${index}`}>
+        <div className={"header"}>{key.charAt(0).toUpperCase()}</div>
+        <div className={"swotListCard"}>
+          {data[key].map(li => {
+            return <li className={"swotListItem"}>
+              <h6 className={"itemName"}>{li.itemName}</h6>
+              <li className={"description"}>{li.itemDescription}</li>
+            </li>
+          })}
+        </div>
+      </ul>
     });
-
-    let renderIt = keys.map((item, index) => {
-      return (
-        <ul key={index}>
-          <h1>{item.toUpperCase()}</h1>
-          {values}
-        </ul>
-      );
-    });
-
-    return renderIt;
   };
 
   render() {
-    return <div>{this.renderData()}</div>;
+    return <div className={'swotContainer'}>{this.renderData()}</div>;
   }
 }

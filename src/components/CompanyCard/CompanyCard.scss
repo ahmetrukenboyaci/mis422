@@ -1,11 +1,10 @@
 .card-container {
   min-height: 300px;
   padding-top: 10px;
-  margin: 10px;
-  width: 80%;
+  margin: 20px;
 
   &.card {
-    border: 1px solid orange;
+    border: 1px solid #6e2162;
     border-radius: 8px;
 
     transition: all ease-in-out 0.2s;
@@ -42,7 +41,6 @@
         &-bottom {
           bottom: 0;
           text-align: center;
-          background-color: green;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -52,6 +50,7 @@
           position: absolute;
           margin-left: -20px;
           width: 100%;
+          background-image: linear-gradient(90deg, rgb(217, 119, 160) 10%, rgb(110, 33, 98) 100%);
           a {
             color: white;
             text-decoration: none;

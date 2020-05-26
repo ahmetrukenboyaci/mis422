@@ -1,19 +1,59 @@
 .fiveForces {
-  display: flex;
+  display: grid;
   justify-content: space-between;
 
-  & .listItem {
-    display: flex;
+  grid-template-areas:
+          'a a a b b b'
+          'c c f f d d'
+          'e e e e e e';
 
-    &:last-child div {
-      border: none;
+  & .a0 { grid-area: a; }
+  & .a1 { grid-area: b; }
+  & .a2 { grid-area: c; }
+  & .a3 { grid-area: d; }
+  & .a4 { grid-area: e; }
+  & .parent { grid-area: f; }
+
+
+  & .chartContainer {
+    width: 700px;
+    height: 400px;
+    margin: auto;
+  }
+
+  & .btnContainer {
+    display: flex;
+    flex-direction: row;
+    width: 250px;
+    justify-content: space-around;
+    padding: 20px;
+  }
+
+  & .listItem {
+    border: 2px solid;
+    border-radius: 10px;
+    margin: 10px;
+    transition: padding .5s;
+    padding: 10px;
+
+    h6 {
+      font-weight: bold;
+      text-decoration: underline;
     }
-    & .vl {
-      flex: 1;
-      padding: 10px; /* add some padding ?*/
-      text-align: center;
-      border-right: 1px solid green;
-      height: 100%;
+
+    &.hover {
+      background-image: linear-gradient(90deg, rgba(255, 151, 118, .5) 10%, rgba(255, 193, 7, .5) 100%);
     }
+
+    &.clicked {
+      padding: 30px;
+      background-image: linear-gradient(90deg, #ff9776 10%, #ffc107 100%);
+    }
+  }
+
+  & .buttonContainer {
+    display: flex;
+    width: 100%;
+    justify-content: center;
   }
 }

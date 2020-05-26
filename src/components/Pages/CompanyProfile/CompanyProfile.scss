@@ -13,19 +13,24 @@
   }
 
   & .graph {
-    width: 100%;
+    width: 1200px;
     justify-content: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     & .tabs {
       display: flex;
-      width: 80%;
+      width: 96%;
       justify-content: space-around;
       margin: auto;
       padding: 25px 0px 0;
       cursor: pointer;
       border-bottom: 2px solid #eee;
+
+      & .tab {
+        padding: 0 30px;
+      }
+
       & .active {
         border-bottom: 2px solid red;
       }

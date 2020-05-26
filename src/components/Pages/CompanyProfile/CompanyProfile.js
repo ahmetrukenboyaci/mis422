@@ -32,14 +32,10 @@ class CompanyProfile extends React.Component {
     let fiveForcesData = {};
     let swotData = [];
     if (this.props.isAuthorized) {
-      fiveForcesData = await mis422.get(
-        `/${api}/companies/${companyId}/five-forces`
-      );
+      fiveForcesData = await mis422.get(`/${api}/companies/${companyId}/five-forces`);
       swotData = await mis422.get(`/${api}/companies/${companyId}/swot`);
       swotData = swotData.data;
     }
-
-    console.log(Object.values(swotData));
 
     if (this.props.isAuthorized === true) {
       let dt = [
@@ -69,11 +65,6 @@ class CompanyProfile extends React.Component {
             fiveForcesData.data.rivalryAmongExistingCompetitorsValue * 10,
         },
       ];
-      // let newData = swotData.data.map((item, index) => {
-      //   return {
-      //     item: Object.keys(item)[index],
-      //   };
-      // });
       this.setState({
         fiveForcesData: dt,
         fiveForcesFullData: fiveForcesData,
@@ -109,7 +100,7 @@ class CompanyProfile extends React.Component {
       <div>
         {this.state.loading ? (
           <div>
-            <div className="spinner-grow text-primary" role="status"></div>
+            <div className="spinner-grow text-primary" role="status"/>
             <div className="spinner-grow text-secondary" role="status">
               <span className="sr-only">Loading...</span>
             </div>
@@ -141,14 +132,14 @@ class CompanyProfile extends React.Component {
               <div className={"tabs"}>
                 <div
                   onClick={this.onTabClick}
-                  className={`${activeTab && "active"}`}
+                  className={`tab ${activeTab && "active"}`}
                 >
                   Five Forces
                 </div>
 
                 <div
                   onClick={this.onTabClick}
-                  className={`${!activeTab && "active"}`}
+                  className={`tab ${!activeTab && "active"}`}
                 >
                   Swot
                 </div>
@@ -158,7 +149,7 @@ class CompanyProfile extends React.Component {
                   <FiveForces
                     dt={fiveForcesData}
                     data={this.state.fiveForcesFullData.data}
-                    companyName={this.state.companyInfo.name}
+                    companyNames={[this.state.companyInfo.name]}
                   />
                 ) : (
                   <Swot data={swotData} />

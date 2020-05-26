@@ -1,0 +1,130 @@
+.swotContainer {
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px;
+
+  & .swotList {
+    display: flex;
+    margin: 10px;
+
+    & .header {
+      width: 40%;
+      font-weight: bold;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      padding: 0 50px;
+      font-size: 3em;
+    }
+
+    &.first {
+      flex-direction: row;
+      border-bottom-left-radius: 50%;
+      border-top-left-radius: 50%;
+
+      & .header {
+        border-bottom-left-radius: 50%;
+        border-top-left-radius: 50%;
+      }
+
+      & .swotListCard {
+        border-left: 0;
+        border-bottom-right-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+
+      &.orange {
+        & .header {background-color: #ffb347;}
+      }
+      &.lightyellow {
+        & .header {background-color: #80cee1;}
+      }
+    }
+    &.end {
+      flex-direction: row-reverse;
+      border-bottom-right-radius: 50%;
+      border-top-right-radius: 50%;
+
+      & .header {
+        border-bottom-right-radius: 50%;
+        border-top-right-radius: 50%;
+      }
+
+      & .swotListCard {
+            border-right: 0;
+            border-bottom-left-radius: 10px;
+            border-top-left-radius: 10px;
+      }
+
+      &.red {
+        & .header {background-color: #ff6961;}
+      }
+      &.yellow {
+        & .header {background-color: #779ecb;}
+      }
+    }
+
+    & .swotListCard {
+      display: grid;
+      width: 100%;
+      position: relative;
+      grid-template-columns: 200px 200px;
+      grid-template-rows: min-content;
+      border: 2px solid #ffc107;
+
+      & .swotListItem {
+        overflow: hidden;
+        margin: 0;
+        padding: 20px 30px;
+
+        &:hover {
+          overflow: visible;
+
+          & .description {
+            cursor: default;
+            width: 100%;
+            height: unset;
+            overflow: visible;
+            margin: 10px 0 0 -100px;
+            border: 2px solid #f29f05;
+            background: #fff;
+            border-radius: 8px;
+            padding: 10px;
+            z-index: 1;
+
+            &::before {
+              display: inline-block;
+              position: absolute;
+              top: -10px;
+              left: 110px;
+              width: 0;
+              height: 0;
+              border-bottom: 10px solid #f29f05;
+              border-left: 10px solid transparent;
+              border-top: 0 dotted;
+              border-right: 10px solid transparent;
+              vertical-align: middle;
+              content:'';
+            }
+          }
+        }
+        & h6 {
+          cursor: pointer;
+          font-weight: bold;
+          color: #f29f05;
+          margin: 0;
+          display: list-item;
+          list-style-type: circle;
+        }
+
+        & .description {
+          position: absolute;
+          width: 0;
+          height: 0;
+          overflow: hidden;
+        }
+      }
+    }
+
+  }
+}

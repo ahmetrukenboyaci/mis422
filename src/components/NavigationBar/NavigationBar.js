@@ -4,6 +4,7 @@ import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from "reactstrap";
 
 /** styles **/
 import "./NavigationBar.scss";
+import logo from '../../resim.png';
 
 class NavigationBar extends Component {
   constructor(props) {
@@ -27,11 +28,10 @@ class NavigationBar extends Component {
 
     return (
       <div className={"NavBar"}>
-        <Navbar color={"warning"} light expand="md">
+        <Navbar light expand="md">
           <Link to="/">
             <img
-              style={{ width: "200px", height: "50px" }}
-              src="https://picsum.photos/100/300"
+              src={logo}
             />
           </Link>
           <NavbarToggler onClick={toggle} />
