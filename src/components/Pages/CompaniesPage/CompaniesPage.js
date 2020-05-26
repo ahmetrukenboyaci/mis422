@@ -78,12 +78,12 @@ class CompaniesPage extends React.Component {
       const regex = new RegExp(this.state.inputValue, "ig");
       return name.match(regex);
     });
-    const searchedItems = searchedArray.map(({ id, name, description }) => {
+    const searchedItems = searchedArray.map(({ id, name, description, website }) => {
       return (
         <Col key={id} className={`col-${4}`}>
           <CompanyCard
             companyName={name}
-            //image={company}
+            image={`/${website}`}
             category={description}
             id={id}
           />
