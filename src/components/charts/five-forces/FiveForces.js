@@ -23,7 +23,8 @@ class MyResponsiveRadar extends React.Component {
 
     async componentDidMount() {
         let res = await mis422.get('/public/companies/get-name-and-id');
-        this.setState({ companies: res.data, selectedValue: res.data[0].id });
+        let companies = res.data.filter(e => e.name !== this.props.companyNames[0]);
+        this.setState({ companies: companies, selectedValue: res.data[0].id });
     }
 
     toggleModalVisibility = () => {
@@ -91,7 +92,7 @@ class MyResponsiveRadar extends React.Component {
     return (
       <ul style={{width: "100%"}} className="fiveForces">
           {isModalVisible &&
-            <Modal content={this.renderModalContent()} title={"Compare Companies"} onClickOutside={this.toggleModalVisibility} />
+            <Modal content={this.renderModalContent()} title={"Compare Companies with "+this.props.companyNames[0]} onClickOutside={this.toggleModalVisibility} />
           }
         {this.renderDescription(true)}
         <div onMouseEnter={() =>
