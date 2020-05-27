@@ -3,17 +3,28 @@
   justify-content: space-between;
 
   grid-template-areas:
-          'a a a b b b'
-          'c c f f d d'
-          'e e e e e e';
+    "a a a b b b"
+    "c c f f d d"
+    "e e e e e e";
 
-  & .a0 { grid-area: a; }
-  & .a1 { grid-area: b; }
-  & .a2 { grid-area: c; }
-  & .a3 { grid-area: d; }
-  & .a4 { grid-area: e; }
-  & .parent { grid-area: f; }
-
+  & .a0 {
+    grid-area: a;
+  }
+  & .a1 {
+    grid-area: b;
+  }
+  & .a2 {
+    grid-area: c;
+  }
+  & .a3 {
+    grid-area: d;
+  }
+  & .a4 {
+    grid-area: e;
+  }
+  & .parent {
+    grid-area: f;
+  }
 
   & .chartContainer {
     width: 700px;
@@ -29,11 +40,15 @@
     padding: 20px;
   }
 
+  & #listItem4 {
+    margin-top: 40px;
+  }
+
   & .listItem {
     border: 2px solid;
     border-radius: 10px;
     margin: 10px;
-    transition: padding .5s;
+    transition: padding 0.5s;
     padding: 10px;
 
     h6 {
@@ -42,7 +57,11 @@
     }
 
     &.hover {
-      background-image: linear-gradient(90deg, rgba(255, 151, 118, .5) 10%, rgba(255, 193, 7, .5) 100%);
+      background-image: linear-gradient(
+        90deg,
+        rgba(255, 151, 118, 0.5) 10%,
+        rgba(255, 193, 7, 0.5) 100%
+      );
     }
 
     &.clicked {

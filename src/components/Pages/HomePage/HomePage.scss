@@ -20,4 +20,28 @@
       margin-left: 1px;
     }
   }
+  & .company10 {
+    width: 400px;
+    color: purple;
+    height: 490px;
+    border: 2px solid orange;
+    border-radius: 8px;
+    text-align: center;
+    padding: 20px 20px 20px 20px;
+
+    ul {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+      font-weight: bolder;
+
+      li {
+        color: orange;
+        font-size: 18px;
+      }
+    }
+  }
 }

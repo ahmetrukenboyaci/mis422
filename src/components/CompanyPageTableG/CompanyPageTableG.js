@@ -32,12 +32,23 @@ class CompanyPageTableG extends Component {
       return acc;
     }, {});
 
+    function isLink(item) {
+      if (typeof item == "string") {
+        return item.includes(".com") ? (
+          <a href={item}>{item}</a>
+        ) : (
+          <span>{item}</span>
+        );
+      }
+      return;
+    }
+
     return Object.keys(finalObject).map((key, id) => {
       if (key !== "Id" && key !== "Name") {
         return (
           <tr key={id}>
             <th scope="row">{key}</th>
-            <td>{finalObject[key]}</td>
+            <td>{isLink(finalObject[key])}</td>
           </tr>
         );
       }
