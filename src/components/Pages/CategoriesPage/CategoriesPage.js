@@ -1,8 +1,9 @@
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 import { ListGroup, ListGroupItem } from "reactstrap";
 import { Input } from "reactstrap";
 import { Link } from "react-router-dom";
 import mis422 from "../../../api/mis-422";
+import CategoryCard from "../../CategoryCard/CategoryCard";
 
 /** styles **/
 import "./CategoriesPage.scss";
@@ -53,61 +54,25 @@ class CategoriesPage extends React.Component {
 
   render() {
     function toTitleCase(str) {
-      return str.replace(
-          /\w\S*/g,
-          function(txt) {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-          }
-      );
+      return str.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      });
     }
-    const categoryItem = (ind) => this.state.categoryList.map((categoryItem, i) => {
-      let indexCheck = i%4;
-      if (ind === indexCheck) {
-        return (
-          <ListGroupItem
-            key={this.state.categoryList.indexOf(categoryItem)}
-            className={`listItem`}
-          >
-            <Link
-              to={{
-                pathname: "/CompaniesPage",
-                state: [
-                  {
-                    categoryName: categoryItem.replace(/\W/g, ""),
-                    url: `/public/categories/${categoryItem.replace(
-                      /\W/g,
-                      ""
-                    )}/companies`,
-                  },
-                ],
-              }}
-            >
-              {toTitleCase(categoryItem)}
-            </Link>
-          </ListGroupItem>
-        );
-      }
-    });
-
-    const searchedItems = (ind) => this.state.categoryList
-      .filter((categoryItem) => {
-        const regex = new RegExp(this.state.inputValue, "ig");
-        return categoryItem.match(regex);
-      })
-      .map((categoryItem, i) => {
-        let indexCheck = i%4;
+    const categoryItem = (ind) =>
+      this.state.categoryList.map((categoryItem, i) => {
+        let indexCheck = i % 4;
         if (ind === indexCheck) {
           return (
             <ListGroupItem
               key={this.state.categoryList.indexOf(categoryItem)}
-              className="listItem"
+              className={`listItem`}
             >
               <Link
                 to={{
                   pathname: "/CompaniesPage",
                   state: [
                     {
-                      categoryName: categoryItem.replace(/\s/g, ""),
+                      categoryName: categoryItem.replace(/\W/g, ""),
                       url: `/public/categories/${categoryItem.replace(
                         /\W/g,
                         ""
@@ -116,12 +81,47 @@ class CategoriesPage extends React.Component {
                   ],
                 }}
               >
-                {categoryItem}
+                {toTitleCase(categoryItem)}
               </Link>
             </ListGroupItem>
           );
         }
       });
+
+    const searchedItems = (ind) =>
+      this.state.categoryList
+        .filter((categoryItem) => {
+          const regex = new RegExp(this.state.inputValue, "ig");
+          return categoryItem.match(regex);
+        })
+        .map((categoryItem, i) => {
+          let indexCheck = i % 4;
+          if (ind === indexCheck) {
+            return (
+              <ListGroupItem
+                key={this.state.categoryList.indexOf(categoryItem)}
+                className="listItem"
+              >
+                <Link
+                  to={{
+                    pathname: "/CompaniesPage",
+                    state: [
+                      {
+                        categoryName: categoryItem.replace(/\s/g, ""),
+                        url: `/public/categories/${categoryItem.replace(
+                          /\W/g,
+                          ""
+                        )}/companies`,
+                      },
+                    ],
+                  }}
+                >
+                  {categoryItem}
+                </Link>
+              </ListGroupItem>
+            );
+          }
+        });
 
     return (
       <div className="CategoriesPage">
@@ -134,38 +134,30 @@ class CategoriesPage extends React.Component {
             >
               <span className="sr-only">Categories Loading...</span>
             </div>
-          ) :
-              <Fragment>
-                <div className="listGroup a">
-                  {this.state.inputValue ? (
-                    searchedItems(0)
-                  ) : (
-                    categoryItem(0)
-                  )}
-                </div>
-                <div className="listGroup b">
-                  {this.state.inputValue ? (
-                    searchedItems(1)
-                  ) : (
-                    categoryItem(1)
-                  )}
-                </div>
-                <div className="listGroup c">
-                  {this.state.inputValue ? (
-                    searchedItems(2)
-                  ) : (
-                    categoryItem(2)
-                  )}
-                </div>
-                <div className="listGroup d">
-                  {this.state.inputValue ? (
-                      searchedItems(3)
-                  ) : (
-                      categoryItem(3)
-                  )}
-                </div>
-              </Fragment>
-          }
+          ) : (
+            <div className="card-container">
+              <CategoryCard
+                cardBody={
+                  this.state.inputValue ? searchedItems(0) : categoryItem(0)
+                }
+              />
+              <CategoryCard
+                cardBody={
+                  this.state.inputValue ? searchedItems(1) : categoryItem(1)
+                }
+              />
+              <CategoryCard
+                cardBody={
+                  this.state.inputValue ? searchedItems(2) : categoryItem(2)
+                }
+              />
+              <CategoryCard
+                cardBody={
+                  this.state.inputValue ? searchedItems(3) : categoryItem(3)
+                }
+              />
+            </div>
+          )}
         </ListGroup>
       </div>
     );

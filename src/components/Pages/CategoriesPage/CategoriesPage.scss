@@ -19,95 +19,27 @@
     }
   }
 
-  & .CategoriesList {
-    border-radius: 8px;
-    padding: 95px 25px 25px;
+  & .card-container {
+    height: 500px;
+    width: 100%;
+    top: 60px;
+    left: calc(50% - 300px);
     display: flex;
-    flex-direction: row;
-    align-items: start;
-    justify-content: center;
-    width: 75%;
+    padding-top: 50px;
+  }
 
-    & .listGroup {
-      border-radius: 8px 8px 0 0;
-      background: white;
-      padding: 20px 15px 15px;
-      width: 200px;
+  & .listItem {
+    text-align: start;
+    list-style-type: circle;
+    display: list-item;
+    margin: 0 0 0 15px;
+    padding: 0;
+    background-color: transparent;
 
-      &:after {
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: inline-block;
-        width: 0;
-        height: 0;
-        border-top: 45px solid black;
-        border-right: 100px solid transparent;
-        border-bottom: 0 dotted;
-        border-left: 100px solid transparent;
-        border-radius: 8px;
-        vertical-align: middle;
-      }
-
-      &:before {
-        content: '';
-        position: absolute;
-        top: -40px;
-        left: 10px;
-        border: 20px solid #000;
-        border-radius: 8px 8px 0 0;
-        display: inline-block;
-        box-shadow: 0 -26px 28px 0 rgba(0, 0, 0, 0.5), 0 -46px 20px 0 rgba(0, 0, 0, 0.19);
-        -webkit-box-shadow: 0 -26px 28px 0 rgba(0, 0, 0, 0.5), 0 -46px 20px 0 rgba(0, 0, 0, 0.19);
-        -moz-box-shadow: 0 -26px 28px 0 rgba(0, 0, 0, 0.5), 0 -46px 20px 0 rgba(0, 0, 0, 0.19);
-      }
-
-      &.a {
-        margin-top: 45px;
-        position: relative;
-        z-index: 3;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      }
-      &.b {
-        position: relative;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      }
-      &.d {
-        margin-top: 15px;
-        z-index: 1;
-        position: relative;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      }
-      &.c {
-        z-index: 2;
-        margin-top: 30px;
-        position: relative;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      }
-    }
-
-    & .listItem {
-      text-align: start;
-      list-style-type: circle;
-      display: list-item;
-      margin: 0 0 0 15px;
-      padding: 0;
-
-      a {
-        color: black;
-
-        &:hover {
-          transform: scale(1.2);
-          color: orange;
-        }
+    a {
+      color: white;
+      &:hover {
+        color: #754d72;
       }
     }
   }
