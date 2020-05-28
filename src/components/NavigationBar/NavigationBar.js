@@ -5,6 +5,12 @@ import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from "reactstrap";
 /** styles **/
 import "./NavigationBar.scss";
 import logo from '../../resim.png';
+import twitter from "../../icons/twitter.svg";
+import instagram from "../../icons/instagram.svg";
+import linkedin from "../../icons/linkedin.svg";
+import logout from "../../icons/logout.svg";
+import login from "../../icons/login.png";
+import Footer from "../Footer/Footer";
 
 class NavigationBar extends Component {
   constructor(props) {
@@ -24,55 +30,45 @@ class NavigationBar extends Component {
   render() {
     let { isAuthorized } = this.props;
     let { isOpen } = this.state;
-    const toggle = () => this.setState({ isOpen: !isOpen });
 
     return (
       <div className={"NavBar"}>
-        <Navbar light expand="md">
-          <Link to="/">
-            <img
-              src={logo}
-            />
-          </Link>
-          <NavbarToggler onClick={toggle} />
-          <Collapse isOpen={isOpen} navbar>
-            <Nav className="mr-auto" navbar>
-              <NavItem>
-                <Link to="/CategoriesPage">Categories</Link>
-              </NavItem>
-              <NavItem>
-                <Link
-                  to={{
-                    pathname: "/CompaniesPage",
-                    state: [
-                      {
-                        url: "/public/companies/get-all-companies",
-                      },
-                    ],
-                  }}
-                >
-                  Companies
-                </Link>
-              </NavItem>
-            </Nav>
-            <div className={"col-md-1 col-sm-4 mt-sm-1 mt-md-0 "}>
-              {!isAuthorized && (
-                <Link to="/login" name="button" className="btn login_btn">
-                  login
-                </Link>
-              )}
-              {isAuthorized && (
-                <button
-                  onClick={(e) => this.logout(e)}
-                  name="button"
-                  className="btn login_btn"
-                >
-                  logout
-                </button>
-              )}
+        <div className={"navbarContainer"}>
+          <div className="navbarItems">
+            <Link to="/">
+              <img
+                  src={logo}
+              />
+              DC GURU
+            </Link>
+            <Link to="/CategoriesPage"><i data-content={"Industries"} className="fa fa-industry"/></Link>
+            <Link to="/"><i data-content={"Companies"} className="fa fa-building"/></Link>
+          </div>
+          <div className="navbarFooter">
+            <a target="_blank" href={"https://www.linkedin.com"}><i data-content={"https://www.linkedin.com"} className="fab fa-linkedin"/></a>
+            <a target="_blank" href={"https://www.twitter.com"}><i data-content={"https://www.twitter.com"} className="fab fa-twitter"/></a>
+            <a target="_blank" href={"https://www.instagram.com"}><i data-content={"https://www.instagram.com"} className="fab fa-instagram"/></a>
+            <div className="lineBottom" />
+            {!isAuthorized && (
+                <i
+                    onClick={() => this.props.onClickLogin()}
+                    className="fas fa-sign-out-alt"
+                    data-content={"Sign In"}
+                />
+            )}
+            {isAuthorized && (
+                <i
+                    onClick={(e) => this.logout(e)}
+                    className="fas fa-sign-out-alt"
+                    data-content={"Sign Out"}
+                />
+            )}
+            <div className="lineBottom" />
+            <div className="bound">
+              <Footer />
             </div>
-          </Collapse>
-        </Navbar>
+          </div>
+        </div>
       </div>
     );
   }

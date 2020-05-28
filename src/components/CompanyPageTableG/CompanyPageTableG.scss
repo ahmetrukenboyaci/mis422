@@ -8,22 +8,28 @@ hr {
   margin-left: 0;
 }
 .CompanyTableG {
-  border: 1px solid #f29f05;
-  border-radius: 8px;
-  margin-top: 50px;
-  width: 60%;
+  margin: 10px 0;
+  width: 85%;
+
+  & .table {
+    //border: 1px solid #f29f05;
+    width: 75%;
+    margin: auto;
+  }
 
   .table td,
   .table th {
     vertical-align: middle;
+    border: 0;
   }
   .table thead th {
     vertical-align: middle;
     text-align: center;
+    border: 0;
   }
 
   & .companyLogo {
-    width: 200px;
+    width: 150px;
   }
 
   & .companyName {

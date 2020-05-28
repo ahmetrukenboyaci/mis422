@@ -43,7 +43,7 @@ class MyResponsiveRadar extends React.Component {
               </select>
               <div className="btnContainer">
                   <button onClick={async () => {
-                      if (this.state.selectedCompanies.length < 3 && this.state.selectedValue !== 0) {
+                      if (this.state.selectedCompanies.length < 6 && this.state.selectedValue !== 0) {
                           let res = await mis422.get(`/api/companies/${this.state.selectedValue}/five-forces`);
                           let dt2 = this.state.newData.length > 0 ? [...this.state.newData] : [...dt];
                           dt2 = dt2.map(e => {e[res.data.company.name] = res.data[e.force.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {

@@ -1,15 +1,149 @@
 .NavBar {
-  background-image: linear-gradient(90deg, #ff9776 10%, #ffc107 100%);
+  background-image: linear-gradient(#ff9776 10%, #ffc107 100%);
   position: fixed;
   z-index: 1;
-  width: 100vw;
+  height: 100%;
+  width: 80px;
   font-weight: bold;
   letter-spacing: 1.2px;
 
-  & .logoBtn {
-    border: 2px solid black;
+  & i:hover {
+    &:after {
+      display: inline-block;
+    }
+  }
+
+  & i:after {
+    content: attr(data-content);
+    display: none;
+    position: absolute;
+    background: #e0e0e0;
+    color: #9d9d9d;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-size: 15px;
+    padding: 5px;
     border-radius: 8px;
-    width: inherit;
+    left: 80px;
+    min-width: 80px;
+    text-align: center;
+  }
+
+  & .navbarContainer {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+
+    & .lineBottom {
+      height: 1px;
+      width: 100%;
+      background-color: #ffe188;
+      margin: 24px 0;
+    }
+
+    & .navbarItems {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px 5px;
+
+    }
+
+    & a {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      align-self: center;
+      color: white;
+      font-size: 9px;
+      font-weight: normal;
+      text-align: center;
+      text-decoration: none;
+      transition: font-size .5s;
+      margin-bottom: 24px;
+
+      &:hover {
+        font-size: 10px;
+        font-weight: bolder;
+
+        & img {
+          margin: 0 0 10px;
+          width: 75px;
+        }
+        & i {
+          font-size: 27px;
+        }
+      }
+      & img {
+        margin: 0 0 10px;
+        width: 60px;
+        transition: width .5s;
+      }
+
+      & i {
+        font-size: 24px;
+        transition: font-size .2s;
+      }
+    }
+
+    & .navbarFooter {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 32px;
+
+      & > a, i {
+        cursor: pointer;
+        color: white;
+        padding: 0;
+        font-size: 24px;
+        transition: font-size .2s;
+        &:hover {
+          font-size: 27px;
+        }
+      }
+
+      & .bound {
+        width: 32px;
+        height: 32px;
+        border-radius: 4px;
+        background-color: #ff9776;
+        cursor: pointer;
+
+        &:hover {
+          & > div {
+            right: 0;
+          }
+        }
+
+        & > div {
+          position: fixed;
+          bottom: 0px;
+          transition: right .5s;
+          right: 100%;
+        }
+
+        &:after {
+          display: inline-block;
+          width: 0;
+          height: 0;
+          margin: 9px 13px;
+          border-left: 8px solid white;
+          border-top: 8px solid transparent;
+          border-right: 0 dotted;
+          border-bottom: 8px solid transparent;
+          vertical-align: middle;
+          content:'';
+        }
+      }
+
+      & .logout {
+        width: 20px;
+      }
+    }
   }
 
   .navbar-light .navbar-nav .nav-link {

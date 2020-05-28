@@ -7,8 +7,7 @@
   background-color: orange;
   color: white;
   border-radius: 8px;
-  height: 40px;
-  width: 150px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,6 +18,11 @@
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
+  padding: 0 10px;
+
+  & .lockIcon {
+    width: 20px;
+  }
 
   &:hover {
     text-decoration: none;

@@ -57,13 +57,13 @@ class CompaniesPage extends React.Component {
     ) {
       categoryName = `${this.props.location.state[0].categoryName.toLowerCase()} Companies`;
     } else {
-      categoryName = "All Companies";
+      categoryName = "";
     }
 
     const company = this.state.companyList.map(
       ({ id, name, description, website }) => {
         return (
-          <Col key={id} className="col-4">
+          <Col key={id} className="col-3">
             <CompanyCard
               companyName={name}
               image={`/${website}`}
@@ -80,7 +80,7 @@ class CompaniesPage extends React.Component {
     });
     const searchedItems = searchedArray.map(({ id, name, description, website }) => {
       return (
-        <Col key={id} className={`col-${4}`}>
+        <Col key={id} className={`col-${3}`}>
           <CompanyCard
             companyName={name}
             image={`/${website}`}

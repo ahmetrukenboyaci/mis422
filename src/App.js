@@ -21,6 +21,7 @@ class App extends React.Component {
 
     this.state = {
       isAuthorized: getCookie("token").length > 0,
+      loginVisible: false,
     };
   }
 
@@ -29,34 +30,40 @@ class App extends React.Component {
     this.setState({ isAuthorized: token.length > 0 });
   }
 
+  onClickLogin = () => {
+    this.setState({loginVisible: !this.state.loginVisible}, () => {
+      if (!this.state.loginVisible)
+        window.location.reload();
+    });
+  };
+
   logout = () => {
     setCookie("token", "", {});
     this.setState({ isAuthorized: false });
   };
 
   render() {
-    let { isAuthorized } = this.state;
+    let { isAuthorized, loginVisible } = this.state;
     return (
       <div className={"App"}>
+        {loginVisible && <LoginPage onClick={this.onClickLogin} />}
         <BrowserRouter basename={"/"}>
-          <NavigationBar logout={this.logout} isAuthorized={isAuthorized} />
+          <NavigationBar logout={this.logout} onClickLogin={this.onClickLogin} isAuthorized={isAuthorized} />
 
           <div className="content">
             <Switch>
-              <Route exact path={"/login"} component={LoginPage} />
               <Route exact path={"/"} component={HomePage} />
               <Route path={"/CategoriesPage"} component={CategoriesPage} />
               <Route path={"/CompaniesPage"} component={CompaniesPage} />
               <Route
                 path={"/CompanyProfile"}
                 render={(props) => (
-                  <CompanyProfile {...props} isAuthorized={isAuthorized} />
+                  <CompanyProfile {...props} isAuthorized={isAuthorized} onClickLogin={this.onClickLogin} />
                 )}
               />
             </Switch>
           </div>
         </BrowserRouter>
-        <Footer />
       </div>
     );
   }

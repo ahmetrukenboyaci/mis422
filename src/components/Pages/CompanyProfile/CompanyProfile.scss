@@ -1,9 +1,10 @@
 .CompanyProfile {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: start;
   padding: 20px;
   align-items: center;
+  height: 100%;
 
   & .companyInfo {
     width: 100%;
@@ -25,14 +26,68 @@
       margin: auto;
       padding: 25px 0px 0;
       cursor: pointer;
-      border-bottom: 2px solid #eee;
 
       & .tab {
-        padding: 0 30px;
+        padding: 5px 30px;
+
+        & .fiveForceTab {
+          position: absolute;
+          left: 20px;
+          bottom: 20px;
+        }
+
+        & .fiveForceIcon {
+          position: relative;
+          width: 25px;
+          height: 25px;
+
+          & > img {
+            width: 13px;
+          }
+          & .arrowup {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            top: 100%;
+            right: 50%;
+          }
+          & .arrowright {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            right: 100%;
+            bottom: 50%;
+          }
+          & .arrowdown {
+            position: absolute;
+            top: 0;
+            right: 50%;
+            bottom: 100%;
+            left: 50%;
+          }
+          & .arrowleft {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            left: 100%;
+            bottom: 50%;
+          }
+          & .fiveCore {
+            position: absolute;
+            right: 50%;
+            top: 50%;
+            bottom: 50%;
+            left: 50%;
+          }
+        }
       }
 
       & .active {
         border-bottom: 2px solid red;
+
+        & .fiveForceTab {
+          bottom: 16px;
+        }
       }
     }
   }

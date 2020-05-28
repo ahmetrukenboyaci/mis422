@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component, Fragment} from "react";
 
 /**styles */
 import "./CompanyPageTableG.scss";
@@ -13,20 +13,41 @@ class CompanyPageTableG extends Component {
     };
   }
 
-  renderCompanyCard() {
+  renderCompanyCard(isOdd=false, newKey) {
     const { companyInfo } = this.props;
 
-    let finalObject = Object.keys(companyInfo).reduce((acc, curr) => {
+    let newCompany = {...companyInfo};
+
+    Object.keys(newCompany).map(oKey => {
+      if (newCompany[oKey] === null) {
+        delete newCompany[oKey];
+      } else {
+        if (oKey.includes('founders') && oKey.includes('Linkedin')) {
+          newCompany['foundersNames'+oKey.charAt(oKey.length-1)] += "*,"+newCompany[oKey];
+          delete newCompany[oKey];
+        }
+        if (oKey.includes('Student') && oKey.includes('linkedin')) {
+          newCompany['nameOfTheStudent' + oKey.substring(oKey.length -3, oKey.length)] += "*,"+newCompany[oKey];
+          delete newCompany[oKey];
+        }
+      }
+    });
+
+    let finalObject = Object.keys(newCompany).reduce((acc, curr) => {
       let c = curr
         .replace(/([A-Z])/g, " $1")
         .replace(/^./, function (str) {
           return str.toUpperCase();
         })
         .replace(/\d+/g, "");
-      if (c in acc) {
-        if (companyInfo[curr] !== null) acc[c] += ",  " + companyInfo[curr];
+
+      if (c.includes("One") || c.includes("Two"))
+        c = 'Reporters';
+
+      if ((c in acc)) {
+        if (newCompany[curr] !== null) acc[c] += ",  " + newCompany[curr];
       } else {
-        if (companyInfo[curr] !== null) acc[c] = companyInfo[curr];
+        if (newCompany[curr] !== null) acc[c] = newCompany[curr];
       }
 
       return acc;
@@ -34,8 +55,25 @@ class CompanyPageTableG extends Component {
 
     function isLink(item) {
       if (typeof item == "string") {
+        if (item.includes('*') || item.includes('Student')) {
+          var items = item.split(",");
+          console.log(items);
+          var hrefs = [];
+          var els = [];
+          items.map(el => {
+            if (el.includes('.com') ) {
+              hrefs.push(el);
+            } else {
+              els.push(el);
+            }
+          });
+          var icon = () => <i className={'fab fa-linkedin'} />;
+          return els.map((el, i) => {
+            return <div>{el.replace("*", " ") +" "}<a target="_blank" href={hrefs[i]}>{icon()}</a></div>;
+          })
+        }
         return item.includes(".com") ? (
-          <a href={item}>{item}</a>
+          <a target="_blank" href={item}>{item}</a>
         ) : (
           <span>{item}</span>
         );
@@ -43,16 +81,26 @@ class CompanyPageTableG extends Component {
       return;
     }
 
-    return Object.keys(finalObject).map((key, id) => {
-      if (key !== "Id" && key !== "Name") {
-        return (
-          <tr key={id}>
-            <th scope="row">{key}</th>
-            <td>{isLink(finalObject[key])}</td>
-          </tr>
-        );
-      }
-    });
+    if (!isOdd) {
+      return Object.keys(finalObject).map((key, id) => {
+        if (key !== "Id" && key !== "Name" && id % 2 === 0) {
+            return (
+                <tr key={id}>
+                  <th scope="row">{key}</th>
+                  <td style={{overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis"}}>{isLink(finalObject[key])}</td>
+                  {this.renderCompanyCard(id % 2 === 0, id+1)}
+                </tr>
+            );
+        }
+      });
+    } else {
+      return (
+          <Fragment>
+            <th scope="row">{Object.keys(finalObject)[newKey]}</th>
+            <td style={{overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis"}}>{isLink(finalObject[Object.keys(finalObject)[newKey]])}</td>
+          </Fragment>
+      );
+    }
   }
 
   render() {
@@ -60,16 +108,16 @@ class CompanyPageTableG extends Component {
 
     return (
       <div className={"CompanyTableG"}>
-        <table className="table">
+        <table style={{tableLayout:"fixed"}} className="table">
           <thead>
             <tr>
-              <th scope="col">
+              <th colSpan={2} scope="col">
                 <img
                   className="companyLogo"
                   src={`https://logo.clearbit.com/${website}?size=200`}
                 />
               </th>
-              <th scope="col" className="companyName">
+              <th colSpan={2} scope="col" className="companyName">
                 <span>{name}</span>
               </th>
             </tr>
