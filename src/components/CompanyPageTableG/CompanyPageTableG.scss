@@ -11,10 +11,18 @@ hr {
   margin: 10px 0;
   width: 85%;
 
+  &.large {
+    width: 100%;
+  }
+
   & .table {
     //border: 1px solid #f29f05;
     width: 75%;
     margin: auto;
+
+    &.large {
+      width: 100%;
+    }
   }
 
   .table td,

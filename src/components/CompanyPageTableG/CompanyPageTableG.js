@@ -57,7 +57,6 @@ class CompanyPageTableG extends Component {
       if (typeof item == "string") {
         if (item.includes('*') || item.includes('Student')) {
           var items = item.split(",");
-          console.log(items);
           var hrefs = [];
           var els = [];
           items.map(el => {
@@ -105,10 +104,11 @@ class CompanyPageTableG extends Component {
 
   render() {
     const { name, website } = this.props.companyInfo;
+    const { isAuthorized } = this.props;
 
     return (
-      <div className={"CompanyTableG"}>
-        <table style={{tableLayout:"fixed"}} className="table">
+      <div className={`CompanyTableG ${!isAuthorized ? "large" : ""}`}>
+        <table style={{tableLayout:"fixed"}} className={`table ${!isAuthorized ? "large" : ""}`}>
           <thead>
             <tr>
               <th colSpan={2} scope="col">
