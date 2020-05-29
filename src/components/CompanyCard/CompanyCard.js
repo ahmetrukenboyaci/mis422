@@ -4,18 +4,17 @@ import { Link } from "react-router-dom";
 
 import "./CompanyCard.scss";
 
-const CompanyCard = ({ id, image, category, companyName }) => {
+const CompanyCard = ({ id, image, category, companyName, onClickLogin }) => {
   return (
     <Card id={id} className="card-container">
-        <div className="logoContainer">
-          <CardImg
-            top
-            src={`https://logo.clearbit.com/${image}?size=200`}
-            alt="Company Logo"
-            className="logo align-self-center"
-          />
-
-        </div>
+      <div className="logoContainer">
+        <CardImg
+          top
+          src={`https://logo.clearbit.com/${image}?size=200`}
+          alt="Company Logo"
+          className="logo align-self-center"
+        />
+      </div>
       <CardBody className="cardBody">
         <CardTitle className="companyName "> {companyName} </CardTitle>
         {/*<CardSubtitle className="category"> {category} </CardSubtitle>*/}
@@ -23,7 +22,7 @@ const CompanyCard = ({ id, image, category, companyName }) => {
           <Link
             to={{
               pathname: "/CompanyProfile",
-              state: [{ companyId: id, onClickLogin: this.props.onClickLogin }],
+              state: [{ companyId: id, onClickLogin: onClickLogin }],
             }}
           >
             More Information{" "}
