@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { ListGroup, ListGroupItem } from "reactstrap";
-import { Input } from "reactstrap";
+
 import { Link } from "react-router-dom";
 import mis422 from "../../../api/mis-422";
 import CategoryCard from "../../CategoryCard/CategoryCard";
@@ -13,7 +13,6 @@ class CategoriesPage extends React.Component {
     super(props);
     this.state = {
       categoryList: [],
-      inputValue: "",
       loading: true,
     };
   }
@@ -53,75 +52,45 @@ class CategoriesPage extends React.Component {
   }
 
   render() {
+    const categorized = [];
+    const groupAs = this.state.categoryList.length / 4;
     function toTitleCase(str) {
       return str.replace(/\w\S*/g, function (txt) {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
       });
     }
-    const categoryItem = (ind) =>
-      this.state.categoryList.map((categoryItem, i) => {
-        let indexCheck = i % 4;
-        if (ind === indexCheck) {
-          return (
-            <ListGroupItem
-              key={this.state.categoryList.indexOf(categoryItem)}
-              className={`listItem`}
-            >
-              <Link
-                to={{
-                  pathname: "/CompaniesPage",
-                  state: [
-                    {
-                      categoryName: categoryItem.replace(/\W/g, ""),
-                      url: `/public/categories/${categoryItem.replace(
-                        /\W/g,
-                        ""
-                      )}/companies`,
-                    },
-                  ],
-                }}
-              >
-                {toTitleCase(categoryItem)}
-              </Link>
-            </ListGroupItem>
-          );
-        }
-      });
 
-    const searchedItems = (ind) =>
-      this.state.categoryList
-        .filter((categoryItem) => {
-          const regex = new RegExp(this.state.inputValue, "ig");
-          return categoryItem.match(regex);
-        })
-        .map((categoryItem, i) => {
-          let indexCheck = i % 4;
-          if (ind === indexCheck) {
-            return (
-              <ListGroupItem
-                key={this.state.categoryList.indexOf(categoryItem)}
-                className="listItem"
-              >
-                <Link
-                  to={{
-                    pathname: "/CompaniesPage",
-                    state: [
-                      {
-                        categoryName: categoryItem.replace(/\s/g, ""),
-                        url: `/public/categories/${categoryItem.replace(
-                          /\W/g,
-                          ""
-                        )}/companies`,
-                      },
-                    ],
-                  }}
-                >
-                  {categoryItem}
-                </Link>
-              </ListGroupItem>
-            );
-          }
-        });
+    const categoryItem = this.state.categoryList.map((categoryItem) => {
+      {
+        return (
+          <ListGroupItem
+            key={this.state.categoryList.indexOf(categoryItem)}
+            className={`listItem`}
+          >
+            <Link
+              to={{
+                pathname: "/CompaniesPage",
+                state: [
+                  {
+                    categoryName: categoryItem.replace(/\W/g, ""),
+                    url: `/public/categories/${categoryItem.replace(
+                      /\W/g,
+                      ""
+                    )}/companies`,
+                  },
+                ],
+              }}
+            >
+              {toTitleCase(categoryItem)}
+            </Link>
+          </ListGroupItem>
+        );
+      }
+    });
+
+    for (let i = 0; i < categoryItem.length; i += groupAs) {
+      categorized.push(categoryItem.slice(i, i + groupAs));
+    }
 
     return (
       <div className="CategoriesPage">
@@ -136,26 +105,10 @@ class CategoriesPage extends React.Component {
             </div>
           ) : (
             <div className="card-container">
-              <CategoryCard
-                cardBody={
-                  this.state.inputValue ? searchedItems(0) : categoryItem(0)
-                }
-              />
-              <CategoryCard
-                cardBody={
-                  this.state.inputValue ? searchedItems(1) : categoryItem(1)
-                }
-              />
-              <CategoryCard
-                cardBody={
-                  this.state.inputValue ? searchedItems(2) : categoryItem(2)
-                }
-              />
-              <CategoryCard
-                cardBody={
-                  this.state.inputValue ? searchedItems(3) : categoryItem(3)
-                }
-              />
+              <CategoryCard cardBody={categorized[0]} />
+              <CategoryCard cardBody={categorized[1]} />
+              <CategoryCard cardBody={categorized[2]} />
+              <CategoryCard cardBody={categorized[3]} />
             </div>
           )}
         </ListGroup>
