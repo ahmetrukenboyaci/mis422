@@ -28,7 +28,7 @@ const CompanyProfileF = (props) => {
                   alt="Card image cap"
                 />
                 <CardImgOverlay>
-                  <div onClick={() => this.props.onClickLogin()} className="button-centered">
+                  <div onClick={() => props.onClickLogin()} className="button-centered">
                     <img className={"lockIcon"} src={lock} alt={"lock"} />
                     <div className={"buttonText"}>Unlock {props.swot ? "SWOT" : "Five Forces"} Charts</div>
                   </div>

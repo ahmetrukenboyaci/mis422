@@ -51,6 +51,7 @@ class CompaniesPage extends React.Component {
             <CompanyCard
               companyName={name}
               image={`/${website}`}
+              onClickLogin={this.props.onClickLogin}
               category={description}
               id={id}
             />
@@ -68,6 +69,7 @@ class CompaniesPage extends React.Component {
           <CompanyCard
             companyName={name}
             image={`/${website}`}
+            onClickLogin={this.props.onClickLogin}
             category={description}
             id={id}
           />

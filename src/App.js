@@ -69,13 +69,13 @@ class App extends React.Component {
               <Route
                   path={"/CategoriesPage"}
                   render={(props) => (
-                    <CategoriesPage {...props} handlePageChange={this.handlePageChange} />
+                    <CategoriesPage {...props} onClickLogin={this.onClickLogin} handlePageChange={this.handlePageChange} />
                   )}
               />
               <Route
                   path={"/CompaniesPage"}
                   render={(props) => (
-                    <CompaniesPage {...props} handlePageChange={this.handlePageChange} />
+                    <CompaniesPage onClickLogin={this.onClickLogin} {...props} handlePageChange={this.handlePageChange} />
                   )}
               />
               <Route

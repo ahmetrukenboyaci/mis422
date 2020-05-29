@@ -163,8 +163,8 @@ class CompanyProfile extends React.Component {
                 />
               </div>
               <div className="col-6">
-                 <CompanyPageProfileF onClickLogin={this.props.onClickLogin} swot={true}/>
-                 <CompanyPageProfileF onClickLogin={this.props.onClickLogin} swot={false}/>
+                 <CompanyPageProfileF onClickLogin={this.props.onClickLogin || this.props.location.state[0]?.onClickLogin} swot={true}/>
+                 <CompanyPageProfileF onClickLogin={this.props.onClickLogin || this.props.location.state[0]?.onClickLogin} swot={false}/>
               </div>
             </div>}
             {isAuthorized &&

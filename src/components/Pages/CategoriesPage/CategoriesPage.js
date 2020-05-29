@@ -94,6 +94,7 @@ class CategoriesPage extends React.Component {
                 pathname: "/CompaniesPage",
                 state: [
                   {
+                    onClickLogin: this.props.onClickLogin,
                     categoryName: el.name.replace(/\W/g, ""),
                     url: `/public/categories/${el.name.replace(
                       /\W/g,

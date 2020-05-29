@@ -23,7 +23,7 @@ const CompanyCard = ({ id, image, category, companyName }) => {
           <Link
             to={{
               pathname: "/CompanyProfile",
-              state: [{ companyId: id }],
+              state: [{ companyId: id, onClickLogin: this.props.onClickLogin }],
             }}
           >
             More Information{" "}
