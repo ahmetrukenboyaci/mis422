@@ -11,7 +11,6 @@
     z-index: 1050;
 }
 .user_card {
-    height: 400px;
     width: 350px;
     margin-top: auto;
     margin-bottom: auto;
@@ -72,4 +71,12 @@
 }
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
     background-color: #5fa3bc !important;
+}
+
+.href {
+    color: blue;
+    cursor: pointer;
+}
+.href:hover {
+    text-decoration: underline;
 }

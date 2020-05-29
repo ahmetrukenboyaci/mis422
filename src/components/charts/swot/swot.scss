@@ -32,12 +32,11 @@
         border-bottom-right-radius: 10px;
         border-top-right-radius: 10px;
       }
-
       &.orange {
-        & .header {background-color: #ffb347;}
+        & .header {background-color: #ffc107;}
       }
       &.lightyellow {
-        & .header {background-color: #80cee1;}
+        & .header {background-color: rgba(124, 29, 110, .6);}
       }
     }
     &.end {
@@ -57,10 +56,10 @@
       }
 
       &.red {
-        & .header {background-color: #ff6961;}
+        & .header {background-color: #ff9776;}
       }
       &.yellow {
-        & .header {background-color: #779ecb;}
+        & .header {background-color: rgba(141, 33, 78, .7);}
       }
     }
 

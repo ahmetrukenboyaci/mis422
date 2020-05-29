@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { ListGroup, ListGroupItem } from "reactstrap";
+import {Input, ListGroup, ListGroupItem} from "reactstrap";
 
 import { Link } from "react-router-dom";
 import mis422 from "../../../api/mis-422";
@@ -7,6 +7,8 @@ import CategoryCard from "../../CategoryCard/CategoryCard";
 
 /** styles **/
 import "./CategoriesPage.scss";
+import {getCookie} from "../../../utils/cookie";
+import axios from "axios";
 
 class CategoriesPage extends React.Component {
   constructor(props) {
@@ -15,6 +17,7 @@ class CategoriesPage extends React.Component {
       categoryList: [],
       loading: true,
     };
+    this.props.handlePageChange();
   }
 
   async componentDidMount() {
@@ -48,7 +51,26 @@ class CategoriesPage extends React.Component {
       }
     });
 
-    this.setState({ categoryList: data.sort(), loading: false });
+    let categoryList = [];
+
+    const forLoop = async _ => {
+      for (let index = 0; index < data.length; index++) {
+        let res = await axios.create({
+          baseURL: "https://api.iconfinder.com/v4/icons/search",
+          headers: { authorization: "Bearer" + " " + "Qk5O7iUvFZmRk8ZFCoVL22URlrLNjCbHG7j13RxtR6qnYzj90zJaIbZ5PzMgDmW0" },
+        }).get("", {
+          params: {
+            query: data[index].includes("-") ? data[index].toLowerCase().split("-")[1] : data[index].toLowerCase().split(" ")[0],
+            count:1
+          }
+        });
+        categoryList.push({name: data[index], icon: res.data.icons[0]?.raster_sizes[7]?.formats[0]?.preview_url});
+      }
+    };
+    await forLoop();
+
+    console.log(categoryList);
+    this.setState({ categoryList: categoryList, loading: false });
   }
 
   render() {
@@ -60,11 +82,11 @@ class CategoriesPage extends React.Component {
       });
     }
 
-    const categoryItem = this.state.categoryList.map((categoryItem) => {
+    const categoryItem = this.state.categoryList.map((el) => {
       {
         return (
           <ListGroupItem
-            key={this.state.categoryList.indexOf(categoryItem)}
+            key={this.state.categoryList.indexOf(el)}
             className={`listItem`}
           >
             <Link
@@ -72,8 +94,8 @@ class CategoriesPage extends React.Component {
                 pathname: "/CompaniesPage",
                 state: [
                   {
-                    categoryName: categoryItem.replace(/\W/g, ""),
-                    url: `/public/categories/${categoryItem.replace(
+                    categoryName: el.name.replace(/\W/g, ""),
+                    url: `/public/categories/${el.name.replace(
                       /\W/g,
                       ""
                     )}/companies`,
@@ -81,7 +103,8 @@ class CategoriesPage extends React.Component {
                 ],
               }}
             >
-              {toTitleCase(categoryItem)}
+              <img alt={"icon"} src={el.icon} className={"icon"} />
+              <div className={"text"}>{toTitleCase(el.name)}</div>
             </Link>
           </ListGroupItem>
         );
@@ -94,7 +117,13 @@ class CategoriesPage extends React.Component {
 
     return (
       <div className="CategoriesPage">
-        <h1>INDUSTRIES</h1>
+        <div className={"background-curve"}/>
+        <Input
+            onChange={(e) => this.setState({ inputValue: e.target.value })}
+            type="search"
+            placeholder="Search in Industries"
+            value={this.state.inputValue}
+        />
         <ListGroup className="CategoriesList">
           {this.state.loading ? (
             <div
@@ -105,10 +134,18 @@ class CategoriesPage extends React.Component {
             </div>
           ) : (
             <div className="card-container">
-              <CategoryCard cardBody={categorized[0]} />
-              <CategoryCard cardBody={categorized[1]} />
-              <CategoryCard cardBody={categorized[2]} />
-              <CategoryCard cardBody={categorized[3]} />
+              <div className={'litem-group a'}>
+                {categorized[0].map(e => <div className={'litem'}>{e}</div>)}
+              </div>
+              <div className={'litem-group b'}>
+                {categorized[1].map(e => <div className={'litem'}>{e}</div>)}
+              </div>
+              <div className={'litem-group c'}>
+                {categorized[2].map(e => <div className={'litem'}>{e}</div>)}
+              </div>
+              <div className={'litem-group d'}>
+                {categorized[3].map(e => <div className={'litem'}>{e}</div>)}
+              </div>
             </div>
           )}
         </ListGroup>

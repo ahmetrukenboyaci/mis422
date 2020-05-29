@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./CategoryCard.css";
 
 export default class CategoryCard extends Component {
   render() {

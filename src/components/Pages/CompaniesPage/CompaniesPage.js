@@ -19,6 +19,7 @@ class CompaniesPage extends React.Component {
       companyList: [],
       loading: true,
     };
+    this.props.handlePageChange(this.props.location.state[0].categoryName);
   }
 
   async componentDidMount() {
@@ -27,9 +28,7 @@ class CompaniesPage extends React.Component {
     const response = await mis422.get(this.props.location.state[0].url);
 
     this.setState({
-      companyList: response.data.sort((a, b) =>
-        a.name > b.name ? 1 : b.name > a.name ? -1 : 0
-      ),
+      companyList: response.data,
       loading: false,
     });
   }
@@ -38,26 +37,13 @@ class CompaniesPage extends React.Component {
     if (prevProps.location.state[0].url !== this.props.location.state[0].url) {
       const response = await mis422.get(this.props.location.state[0].url);
       this.setState({
-        companyList: response.data.sort((a, b) =>
-          a.name > b.name ? 1 : b.name > a.name ? -1 : 0
-        ),
+        companyList: response.data,
         loading: false,
       });
     }
   }
 
   render() {
-    let categoryName = "";
-    if (
-      this.props.location.state[0].url !==
-        "/public/companies/get-all-companies" &&
-      this.props.location.state[0].url !== "/api/companies"
-    ) {
-      categoryName = `${this.props.location.state[0].categoryName.toLowerCase()} Companies`;
-    } else {
-      categoryName = "";
-    }
-
     const company = this.state.companyList.map(
       ({ id, name, description, website }) => {
         return (
@@ -90,7 +76,6 @@ class CompaniesPage extends React.Component {
     });
     return (
       <Container fluid className="companiesContainer">
-        <h1 style={{ textTransform: "capitalize" }}>{categoryName}</h1>
         <Input
           onChange={(e) => this.setState({ inputValue: e.target.value })}
           type="search"

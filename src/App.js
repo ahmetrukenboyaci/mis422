@@ -14,6 +14,7 @@ import Footer from "./components/Footer/Footer";
 import "./App.scss";
 import CompanyProfile from "./components/Pages/CompanyProfile/CompanyProfile";
 import { getCookie, setCookie } from "./utils/cookie";
+import Header from "./components/Header/Header";
 
 class App extends React.Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class App extends React.Component {
     this.state = {
       isAuthorized: getCookie("token").length > 0,
       loginVisible: false,
+      header: 'DIGITAL COMPANY GURU'
     };
   }
 
@@ -29,6 +31,10 @@ class App extends React.Component {
     let token = getCookie("token");
     this.setState({ isAuthorized: token.length > 0 });
   }
+
+  handlePageChange = (text='DIGITAL COMPANY GURU') => {
+    this.setState({ header: text.toUpperCase() });
+  };
 
   onClickLogin = () => {
     this.setState({loginVisible: !this.state.loginVisible}, () => {
@@ -43,22 +49,44 @@ class App extends React.Component {
   };
 
   render() {
-    let { isAuthorized, loginVisible } = this.state;
+    let { isAuthorized, loginVisible, header } = this.state;
     return (
       <div className={"App"}>
         {loginVisible && <LoginPage onClick={this.onClickLogin} />}
         <BrowserRouter basename={"/"}>
+          <Header title={header} />
           <NavigationBar logout={this.logout} onClickLogin={this.onClickLogin} isAuthorized={isAuthorized} />
 
           <div className="content">
             <Switch>
-              <Route exact path={"/"} component={HomePage} />
-              <Route path={"/CategoriesPage"} component={CategoriesPage} />
-              <Route path={"/CompaniesPage"} component={CompaniesPage} />
+              <Route
+                  exact
+                  path={"/"}
+                  render={(props) => (
+                    <HomePage {...props} handlePageChange={this.handlePageChange} />
+                  )}
+              />
+              <Route
+                  path={"/CategoriesPage"}
+                  render={(props) => (
+                    <CategoriesPage {...props} handlePageChange={this.handlePageChange} />
+                  )}
+              />
+              <Route
+                  path={"/CompaniesPage"}
+                  render={(props) => (
+                    <CompaniesPage {...props} handlePageChange={this.handlePageChange} />
+                  )}
+              />
               <Route
                 path={"/CompanyProfile"}
                 render={(props) => (
-                  <CompanyProfile {...props} isAuthorized={isAuthorized} onClickLogin={this.onClickLogin} />
+                  <CompanyProfile
+                      {...props}
+                      isAuthorized={isAuthorized}
+                      onClickLogin={this.onClickLogin}
+                      handlePageChange={this.handlePageChange}
+                  />
                 )}
               />
             </Switch>

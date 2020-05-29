@@ -53,8 +53,8 @@ class MyResponsiveRadar extends React.Component {
                           cNames.push(res.data.company.name);
                           this.setState({ selectedCompanies: cNames, newData: dt2, showChart: true, selectedValue: 0 });
                       }
-                  }} className={"btn btn-success"}>Compare</button>
-                  <button className={"btn btn-outline-danger"} onClick={() => this.setState({
+                  }} className={"btn custom"}>Compare</button>
+                  <button className={"btn custom-clear"} onClick={() => this.setState({
                       selectedCompanies: [], newData: [], showChart: false, selectedValue: this.state.companies[0].id
                   })}>Clear</button>
               </div>

@@ -39,7 +39,7 @@ class NavigationBar extends Component {
               <img
                   src={logo}
               />
-              DC GURU
+              DIGITAL COMPANY GURU
             </Link>
             <Link to="/CategoriesPage"><i data-content={"Industries"} className="fa fa-industry"/></Link>
             <Link to="/"><i data-content={"Companies"} className="fa fa-building"/></Link>
@@ -52,7 +52,7 @@ class NavigationBar extends Component {
             {!isAuthorized && (
                 <i
                     onClick={() => this.props.onClickLogin()}
-                    className="fas fa-sign-out-alt"
+                    className="fas fa-sign-in-alt"
                     data-content={"Sign In"}
                 />
             )}

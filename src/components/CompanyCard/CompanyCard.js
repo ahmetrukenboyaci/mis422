@@ -7,15 +7,18 @@ import "./CompanyCard.scss";
 const CompanyCard = ({ id, image, category, companyName }) => {
   return (
     <Card id={id} className="card-container">
-      <CardImg
-        top
-        src={`https://logo.clearbit.com/${image}?size=100`}
-        alt="Company Logo"
-        className="logo align-self-center"
-      />
+        <div className="logoContainer">
+          <CardImg
+            top
+            src={`https://logo.clearbit.com/${image}?size=200`}
+            alt="Company Logo"
+            className="logo align-self-center"
+          />
+
+        </div>
       <CardBody className="cardBody">
         <CardTitle className="companyName "> {companyName} </CardTitle>
-        <CardSubtitle className="category"> {category} </CardSubtitle>
+        {/*<CardSubtitle className="category"> {category} </CardSubtitle>*/}
         <div className="card-bottom">
           <Link
             to={{

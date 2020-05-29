@@ -1,43 +1,110 @@
 .CategoriesPage {
-  padding: 50px;
+  position: relative;
+  padding: 0 50px 50px;
   align-items: center;
   display: flex;
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   font-weight: 600;
 
   & Input {
-    width: 500px;
-    margin: 20px;
-    border: 1px solid blue;
+    width: 750px;
+    margin: 75px 20px 0px;
+    border: 1px solid #b0b0b0;
     border-radius: 8px;
     text-align: center;
-    &:focus::placeholder {
-      color: transparent;
+    z-index: 2;
+
+    &::placeholder {
+      color: #9d9d9d;
     }
   }
 
-  & .card-container {
-    height: 500px;
-    width: 100%;
-    top: 60px;
-    left: calc(50% - 300px);
-    display: flex;
-    padding-top: 50px;
+  & h1 {
+    z-index: 2;
   }
 
-  & .listItem {
+  & .background-curve {
+    width: 1600px;
+    height: 1600px;
+    top: -800px;
+    right: -800px;
+    position: fixed;
+    background-color: #f29f05;
+    opacity: .7;
+    border-radius: 100%;
+  }
+
+  & .card-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    z-index: 2;
+  }
+
+  & .litem-group {
+    width: 250px;
+
+    &.a {
+      & .litem {
+        border-radius: 60px;
+      }
+    }
+    &.b {
+      & .litem {
+        border-radius: 64px;
+      }
+    }
+    &.c {
+      & .litem {
+        border-radius: 68px;
+      }
+    }
+    &.d {
+      & .litem {
+        border-radius: 72px;
+      }
+    }
+  }
+
+  & .litem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: start;
-    list-style-type: circle;
-    display: list-item;
-    margin: 0 0 0 15px;
-    padding: 0;
-    background-color: transparent;
+    height: 220px;
+    margin: 40px 15px;
+    padding: 50px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 2;
+
+    & .list-group-item {
+      margin: 0;
+      padding: 0!important;
+      background: transparent;
+    }
 
     a {
-      color: white;
+      text-align: center;
+      color: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      & .icon {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        margin: 0;
+      }
       &:hover {
         color: #754d72;
       }

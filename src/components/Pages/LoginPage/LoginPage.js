@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { eraseCookie, getCookie, setCookie } from "../../../utils/cookie";
 import "./loginStyle.css";
+import logo from "../../../resim.png";
 
 class LoginPage extends Component {
   constructor(props) {
@@ -10,34 +11,57 @@ class LoginPage extends Component {
     this.state = {
       username: "",
       password: "",
+      confirmPassword: "",
+      email: "",
+      isSignUp: false
     };
   }
 
   login = async (e) => {
     e.preventDefault();
-    let { username, password } = this.state;
+    let { username, password, confirmPassword, isSignUp, email } = this.state;
+    let url = "";
+    let data = {};
+    if (isSignUp) {
+      url = "/api/register";
+      data = { login: username, password: password, email: email, langKey: "en" };
+    } else {
+      url = "/api/authenticate";
+      data = { username: username, password: password };
+    }
+
     const axiosInstance = axios.create({
       baseURL: "https://mis-422.herokuapp.com",
       headers: { "Content-Type": "application/json" },
       timeout: 60000,
     });
-    let response = await axiosInstance.post(
-      "https://mis-422.herokuapp.com/api/authenticate",
-      { username: username, password: password }
-    );
-
-    if (response.status === 200) {
-      setCookie("token", response.data.id_token, {});
-      this.props.onClick();
+    if ((isSignUp && password === confirmPassword) || !isSignUp) {
+      let response = await axiosInstance.post(
+        url,
+        data
+      );
+      if (response.status === 200 || response.status === 201) {
+        if (isSignUp) {
+          alert("please check your email for confirmation");
+        } else {
+          setCookie("token", response.data.id_token, {});
+        }
+        this.props.onClick();
+      }
+    } else {
+      alert("passwords does not match");
     }
+
   };
 
   render() {
+    let {isSignUp} = this.state;
     return (
       <div className="loginContainer" onClick={() => this.props.onClick()}>
         <div className="user_card" onClick={e => {e.stopPropagation();}}>
           <div className="d-flex justify-content-center">
             <div className="brand_logo_container">
+              <img src={logo} />
             </div>
           </div>
           <div className="d-flex justify-content-center form_container">
@@ -50,7 +74,7 @@ class LoginPage extends Component {
                 </div>
                 <input
                   type="text"
-                  name=""
+                  name="username"
                   className="form-control input_user"
                   onChange={(e) =>
                     this.setState({ username: e.target.value })
@@ -59,7 +83,24 @@ class LoginPage extends Component {
                   placeholder="username"
                 />
               </div>
-              <div className="input-group mb-2">
+              {isSignUp && <div className="input-group mb-3">
+                <div className="input-group-append">
+                  <span className="input-group-text">
+                    <i className="fas fa-at"></i>
+                  </span>
+                </div>
+                <input
+                    type="email"
+                    name="email"
+                    className="form-control input_user"
+                    onChange={(e) =>
+                        this.setState({ email: e.target.value })
+                    }
+                    value={this.state.email}
+                    placeholder="email"
+                />
+              </div>}
+              <div className="input-group mb-3">
                 <div className="input-group-append">
                   <span className="input-group-text">
                     <i className="fas fa-key"></i>
@@ -76,7 +117,24 @@ class LoginPage extends Component {
                   placeholder="password"
                 />
               </div>
-              <div className="form-group">
+              {isSignUp && <div className="input-group mb-3">
+                <div className="input-group-append">
+                  <span className="input-group-text">
+                    <i className="fas fa-check-square"></i>
+                  </span>
+                </div>
+                <input
+                    type="password"
+                    name=""
+                    className="form-control input_pass"
+                    onChange={(e) =>
+                        this.setState({ confirmPassword: e.target.value })
+                    }
+                    value={this.state.confirmPassword}
+                    placeholder="confirm password"
+                />
+              </div>}
+              {!isSignUp && <div className="form-group">
                 <div className="custom-control custom-checkbox">
                   <input
                     type="checkbox"
@@ -90,13 +148,13 @@ class LoginPage extends Component {
                     Remember me
                   </label>
                 </div>
-              </div>
+              </div>}
               <div className="d-flex justify-content-center mt-3 login_container">
                 <input
                   type="submit"
                   name="button"
                   className="btn login_btn"
-                  value="login"
+                  value={isSignUp ? "Sign Up" : "Sign In"}
                 />
               </div>
             </form>
@@ -104,9 +162,9 @@ class LoginPage extends Component {
 
           <div className="mt-4">
             <div className="d-flex justify-content-center links">
-              Don't have an account?{" "}
-              <a href="#" className="ml-2">
-                Sign Up
+              {isSignUp ? "Already have an account? " : "Don't have an account? "}
+              <a className="ml-2 href" onClick={() => this.setState({isSignUp: !isSignUp})}>
+                {!isSignUp ? "Sign Up" : "Sign In"}
               </a>
             </div>
           </div>

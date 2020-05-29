@@ -42,7 +42,7 @@ class CompanyPageTableG extends Component {
         .replace(/\d+/g, "");
 
       if (c.includes("One") || c.includes("Two"))
-        c = 'Reporters';
+        c = 'Prepared by';
 
       if ((c in acc)) {
         if (newCompany[curr] !== null) acc[c] += ",  " + newCompany[curr];
@@ -68,8 +68,11 @@ class CompanyPageTableG extends Component {
           });
           var icon = () => <i className={'fab fa-linkedin'} />;
           return els.map((el, i) => {
-            return <div>{el.replace("*", " ") +" "}<a target="_blank" href={hrefs[i]}>{icon()}</a></div>;
+            return <div>{el.replace("*", " ") +" "}<a target="_blank" href={"https://"+hrefs[i]}>{icon()}</a></div>;
           })
+        }
+        if (item.includes(".com")) {
+          if (!item.includes('http')) item = "https://"+item;
         }
         return item.includes(".com") ? (
           <a target="_blank" href={item}>{item}</a>

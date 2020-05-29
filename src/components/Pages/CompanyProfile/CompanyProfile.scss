@@ -24,16 +24,24 @@
       width: 96%;
       justify-content: space-around;
       margin: auto;
-      padding: 25px 0px 0;
+      padding: 25px 0 0;
       cursor: pointer;
 
       & .tab {
         padding: 5px 30px;
+        display: flex;
+        align-items: center;
+        border: 1px solid transparent;
+
+        & i {
+          font-size: 30px;
+          margin: 0 15px 0 0;
+        }
 
         & .fiveForceTab {
           position: absolute;
           left: 20px;
-          bottom: 20px;
+          bottom: 14px;
         }
 
         & .fiveForceIcon {
@@ -83,11 +91,59 @@
       }
 
       & .active {
-        border-bottom: 2px solid red;
+        border: 1px solid #ff9776;
+        border-radius: 12px;
 
-        & .fiveForceTab {
-          bottom: 16px;
+        //& .fiveForceTab {
+        //  bottom: 14px;
+        //  left: 22px;
+        //}
+      }
+    }
+    & .newsContainer {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 30px;
+      margin: 50px 0;
+      border: 1px solid #ff9776;
+      box-shadow: 5px 5px 0px #ff9776;
+      border-radius: 12px 0;
+      width: 50%;
+
+      & .shortContent {
+        position: relative;
+        color: rgb(141, 33, 78);
+      }
+      & .title {
+        position: relative;
+        color: rgb(141, 33, 78);
+        font-size: 25px;
+        font-weight: bolder;
+        margin: 0 0 20px;
+      }
+      & .url {
+        border-radius: 16px;
+        border: 1px solid #ff9776;
+        color: #ff9776;
+        padding: 5px 15px;
+        max-width: 60px;
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+        text-decoration: none;
+
+        &:hover {
+          color: white;
+          border: 1px solid transparent;
+          background-color: #ff9776;
         }
+      }
+      & .date {
+        margin: 20px 0 0;
+        font-weight: lighter;
+        color: rgba(124, 29, 110, .5);
       }
     }
   }

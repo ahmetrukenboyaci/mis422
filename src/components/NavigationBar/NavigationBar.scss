@@ -1,7 +1,7 @@
 .NavBar {
   background-image: linear-gradient(#ff9776 10%, #ffc107 100%);
   position: fixed;
-  z-index: 1;
+  z-index: 1049;
   height: 100%;
   width: 80px;
   font-weight: bold;
@@ -110,7 +110,7 @@
         width: 32px;
         height: 32px;
         border-radius: 4px;
-        background-color: #ff9776;
+        background-color: rgb(141, 33, 78);
         cursor: pointer;
 
         &:hover {

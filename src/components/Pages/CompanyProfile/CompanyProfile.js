@@ -5,6 +5,8 @@ import mis422 from "../../../api/mis-422";
 import CompanyPageTableG from "../../CompanyPageTableG/CompanyPageTableG";
 import FiveForces from "../../charts/five-forces/FiveForces";
 import Swot from "../../charts/swot/Swot";
+import newsData from '../../../utils/newsData';
+
 
 import CompanyPageProfileF from "../../CompanyProfileF/CompanyProfileF";
 /** styles **/
@@ -28,8 +30,26 @@ class CompanyProfile extends React.Component {
       loading: true,
       fiveForcesFullData: {},
       swotData: [],
+      news: [],
     };
   }
+
+   asd = (word) => {
+    return word
+        .replace('Ğ','g')
+        .replace('Ü','u')
+        .replace('Ş','s')
+        .replace('I','i')
+        .replace('İ','i')
+        .replace('Ö','o')
+        .replace('Ç','c')
+        .replace('ğ','g')
+        .replace('ü','u')
+        .replace('ş','s')
+        .replace('ı','i')
+        .replace('ö','o')
+        .replace('ç','c');
+  };
 
   async componentDidMount() {
     window.scroll(0, 0);
@@ -37,6 +57,8 @@ class CompanyProfile extends React.Component {
     const api = this.props.isAuthorized ? "api" : "public";
 
     const response = await mis422.get(`/${api}/companies/${companyId}`);
+
+    this.props.handlePageChange(response.data.name);
     let fiveForcesData = {};
     let swotData = [];
     if (this.props.isAuthorized) {
@@ -83,6 +105,7 @@ class CompanyProfile extends React.Component {
       companyInfo: response.data,
       loading: false,
       swotData: swotData,
+      news: newsData.find(e => this.asd(e.companyName.toLowerCase()).includes(response.data.name.toLowerCase()))
     });
   }
 
@@ -105,7 +128,7 @@ class CompanyProfile extends React.Component {
 
   render() {
     let { isAuthorized } = this.props;
-    let { fiveForcesData, activeTab, swotData } = this.state;
+    let { fiveForcesData, activeTab, swotData, news } = this.state;
     return (
       <div style={{width: "100%", height:"100vh", display:"flex", justifyContent: "center"}}>
         {this.state.loading ? (
@@ -151,7 +174,7 @@ class CompanyProfile extends React.Component {
                     onClick={()=>this.onTabClick(-1)}
                     className={`tab ${activeTab === -1 && "active"}`}
                   >
-                    <img src={info} />
+                    <i className={'fas fa-info'} />
                     Company Detail
                   </div>
                   <div
@@ -177,6 +200,13 @@ class CompanyProfile extends React.Component {
                     <img src={swot} />
                     SWOT Chart
                   </div>
+                  <div
+                    onClick={()=>this.onTabClick(2)}
+                    className={`tab ${activeTab === 2 && "active"}`}
+                  >
+                    <i className={'far fa-newspaper'} />
+                    Recent News
+                  </div>
                 </div>
                 {activeTab === -1 && <CompanyPageTableG
                     companyInfo={this.state.companyInfo}
@@ -190,6 +220,24 @@ class CompanyProfile extends React.Component {
                 {activeTab === 1 && <Swot
                     data={swotData}
                 />}
+                {activeTab === 2 &&
+                  news.newsDetails.map(e =>
+                      <div className={"newsContainer"}>
+                        <a target={"_blank"} href={e.url} className={"url"}>
+                          Link
+                        </a>
+                        <div className={"title"}>
+                          {e.title}
+                        </div>
+                        <div className={"shortContent"}>
+                          {e['short-content']}
+                        </div>
+                        <div className={"date"}>
+                          {e.date.toUpperCase()}
+                        </div>
+                      </div>
+                  )
+                }
               </div>
             }
           </div>

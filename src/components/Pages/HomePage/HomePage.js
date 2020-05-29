@@ -10,6 +10,7 @@ export default class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = { last10company: [] };
+    this.props.handlePageChange();
   }
   async componentDidMount() {
     const response = await mis422.get("/public/companies/get-name-and-id");
@@ -39,7 +40,7 @@ export default class HomePage extends Component {
         {/*    options={{ height: 475 }}*/}
         {/*  />*/}
         {/*</div>*/}
-        <CompaniesPage location={{state: [{url: "/public/companies/get-all-companies"}]}}/>
+        <CompaniesPage location={{state: [{url: "/public/companies/get-all-companies"}]}} handlePageChange={this.props.handlePageChange}/>
         {/*<div className="instagram">*/}
         {/*  <InstagramEmbed*/}
         {/*    url="https://www.instagram.com/p/BX_UqQvg9Nb/"*/}
