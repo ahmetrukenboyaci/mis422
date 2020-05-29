@@ -4,7 +4,7 @@ import './header.scss';
 class Header extends Component {
     render() {
         return (
-            <div className={'pageHeader'}>
+            <div className={this.props.title.includes('DIGITAL COMPANY GURU') ? 'pageHeader' : 'pageHeader header'}>
                 <div className={'title'}>
                     {this.props.title}
                 </div>

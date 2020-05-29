@@ -19,7 +19,7 @@ class CompanyPageTableG extends Component {
     let newCompany = {...companyInfo};
 
     Object.keys(newCompany).map(oKey => {
-      if (newCompany[oKey] === null) {
+      if (newCompany[oKey] === null || newCompany[oKey] === "") {
         delete newCompany[oKey];
       } else {
         if (oKey.includes('founders') && oKey.includes('Linkedin')) {
@@ -68,28 +68,29 @@ class CompanyPageTableG extends Component {
           });
           var icon = () => <i className={'fab fa-linkedin'} />;
           return els.map((el, i) => {
-            return <div>{el.replace("*", " ") +" "}<a target="_blank" href={"https://"+hrefs[i]}>{icon()}</a></div>;
+            return <div><a target="_blank" href={"https://"+hrefs[i]}>{el.replace("*", " ") +" "}</a>
+              <a target="_blank" href={"https://"+hrefs[i]}>{icon()}</a></div>;
           })
         }
-        if (item.includes(".com")) {
+        if (item.includes(".com") && !item.includes(",")) {
           if (!item.includes('http')) item = "https://"+item;
         }
-        return item.includes(".com") ? (
+        return (item.includes(".com") && !item.includes(",")) ? (
           <a target="_blank" href={item}>{item}</a>
         ) : (
           <span>{item}</span>
         );
       }
-      return;
+      return item;
     }
 
     if (!isOdd) {
       return Object.keys(finalObject).map((key, id) => {
         if (key !== "Id" && key !== "Name" && id % 2 === 0) {
-            return (
+          return (
                 <tr key={id}>
                   <th scope="row">{key}</th>
-                  <td style={{overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis"}}>{isLink(finalObject[key])}</td>
+                  <td>{isLink(finalObject[key])}</td>
                   {this.renderCompanyCard(id % 2 === 0, id+1)}
                 </tr>
             );
@@ -99,7 +100,7 @@ class CompanyPageTableG extends Component {
       return (
           <Fragment>
             <th scope="row">{Object.keys(finalObject)[newKey]}</th>
-            <td style={{overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis"}}>{isLink(finalObject[Object.keys(finalObject)[newKey]])}</td>
+            <td>{isLink(finalObject[Object.keys(finalObject)[newKey]])}</td>
           </Fragment>
       );
     }

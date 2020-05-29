@@ -25,6 +25,10 @@
   }
   & .parent {
     grid-area: f;
+
+    & > div:first-of-type {
+      height: calc(100% - 40px)!important;
+    }
   }
 
   & .chartContainer {

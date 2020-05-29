@@ -35,6 +35,15 @@ hr {
     text-align: center;
     border: 0;
   }
+  .table td {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .table td:hover {
+    white-space: unset!important;
+    background-color: #eee;
+  }
 
   & .companyLogo {
     width: 150px;

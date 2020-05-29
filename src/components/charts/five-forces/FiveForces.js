@@ -24,7 +24,7 @@ class MyResponsiveRadar extends React.Component {
     async componentDidMount() {
         let res = await mis422.get('/public/companies/get-name-and-id');
         let companies = res.data.filter(e => e.name !== this.props.companyNames[0]);
-        this.setState({ companies: companies, selectedValue: res.data[0].id });
+        this.setState({ companies: companies, selectedValue: companies[0].id });
     }
 
     toggleModalVisibility = () => {
@@ -108,7 +108,7 @@ class MyResponsiveRadar extends React.Component {
                   e.addEventListener('click', () => {
                     this.setState({clickElement: i});
                     window.scrollTo({
-                        top: document.getElementById(`listItem${i}`).offsetTop - 75,
+                        top: document.getElementById(`listItem${i}`).offsetTop - 155,
                         left: document.getElementById(`listItem${i}`).offsetLeft,
                         behavior: 'smooth'
                     });

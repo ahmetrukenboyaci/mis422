@@ -28,7 +28,7 @@ class CompaniesPage extends React.Component {
     const response = await mis422.get(this.props.location.state[0].url);
 
     this.setState({
-      companyList: response.data,
+      companyList: response.data.sort(() => Math.random() - 0.5),
       loading: false,
     });
   }

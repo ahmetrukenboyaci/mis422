@@ -17,4 +17,15 @@
     font-weight: 900;
     color: #f29f05;
   }
+
+  &.header {
+    justify-content: flex-start;
+
+    & .title {
+      font-size: unset;
+      font-weight: unset;
+      color: unset;
+    }
+  }
+
 }

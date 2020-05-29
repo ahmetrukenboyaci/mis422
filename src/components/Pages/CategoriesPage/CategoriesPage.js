@@ -69,8 +69,7 @@ class CategoriesPage extends React.Component {
     };
     await forLoop();
 
-    console.log(categoryList);
-    this.setState({ categoryList: categoryList, loading: false });
+    this.setState({ categoryList: categoryList.sort(() => Math.random() - 0.5), loading: false });
   }
 
   render() {
@@ -78,7 +77,7 @@ class CategoriesPage extends React.Component {
     const groupAs = this.state.categoryList.length / 4;
     function toTitleCase(str) {
       return str.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toUpperCase();
       });
     }
 
