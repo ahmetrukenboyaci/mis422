@@ -15,6 +15,7 @@ import "./App.scss";
 import CompanyProfile from "./components/Pages/CompanyProfile/CompanyProfile";
 import { getCookie, setCookie } from "./utils/cookie";
 import Header from "./components/Header/Header";
+import AccountActivate from "./components/Account/AccountActivate";
 
 class App extends React.Component {
   constructor(props) {
@@ -88,6 +89,12 @@ class App extends React.Component {
                       handlePageChange={this.handlePageChange}
                   />
                 )}
+              />
+              <Route
+                  path={"/account/activate/:key"}
+                  render={(props) => (
+                    <AccountActivate {...props} />
+                  )}
               />
             </Switch>
           </div>
