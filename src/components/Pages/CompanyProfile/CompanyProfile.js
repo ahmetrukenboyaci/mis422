@@ -179,24 +179,15 @@ class CompanyProfile extends React.Component {
                   <div
                     onClick={()=>this.onTabClick(0)}
                     className={`tab ${activeTab === 0 && "active"}`}
-                    style={{  position: "relative", display: "flex", justifyContent: "space-between",width: "200px", paddingLeft: "70px"}}
                   >
-                    <div className="fiveForceTab">
-                      <div className="fiveForceIcon">
-                        <img className={"arrowup"} alt={"arrowup"} src={arrowup} />
-                        <img className={"arrowright"} alt={"arrowright"} src={arrowright} />
-                        <img className={"arrowdown"} alt={"arrowdown"} src={arrowdown} />
-                        <img className={"arrowleft"} alt={"arrowleft"} src={arrowleft} />
-                        <img className={"fiveCore"} alt={"fiveCore"} src={fiveCore} />
-                      </div>
-                    </div>
+                    <i className={'fa fa-dice-five'} />
                     Five Forces
                   </div>
                   <div
                     onClick={()=>this.onTabClick(1)}
                     className={`tab ${activeTab === 1 && "active"}`}
                   >
-                    <img alt={"swot"} src={swot} style={{marginRight: 15}} />
+                    <i className={'fa fa-dice-four'} />
                     SWOT Chart
                   </div>
                   <div

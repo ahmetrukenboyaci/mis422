@@ -12,7 +12,7 @@
     justify-content: center;
     align-items: center;
     font-size: 24px;
-    width: 40%;
+    width: 60%;
     height: auto;
 
     & span {
@@ -28,7 +28,7 @@
 
   & .redirect {
     margin: 25px 0;
-    font-size: 36px;
+    font-size: 30px;
     font-weight: bolder;
     width: 75%;
     text-align: center;
@@ -40,6 +40,7 @@
     justify-content: space-around;
     align-items: center;
     width: 40%;
+    padding: 0;
 
     & a {
       color: rgb(141, 33, 78);
