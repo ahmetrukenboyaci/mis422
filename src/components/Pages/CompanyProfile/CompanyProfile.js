@@ -12,7 +12,6 @@ import CompanyPageProfileF from "../../CompanyProfileF/CompanyProfileF";
 /** styles **/
 import "./CompanyProfile.scss";
 import "../../../App.scss";
-import info from "../../../icons/info.svg";
 import swot from "../../../icons/categories.svg";
 import arrowdown from "../../../icons/arrow-down.svg";
 import arrowleft from "../../../icons/arrow-left.svg";
@@ -52,7 +51,6 @@ class CompanyProfile extends React.Component {
   };
 
   async componentDidMount() {
-    window.scroll(0, 0);
     const companyId = this.props.location.state[0].companyId;
     const api = this.props.isAuthorized ? "api" : "public";
 
@@ -107,6 +105,7 @@ class CompanyProfile extends React.Component {
       swotData: swotData,
       news: newsData.find(e => this.asd(e.companyName.toLowerCase()).includes(response.data.name.toLowerCase()))
     });
+    window.scroll(0, 0);
   }
 
   async componentDidUpdate(prevProps) {
@@ -184,11 +183,11 @@ class CompanyProfile extends React.Component {
                   >
                     <div className="fiveForceTab">
                       <div className="fiveForceIcon">
-                        <img className={"arrowup"} src={arrowup} />
-                        <img className={"arrowright"} src={arrowright} />
-                        <img className={"arrowdown"} src={arrowdown} />
-                        <img className={"arrowleft"} src={arrowleft} />
-                        <img className={"fiveCore"} src={fiveCore} />
+                        <img className={"arrowup"} alt={"arrowup"} src={arrowup} />
+                        <img className={"arrowright"} alt={"arrowright"} src={arrowright} />
+                        <img className={"arrowdown"} alt={"arrowdown"} src={arrowdown} />
+                        <img className={"arrowleft"} alt={"arrowleft"} src={arrowleft} />
+                        <img className={"fiveCore"} alt={"fiveCore"} src={fiveCore} />
                       </div>
                     </div>
                     Five Forces
@@ -197,7 +196,7 @@ class CompanyProfile extends React.Component {
                     onClick={()=>this.onTabClick(1)}
                     className={`tab ${activeTab === 1 && "active"}`}
                   >
-                    <img src={swot} />
+                    <img alt={"swot"} src={swot} style={{marginRight: 15}} />
                     SWOT Chart
                   </div>
                   <div
@@ -221,11 +220,11 @@ class CompanyProfile extends React.Component {
                     data={swotData}
                 />}
                 {activeTab === 2 &&
-                  news.newsDetails.map(e =>
-                      <div className={"newsContainer"}>
-                        <a target={"_blank"} href={e.url} className={"url"}>
+                  news?.newsDetails.map((e, i) =>
+                      <div key={i} className={"newsContainer"}>
+                        {e.url.length > 0 && <a target={"_blank"} href={e.url} rel="noopener noreferrer" className={"url"}>
                           Link
-                        </a>
+                        </a>}
                         <div className={"title"}>
                           {e.title}
                         </div>

@@ -13,17 +13,17 @@ class Footer extends Component {
               Copyright | 2020
             </Col>{" "}
             <Col xs="4" sm="4" className={"footer-about-us"}>
-              <a href="">FAQ</a>
+              <a href={"/"}>FAQ</a>
               {" "}
-              <a href="">Terms of Service</a>
+              <a href={"/"}>Terms of Service</a>
               {" "}
-              <a href="">Team</a>
+              <a href={"/"}>Team</a>
               {" "}
-              <a href="">Privacy Policy</a>
+              <a href={"/"}>Privacy Policy</a>
               {" "}
-              <a href="">Cookie Policy</a>
+              <a href={"/"}>Cookie Policy</a>
               {" "}
-              <a href="">Contact</a>
+              <a href={"/"}>Contact</a>
             </Col>
           </Row>
         </Container>

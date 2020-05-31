@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardImg, CardBody, CardTitle, CardSubtitle } from "reactstrap";
+import { Card, CardImg, CardBody, CardTitle } from "reactstrap";
 import { Link } from "react-router-dom";
 
 import "./CompanyCard.scss";
@@ -17,7 +17,6 @@ const CompanyCard = ({ id, image, category, companyName, onClickLogin }) => {
       </div>
       <CardBody className="cardBody">
         <CardTitle className="companyName "> {companyName} </CardTitle>
-        {/*<CardSubtitle className="category"> {category} </CardSubtitle>*/}
         <div className="card-bottom">
           <Link
             to={{

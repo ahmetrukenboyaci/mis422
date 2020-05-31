@@ -1,5 +1,4 @@
 import React, {Fragment} from "react";
-import { ResponsiveRadar } from "@nivo/radar";
 import "./fiveForces.scss";
 import Modal from "../../Modal/Modal";
 import mis422 from "../../../api/mis-422";
@@ -39,7 +38,7 @@ class MyResponsiveRadar extends React.Component {
               <select name="companies" id="companies" value={this.state.selectedValue}
                       onChange={(e) => this.setState({ selectedValue: this.state.selectedValue !== e.target.value ? e.target.value : 0 })}
               >
-                {this.state.companies.map((cmp, i) => <option value={cmp.id}>{cmp.name}</option>)}
+                {this.state.companies.map((cmp,i) => <option key={i} value={cmp.id}>{cmp.name}</option>)}
               </select>
               <div className="btnContainer">
                   <button onClick={async () => {
@@ -69,6 +68,7 @@ class MyResponsiveRadar extends React.Component {
     const { data } = this.props;
     const { hoverElement, clickElement } = this.state;
 
+      // eslint-disable-next-line array-callback-return
     return Object.keys(data).filter(item => item.includes("Description")).map((item, index) => {
       if ((first && index < 3) || (!first && index > 2)) {
         return (
@@ -98,6 +98,7 @@ class MyResponsiveRadar extends React.Component {
         <div onMouseEnter={() =>
             Array.from(document.getElementById("parent-div")
                 .childNodes[0].childNodes[0].childNodes[0].childNodes[1].childNodes[0].childNodes[2].children)
+            // eslint-disable-next-line array-callback-return
                 .map((e, i) => {
                   e.addEventListener('mouseover', () => {
                     this.setState({hoverElement: i});

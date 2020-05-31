@@ -8,7 +8,16 @@
     left: 0;
     top: 0;
     background: rgba(0,0,0, .2);
-    z-index: 1050;
+    z-index: 1051;
+
+    & .href {
+        color: dodgerblue;
+        cursor: pointer;
+        &:hover {
+            color: blue;
+            text-decoration: underline;
+        }
+    }
 }
 .user_card {
     width: 350px;
@@ -32,9 +41,25 @@
     width: 170px;
     top: -75px;
     border-radius: 50%;
-    background: #60a3bc;
+    background: white;
     padding: 10px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: #5fa3bc 2px solid;
+    font-size: 12px;
+
+    & span {
+        margin-top: 10px;
+        font-weight: bolder;
+    }
+
+    & img {
+        width: 60%;
+        height: auto;
+    }
 }
 .brand_logo {
     height: 150px;
@@ -71,12 +96,4 @@
 }
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
     background-color: #5fa3bc !important;
-}
-
-.href {
-    color: blue;
-    cursor: pointer;
-}
-.href:hover {
-    text-decoration: underline;
 }

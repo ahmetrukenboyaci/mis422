@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { eraseCookie, getCookie, setCookie } from "../../../utils/cookie";
-import "./loginStyle.css";
+import { setCookie } from "../../../utils/cookie";
+import "./loginStyle.scss";
 import logo from "../../../resim.png";
 
 class LoginPage extends Component {
@@ -77,7 +77,8 @@ class LoginPage extends Component {
         <div className="user_card" onClick={e => {e.stopPropagation();}}>
           <div className="d-flex justify-content-center">
             <div className="brand_logo_container">
-              <img src={logo} />
+              <img alt={"logo"} src={logo} />
+              <span>DIGITAL COMPANY</span> GURU
             </div>
           </div>
           <div className="d-flex justify-content-center form_container">
@@ -157,12 +158,12 @@ class LoginPage extends Component {
                     className="custom-control-input"
                     id="customControlInline"
                   />
-                  <label
-                    className="custom-control-label"
-                    htmlFor="customControlInline"
-                  >
-                    Remember me
-                  </label>
+                  {/*<label*/}
+                  {/*  className="custom-control-label"*/}
+                  {/*  htmlFor="customControlInline"*/}
+                  {/*>*/}
+                  {/*  Remember me*/}
+                  {/*</label>*/}
                 </div>
               </div>}
               <div className="d-flex justify-content-center mt-3 login_container">
@@ -180,9 +181,9 @@ class LoginPage extends Component {
           <div className="mt-4">
             <div className="d-flex justify-content-center links">
               {isSignUp ? "Already have an account? " : "Don't have an account? "}
-              <a className="ml-2 href" onClick={() => this.setState({isSignUp: !isSignUp})}>
+              <div className="ml-2 href" onClick={() => this.setState({isSignUp: !isSignUp})}>
                 {!isSignUp ? "Sign Up" : "Sign In"}
-              </a>
+              </div>
             </div>
           </div>
         </div>

@@ -1,13 +1,11 @@
-import React, { Fragment } from "react";
+import React from "react";
 import {Input, ListGroup, ListGroupItem} from "reactstrap";
 
 import { Link } from "react-router-dom";
 import mis422 from "../../../api/mis-422";
-import CategoryCard from "../../CategoryCard/CategoryCard";
 
 /** styles **/
 import "./CategoriesPage.scss";
-import {getCookie} from "../../../utils/cookie";
 import axios from "axios";
 
 class CategoriesPage extends React.Component {
@@ -50,6 +48,10 @@ class CategoriesPage extends React.Component {
           break;
         case "PROFESSIONALSCIENTIFICANDTECHNICALSERVICES":
           data[index] = "PROFESSIONAL SCIENTIFIC AND TECHNICAL SERVICES";
+          break;
+        default:
+          data[index] = category;
+          break;
       }
     });
 
@@ -59,7 +61,7 @@ class CategoriesPage extends React.Component {
       for (let index = 0; index < data.length; index++) {
         let res = await axios.create({
           baseURL: "https://api.iconfinder.com/v4/icons/search",
-          headers: { authorization: "Bearer" + " " + "Qk5O7iUvFZmRk8ZFCoVL22URlrLNjCbHG7j13RxtR6qnYzj90zJaIbZ5PzMgDmW0" },
+          headers: { authorization: "Bearer Qk5O7iUvFZmRk8ZFCoVL22URlrLNjCbHG7j13RxtR6qnYzj90zJaIbZ5PzMgDmW0" },
         }).get("", {
           params: {
             query: data[index].includes("-") ? data[index].toLowerCase().split("-")[1] : data[index].toLowerCase().split(" ")[0],
@@ -128,7 +130,7 @@ class CategoriesPage extends React.Component {
       <div className="CategoriesPage">
         <div className={"background-curve"}/>
         <Input
-            onChange={(e) => {console.log(e.target.value);this.setState({ inputValue: e.target.value })}}
+            onChange={(e) => {this.setState({ inputValue: e.target.value })}}
             type="search"
             placeholder="Search in Industries"
             value={this.state.inputValue}
@@ -136,7 +138,7 @@ class CategoriesPage extends React.Component {
         <ListGroup className="CategoriesList">
           {this.state.loading ? (
             <div
-              className="spinner-border align-self-center text-warning"
+              className="spinner-border align-self-center text-warning mr-auto"
               role="status"
             >
               <span className="sr-only">Categories Loading...</span>
@@ -144,16 +146,16 @@ class CategoriesPage extends React.Component {
           ) : (
             <div className="card-container">
               <div className={'litem-group d'}>
-                {this.renderCategoriesList(3).map(e => <div className={'litem'}>{e}</div>)}
+                {this.renderCategoriesList(3).map((e, i) => <div key={`3${i}`} className={'litem'}>{e}</div>)}
               </div>
               <div className={'litem-group c'}>
-                {this.renderCategoriesList(2).map(e => <div className={'litem'}>{e}</div>)}
+                {this.renderCategoriesList(2).map((e, i) => <div key={`2${i}`} className={'litem'}>{e}</div>)}
               </div>
               <div className={'litem-group b'}>
-                {this.renderCategoriesList(1).map(e => <div className={'litem'}>{e}</div>)}
+                {this.renderCategoriesList(1).map((e, i) => <div key={`1${i}`} className={'litem'}>{e}</div>)}
               </div>
               <div className={'litem-group a'}>
-                {this.renderCategoriesList(0).map(e => <div className={'litem'}>{e}</div>)}
+                {this.renderCategoriesList(0).map((e, i) => <div key={`0${i}`} className={'litem'}>{e}</div>)}
               </div>
             </div>
           )}

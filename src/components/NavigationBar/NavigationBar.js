@@ -1,15 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from "reactstrap";
 
 /** styles **/
 import "./NavigationBar.scss";
 import logo from "../../resim.png";
-import twitter from "../../icons/twitter.svg";
-import instagram from "../../icons/instagram.svg";
-import linkedin from "../../icons/linkedin.svg";
-import logout from "../../icons/logout.svg";
-import login from "../../icons/login.png";
 import Footer from "../Footer/Footer";
 
 class NavigationBar extends Component {
@@ -17,7 +11,6 @@ class NavigationBar extends Component {
     super(props);
 
     this.state = {
-      isOpen: false,
       timer: {},
       company: [],
     };
@@ -29,14 +22,13 @@ class NavigationBar extends Component {
 
   render() {
     let { isAuthorized } = this.props;
-    let { isOpen } = this.state;
 
     return (
       <div className={"NavBar"}>
         <div className={"navbarContainer"}>
           <div className="navbarItems">
             <Link to="/">
-              <img src={logo} />
+              <img alt={"logo"} src={logo} />
               DIGITAL COMPANY GURU
             </Link>
             <Link to="/CategoriesPage">
@@ -47,19 +39,19 @@ class NavigationBar extends Component {
             </Link>
           </div>
           <div className="navbarFooter">
-            <a target="_blank" href={"https://www.linkedin.com/in/digital-company-guru-b863651ab"}>
+            <a target="_blank" rel="noopener noreferrer" href={"https://www.linkedin.com/in/digital-company-guru-b863651ab"}>
               <i
                 data-content={"https://www.linkedin.com/in/digital-company-guru-b863651ab"}
                 className="fab fa-linkedin"
               />
             </a>
-            <a target="_blank" href={"https://twitter.com/digitalcomguru"}>
+            <a target="_blank" rel="noopener noreferrer" href={"https://twitter.com/digitalcomguru"}>
               <i
                 data-content={"https://twitter.com/digitalcomguru"}
                 className="fab fa-twitter"
               />
             </a>
-            <a target="_blank" href={"https://instagram.com/digitalcompanyguru"}>
+            <a target="_blank" rel="noopener noreferrer" href={"https://instagram.com/digitalcompanyguru"}>
               <i
                 data-content={"https://instagram.com/digitalcompanyguru"}
                 className="fab fa-instagram"

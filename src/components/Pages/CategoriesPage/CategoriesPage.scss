@@ -9,6 +9,10 @@
   height: 100%;
   font-weight: 600;
 
+  & .spinner-border {
+    margin: 10px 0;
+  }
+
   & Input {
     width: 750px;
     margin: 75px 20px 0px;
@@ -42,7 +46,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: start;
+    align-items: flex-start;
     z-index: 2;
   }
 

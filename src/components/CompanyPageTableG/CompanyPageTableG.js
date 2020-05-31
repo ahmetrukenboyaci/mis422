@@ -18,7 +18,8 @@ class CompanyPageTableG extends Component {
 
     let newCompany = {...companyInfo};
 
-    Object.keys(newCompany).map(oKey => {
+    // eslint-disable-next-line array-callback-return
+    Object.keys(newCompany).map((oKey) => {
       if (newCompany[oKey] === null || newCompany[oKey] === "") {
         delete newCompany[oKey];
       } else {
@@ -53,12 +54,13 @@ class CompanyPageTableG extends Component {
       return acc;
     }, {});
 
-    function isLink(item) {
+    function isLink(item, isWeb=false) {
       if (typeof item == "string") {
         if (item.includes('*') || item.includes('Student')) {
           var items = item.split(",");
           var hrefs = [];
           var els = [];
+          // eslint-disable-next-line array-callback-return
           items.map(el => {
             if (el.includes('.com') ) {
               hrefs.push(el);
@@ -68,15 +70,16 @@ class CompanyPageTableG extends Component {
           });
           var icon = () => <i className={'fab fa-linkedin'} />;
           return els.map((el, i) => {
-            return <div><a target="_blank" href={"https://"+hrefs[i]}>{el.replace("*", " ") +" "}</a>
-              <a target="_blank" href={"https://"+hrefs[i]}>{icon()}</a></div>;
+            let link = hrefs[i]?.includes('http') ? hrefs[i] : "https://"+hrefs[i];
+            return <div key={i}><a target="_blank" rel="noopener noreferrer" href={link}>{el.replace("*", " ") +" "}</a>
+              <a target="_blank" rel="noopener noreferrer" href={link}>{icon()}</a></div>;
           })
         }
-        if (item.includes(".com") && !item.includes(",")) {
+        if (isWeb) {
           if (!item.includes('http')) item = "https://"+item;
         }
-        return (item.includes(".com") && !item.includes(",")) ? (
-          <a target="_blank" href={item}>{item}</a>
+        return (item.includes("http") && !item.includes(",")) ? (
+          <a target="_blank" rel="noopener noreferrer" href={item}>{item}</a>
         ) : (
           <span>{item}</span>
         );
@@ -85,12 +88,13 @@ class CompanyPageTableG extends Component {
     }
 
     if (!isOdd) {
+      // eslint-disable-next-line array-callback-return
       return Object.keys(finalObject).map((key, id) => {
         if (key !== "Id" && key !== "Name" && id % 2 === 0) {
           return (
                 <tr key={id}>
                   <th scope="row">{key}</th>
-                  <td>{isLink(finalObject[key])}</td>
+                  <td>{isLink(finalObject[key], key.toLowerCase().includes('website'))}</td>
                   {this.renderCompanyCard(id % 2 === 0, id+1)}
                 </tr>
             );
@@ -118,6 +122,7 @@ class CompanyPageTableG extends Component {
               <th colSpan={2} scope="col">
                 <img
                   className="companyLogo"
+                  alt={"company logo"}
                   src={`https://logo.clearbit.com/${website}?size=200`}
                 />
               </th>

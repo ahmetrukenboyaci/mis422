@@ -1,7 +1,7 @@
 .CompanyProfile {
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   padding: 20px;
   align-items: center;
   height: 100%;
@@ -93,11 +93,6 @@
       & .active {
         border: 1px solid #ff9776;
         border-radius: 12px;
-
-        //& .fiveForceTab {
-        //  bottom: 14px;
-        //  left: 22px;
-        //}
       }
     }
     & .newsContainer {

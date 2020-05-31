@@ -1,10 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./CompanyProfileF.scss";
 import {
   Row,
   Col,
-  Button,
   CardImg,
   CardImgOverlay,
   Card,

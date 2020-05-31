@@ -1,5 +1,7 @@
 import React from "react";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
+import mis422 from './api/mis-422';
+import {deviceType} from 'react-device-detect';
 
 /**  Pages  **/
 import HomePage from "./components/Pages/HomePage/HomePage";
@@ -8,13 +10,13 @@ import CategoriesPage from "./components/Pages/CategoriesPage/CategoriesPage";
 import CompaniesPage from "./components/Pages/CompaniesPage/CompaniesPage";
 /** components **/
 import NavigationBar from "./components/NavigationBar/NavigationBar";
-import Footer from "./components/Footer/Footer";
 
 /** styles **/
 import "./App.scss";
 import CompanyProfile from "./components/Pages/CompanyProfile/CompanyProfile";
 import { getCookie, setCookie } from "./utils/cookie";
 import Header from "./components/Header/Header";
+import MobilePage from "./components/Pages/MobilePage/MobilePage";
 
 class App extends React.Component {
   constructor(props) {
@@ -28,6 +30,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    if (window.location.pathname.includes("account")) {
+      mis422.get("/api/activate", {params: { key: window.location.href.split("/")[4].split("=")[1] }});
+    }
     let token = getCookie("token");
     this.setState({ isAuthorized: token.length > 0 });
   }
@@ -50,6 +55,9 @@ class App extends React.Component {
 
   render() {
     let { isAuthorized, loginVisible, header } = this.state;
+    if (deviceType.includes('tablet') || deviceType.includes('mobile')) {
+      return <MobilePage />;
+    }
     return (
       <div className={"App"}>
         {loginVisible && <LoginPage onClick={this.onClickLogin} />}

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import mis422 from "../../../api/mis-422";
-import { TwitterTimelineEmbed } from "react-twitter-embed";
-import InstagramEmbed from "react-instagram-embed";
 
 import "./HomePage.scss";
 import CompaniesPage from "../CompaniesPage/CompaniesPage";
