@@ -13,12 +13,14 @@ class LoginPage extends Component {
       password: "",
       confirmPassword: "",
       email: "",
-      isSignUp: false
+      isSignUp: false,
+      loading: false
     };
   }
 
   login = async (e) => {
     e.preventDefault();
+    this.setState({loading: true});
     let { username, password, confirmPassword, isSignUp, email } = this.state;
     let url = "";
     let data = {};
@@ -36,28 +38,42 @@ class LoginPage extends Component {
       timeout: 60000,
     });
     if ((isSignUp && password === confirmPassword) || !isSignUp) {
+      let error;
       let response = await axiosInstance.post(
         url,
         data
-      );
-      if (response.status === 200 || response.status === 201) {
+      ).catch(err => error = err.response.data);
+      if (response?.status === 200 || response?.status === 201) {
         if (isSignUp) {
-          alert("please check your email for confirmation");
+          alert("Please check your email for confirmation");
         } else {
           setCookie("token", response.data.id_token, {});
         }
+        this.setState({loading: false});
         this.props.onClick();
+      } else {
+        if (isSignUp) {
+          alert(error.title);
+        } else {
+          if (error.detail.toString().toLowerCase().includes('user')) {
+            alert(error.detail);
+          } else {
+            alert('Password or username is wrong');
+          }
+        }
+        this.setState({loading: false});
       }
     } else {
       alert("passwords does not match");
+      this.setState({loading: false});
     }
 
   };
 
   render() {
-    let {isSignUp} = this.state;
+    let {isSignUp, loading} = this.state;
     return (
-      <div className="loginContainer" onClick={() => this.props.onClick()}>
+      <div className="loginContainer" onClick={() => !loading ? this.props.onClick(true) : {}}>
         <div className="user_card" onClick={e => {e.stopPropagation();}}>
           <div className="d-flex justify-content-center">
             <div className="brand_logo_container">
@@ -69,7 +85,7 @@ class LoginPage extends Component {
               <div className="input-group mb-3">
                 <div className="input-group-append">
                   <span className="input-group-text">
-                    <i className="fas fa-user"></i>
+                    <i style={{color:"white"}} className="fas fa-user" />
                   </span>
                 </div>
                 <input
@@ -150,12 +166,13 @@ class LoginPage extends Component {
                 </div>
               </div>}
               <div className="d-flex justify-content-center mt-3 login_container">
-                <input
+                {!loading ? <input
                   type="submit"
                   name="button"
                   className="btn login_btn"
                   value={isSignUp ? "Sign Up" : "Sign In"}
                 />
+                : <button className="btn login_btn"><i className={"fa fa-spinner"}/></button>}
               </div>
             </form>
           </div>

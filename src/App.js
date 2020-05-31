@@ -36,9 +36,9 @@ class App extends React.Component {
     this.setState({ header: text.toUpperCase() });
   };
 
-  onClickLogin = () => {
+  onClickLogin = (isOut=false) => {
     this.setState({loginVisible: !this.state.loginVisible}, () => {
-      if (!this.state.loginVisible)
+      if (!this.state.loginVisible && !isOut)
         window.location.reload();
     });
   };
@@ -69,7 +69,7 @@ class App extends React.Component {
               <Route
                   path={"/CategoriesPage"}
                   render={(props) => (
-                    <CategoriesPage {...props} onClickLogin={this.onClickLogin} handlePageChange={this.handlePageChange} />
+                    <CategoriesPage {...props} handlePageChange={this.handlePageChange} />
                   )}
               />
               <Route

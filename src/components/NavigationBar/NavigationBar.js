@@ -47,21 +47,21 @@ class NavigationBar extends Component {
             </Link>
           </div>
           <div className="navbarFooter">
-            <a target="_blank" href={"https://www.linkedin.com"}>
+            <a target="_blank" href={"https://www.linkedin.com/in/digital-company-guru-b863651ab"}>
               <i
-                data-content={"https://www.linkedin.com"}
+                data-content={"https://www.linkedin.com/in/digital-company-guru-b863651ab"}
                 className="fab fa-linkedin"
               />
             </a>
-            <a target="_blank" href={"https://www.twitter.com"}>
+            <a target="_blank" href={"https://twitter.com/digitalcomguru"}>
               <i
-                data-content={"https://www.twitter.com"}
+                data-content={"https://twitter.com/digitalcomguru"}
                 className="fab fa-twitter"
               />
             </a>
-            <a target="_blank" href={"https://www.instagram.com"}>
+            <a target="_blank" href={"https://instagram.com/digitalcompanyguru"}>
               <i
-                data-content={"https://www.instagram.com"}
+                data-content={"https://instagram.com/digitalcompanyguru"}
                 className="fab fa-instagram"
               />
             </a>

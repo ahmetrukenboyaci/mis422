@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
 
-import styles from "./Footer.scss";
+import "./Footer.scss";
 
-/** icons */
-import twitter from "../../icons/twitter.svg";
-import instagram from "../../icons/instagram.svg";
-import linkedin from "../../icons/linkedin.svg";
 class Footer extends Component {
   render() {
     return (
@@ -16,32 +12,18 @@ class Footer extends Component {
             <Col xs="8" className="text-left">
               Copyright | 2020
             </Col>{" "}
-            <Col xs="12" sm="12">
-              <ul>
-                <li>
-                  <a href="">FAQ</a>
-                </li>
-                <li>
-                  {" "}
-                  <a href="">Terms of Service</a>
-                </li>
-                <li>
-                  {" "}
-                  <a href="">Team</a>
-                </li>
-                <li>
-                  {" "}
-                  <a href="">Privacy Policy</a>
-                </li>
-                <li>
-                  {" "}
-                  <a href="">Cookie Policy</a>
-                </li>
-                <li>
-                  {" "}
-                  <a href="">Contact</a>
-                </li>
-              </ul>
+            <Col xs="4" sm="4" className={"footer-about-us"}>
+              <a href="">FAQ</a>
+              {" "}
+              <a href="">Terms of Service</a>
+              {" "}
+              <a href="">Team</a>
+              {" "}
+              <a href="">Privacy Policy</a>
+              {" "}
+              <a href="">Cookie Policy</a>
+              {" "}
+              <a href="">Contact</a>
             </Col>
           </Row>
         </Container>

@@ -22,7 +22,7 @@ const CompanyCard = ({ id, image, category, companyName, onClickLogin }) => {
           <Link
             to={{
               pathname: "/CompanyProfile",
-              state: [{ companyId: id, onClickLogin: onClickLogin }],
+              state: [{ companyId: id }],
             }}
           >
             More Information{" "}
