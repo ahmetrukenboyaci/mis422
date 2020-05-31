@@ -203,7 +203,7 @@ class CompanyProfile extends React.Component {
                     onClick={()=>this.onTabClick(2)}
                     className={`tab ${activeTab === 2 && "active"}`}
                   >
-                    <i className={'far fa-newspaper'} />
+                    <i className={'fa fa-newspaper'} />
                     Recent News
                   </div>
                 </div>
