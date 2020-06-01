@@ -31,7 +31,14 @@ class App extends React.Component {
 
   componentDidMount() {
     if (window.location.pathname.includes("account")) {
-      mis422.get("/api/activate", {params: { key: window.location.href.split("/")[4].split("=")[1] }});
+      mis422.get("/api/activate", {params: { key: window.location.href.split("/")[4].split("=")[1] }}).then(res => {
+        if (res?.status === 200) {
+          alert("Your account is successfully activated");
+        } else {
+          alert("The activation key has not been found");
+        }
+        window.location.assign("/");
+      });
     }
     let token = getCookie("token");
     this.setState({ isAuthorized: token.length > 0 });
