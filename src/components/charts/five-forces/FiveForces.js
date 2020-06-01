@@ -16,7 +16,8 @@ class MyResponsiveRadar extends React.Component {
         showChart: false,
         selectedValue: 0,
         newData: [],
-        selectedCompanies: []
+        selectedCompanies: [],
+        selectedValues: []
     };
   }
 
@@ -36,13 +37,14 @@ class MyResponsiveRadar extends React.Component {
           <Fragment>
               <label htmlFor="companies">Choose a company:</label>
               <select name="companies" id="companies" value={this.state.selectedValue}
-                      onChange={(e) => this.setState({ selectedValue: this.state.selectedValue !== e.target.value ? e.target.value : 0 })}
+                      onChange={(e) => this.setState({selectedValue: e.target.value })}
               >
                 {this.state.companies.map((cmp,i) => <option key={i} value={cmp.id}>{cmp.name}</option>)}
               </select>
               <div className="btnContainer">
                   <button onClick={async () => {
-                      if (this.state.selectedCompanies.length < 6 && this.state.selectedValue !== 0) {
+                      console.log(this.state.selectedValues);
+                      if (this.state.selectedCompanies.length < 3 && this.state.selectedValue !== 0 && !this.state.selectedValues.some(el => el.toString() === this.state.selectedValue.toString())) {
                           let res = await mis422.get(`/api/companies/${this.state.selectedValue}/five-forces`);
                           let dt2 = this.state.newData.length > 0 ? [...this.state.newData] : [...dt];
                           dt2 = dt2.map(e => {e[res.data.company.name] = res.data[e.force.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
@@ -50,11 +52,20 @@ class MyResponsiveRadar extends React.Component {
                           }).replace(/\s+/g, '')+"Value"]*10; return e});
                           let cNames = this.state.selectedCompanies.length > 0 ? [...this.state.selectedCompanies] : [...companyNames];
                           cNames.push(res.data.company.name);
-                          this.setState({ selectedCompanies: cNames, newData: dt2, showChart: true, selectedValue: 0 });
+                          this.setState({
+                              selectedValues: [...this.state.selectedValues, this.state.selectedValue],
+                              selectedCompanies: cNames,
+                              newData: dt2,
+                              showChart: true,
+                              selectedValue: this.state.companies[0].id
+                          });
+                      } else {
+                          if (this.state.selectedCompanies.length >= 4) alert("You cannot compare more than 4 companies");
+                          if (this.state.selectedValues.some(el => el.toString() === this.state.selectedValue.toString())) alert("You chose this company before, try with another");
                       }
                   }} className={"btn custom"}>Compare</button>
                   <button className={"btn custom-clear"} onClick={() => this.setState({
-                      selectedCompanies: [], newData: [], showChart: false, selectedValue: this.state.companies[0].id
+                      selectedCompanies: [], newData: [], showChart: false, selectedValue: this.state.companies[0].id, selectedValues: []
                   })}>Clear</button>
               </div>
               <div className="chartContainer">
