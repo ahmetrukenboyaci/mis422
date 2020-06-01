@@ -104,7 +104,7 @@ class CompanyPageTableG extends Component {
       return (
           <Fragment>
             <th scope="row">{Object.keys(finalObject)[newKey]}</th>
-            <td>{isLink(finalObject[Object.keys(finalObject)[newKey]], Object.keys(finalObject)[newKey].toLowerCase().includes('website'))}</td>
+            <td>{isLink(finalObject[Object.keys(finalObject)[newKey]], Object.keys(finalObject)[newKey]?.toLowerCase().includes('website'))}</td>
           </Fragment>
       );
     }

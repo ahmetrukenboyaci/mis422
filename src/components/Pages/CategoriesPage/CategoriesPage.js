@@ -7,7 +7,6 @@ import mis422 from "../../../api/mis-422";
 /** styles **/
 import "./CategoriesPage.scss";
 import CategoriesIcons from '../../../CategoriesIcons/index';
-import axios from "axios";
 
 class CategoriesPage extends React.Component {
   constructor(props) {
