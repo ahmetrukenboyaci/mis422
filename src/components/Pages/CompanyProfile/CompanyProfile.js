@@ -12,12 +12,6 @@ import CompanyPageProfileF from "../../CompanyProfileF/CompanyProfileF";
 /** styles **/
 import "./CompanyProfile.scss";
 import "../../../App.scss";
-import swot from "../../../icons/categories.svg";
-import arrowdown from "../../../icons/arrow-down.svg";
-import arrowleft from "../../../icons/arrow-left.svg";
-import arrowright from "../../../icons/arrow-right.svg";
-import arrowup from "../../../icons/arrow-up.svg";
-import fiveCore from "../../../icons/fiveCore.svg";
 
 class CompanyProfile extends React.Component {
   constructor(props) {
@@ -51,7 +45,7 @@ class CompanyProfile extends React.Component {
   };
 
   async componentDidMount() {
-    const companyId = this.props.location.state[0].companyId;
+    const companyId = this.props.match.params.id;
     const api = this.props.isAuthorized ? "api" : "public";
 
     const response = await mis422.get(`/${api}/companies/${companyId}`);

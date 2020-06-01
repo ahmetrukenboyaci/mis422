@@ -20,8 +20,7 @@ const CompanyCard = ({ id, image, category, companyName, onClickLogin }) => {
         <div className="card-bottom">
           <Link
             to={{
-              pathname: "/CompanyProfile",
-              state: [{ companyId: id }],
+              pathname: `/CompanyProfile/${id}`,
             }}
           >
             More Information{" "}

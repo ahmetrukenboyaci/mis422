@@ -94,7 +94,7 @@ class App extends React.Component {
                   )}
               />
               <Route
-                path={"/CompanyProfile"}
+                path={"/CompanyProfile/:id"}
                 render={(props) => (
                   <CompanyProfile
                       {...props}
