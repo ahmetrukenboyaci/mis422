@@ -6,6 +6,7 @@ import mis422 from "../../../api/mis-422";
 
 /** styles **/
 import "./CategoriesPage.scss";
+import CategoriesIcons from '../../../CategoriesIcons/index';
 import axios from "axios";
 
 class CategoriesPage extends React.Component {
@@ -25,6 +26,7 @@ class CategoriesPage extends React.Component {
     const response = await mis422.get("/public/categories/get-all-categories");
 
     let data = response.data;
+    let categoryList = [];
 
     data.forEach((category, index) => {
       switch (category) {
@@ -53,25 +55,10 @@ class CategoriesPage extends React.Component {
           data[index] = category;
           break;
       }
+      categoryList.push({name: data[index], icon: CategoriesIcons[data[index].includes("-") ? data[index].toLowerCase().split("-")[1] : data[index].toLowerCase().split(" ")[0]]});
     });
 
-    let categoryList = [];
 
-    const forLoop = async _ => {
-      for (let index = 0; index < data.length; index++) {
-        let res = await axios.create({
-          baseURL: "https://api.iconfinder.com/v4/icons/search",
-          headers: { authorization: "Bearer Qk5O7iUvFZmRk8ZFCoVL22URlrLNjCbHG7j13RxtR6qnYzj90zJaIbZ5PzMgDmW0" },
-        }).get("", {
-          params: {
-            query: data[index].includes("-") ? data[index].toLowerCase().split("-")[1] : data[index].toLowerCase().split(" ")[0],
-            count:1
-          }
-        });
-        categoryList.push({name: data[index], icon: res.data.icons[0]?.raster_sizes[7]?.formats[0]?.preview_url});
-      }
-    };
-    await forLoop();
 
     this.setState({
       categoryList: categoryList.sort(() => Math.random() - 0.5),
