@@ -61,7 +61,7 @@ class CategoriesPage extends React.Component {
       for (let index = 0; index < data.length; index++) {
         let res = await axios.create({
           baseURL: "https://api.iconfinder.com/v4/icons/search",
-          headers: { authorization: "Bearer Qk5O7iUvFZmRk8ZFCoVL22URlrLNjCbHG7j13RxtR6qnYzj90zJaIbZ5PzMgDmW0" },
+          headers: { "Content-Type": "application/json", authorization: "Bearer Qk5O7iUvFZmRk8ZFCoVL22URlrLNjCbHG7j13RxtR6qnYzj90zJaIbZ5PzMgDmW0" },
         }).get("", {
           params: {
             query: data[index].includes("-") ? data[index].toLowerCase().split("-")[1] : data[index].toLowerCase().split(" ")[0],
