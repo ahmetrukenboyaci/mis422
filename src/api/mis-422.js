@@ -9,10 +9,7 @@ let axiosInstance = axios.create({
 
 axiosInstance.interceptors.response.use((response) => response, async (error) => {
   if (error.response.status === 401) {
-    let password = new Buffer(getCookie('userid'), 'base64').toString('ascii');
-    let username = new Buffer(getCookie('user'), 'base64').toString('ascii');
-    let tokenRes = await axiosInstance.post("/api/authenticate", {username, password});
-    setCookie("token", tokenRes.data.id_token, {});
+    setCookie("token", "", {});
     window.location.reload();
   } else {
     return error;

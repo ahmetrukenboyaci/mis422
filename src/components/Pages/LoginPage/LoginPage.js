@@ -47,11 +47,7 @@ class LoginPage extends Component {
         if (isSignUp) {
           alert("Please check your email for confirmation");
         } else {
-          let hashUser = new Buffer(username).toString('base64');
-          let hashPass = new Buffer(password).toString('base64');
           setCookie("token", response.data.id_token, {});
-          setCookie("user", hashUser, {});
-          setCookie("userid", hashPass, {});
         }
         this.setState({loading: false});
         this.props.onClick();
