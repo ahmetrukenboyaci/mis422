@@ -13,7 +13,7 @@ class MobilePage extends Component {
                 </div>
                 <div className={"redirect"}>MOBILE DEVICES ARE NOT SUPPORTED PLEASE TRY ON PC</div>
                 <div className="socialMedia">
-                    <a target="_blank" rel="noopener noreferrer" href={"https://www.linkedin.com/in/digital-company-guru-b863651ab"}>
+                    <a target="_blank" rel="noopener noreferrer" href={"https://www.linkedin.com/in/digital-company-guru"}>
                         <i className="fab fa-linkedin"/>
                     </a>
                     <a target="_blank" rel="noopener noreferrer" href={"https://twitter.com/digitalcomguru"}>
