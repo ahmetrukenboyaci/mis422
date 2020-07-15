@@ -39,9 +39,9 @@ class NavigationBar extends Component {
             </Link>
           </div>
           <div className="navbarFooter">
-            <a target="_blank" rel="noopener noreferrer" href={"https://www.linkedin.com/in/digital-company-guru"}>
+            <a target="_blank" rel="noopener noreferrer" href={"https://www.linkedin.com/company/digital-company-guru/"}>
               <i
-                data-content={"https://www.linkedin.com/in/digital-company-guru"}
+                data-content={"https://www.linkedin.com/company/digital-company-guru/"}
                 className="fab fa-linkedin"
               />
             </a>
